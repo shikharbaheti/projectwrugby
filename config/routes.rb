@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :people
+  root 'people#index'
+
+  resources :people do
+    member do
+      get :delete
+    end
+  end
+  
   root to: 'dashboards#show'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
   devise_scope :admin do
