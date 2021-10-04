@@ -9,6 +9,7 @@ RSpec.describe 'Creating a Person', type: :feature do
     visit root_path
     click_on 'Sign in with Google'
     visit new_person_path
+
     fill_in :person_person_id, with: 1
     fill_in 'Name', with: 'Nina Rao'
     fill_in 'Email', with: 'ninarao09@tamu.edu'
@@ -29,7 +30,7 @@ RSpec.describe 'Creating a Person', type: :feature do
     visit root_path
     click_on 'Sign in with Google'
     visit new_person_path
-    fill_in 'Name', with: 'Nina Rao'
+    fill_in :person_name, with: 'Nina Rao'
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
     fill_in 'Address', with: '100 address'
@@ -121,5 +122,11 @@ RSpec.describe 'Authentication', type: :feature do
     visit root_path
     click_on 'Sign in with Google'  
     expect(page).to have_content("Navbar")
+  end
+  scenario 'sign out takes to homepage' do
+    visit root_path
+    click_on 'Sign in with Google' 
+    click_on 'Sign Out'
+    expect(page).to have_content("Sign in with Google")
   end
 end

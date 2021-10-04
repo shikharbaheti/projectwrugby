@@ -40,3 +40,14 @@ RSpec.describe Person, type: :model do
     expect(subject).not_to be_valid
   end
 end
+
+RSpec.describe Admin, type: :model do
+  subject do
+    described_class.new(id: 1, email: 'ninarao09@tamu.edu', full_name: 'Nina Rao', uid: '727001489', avatar_url:'---')
+  end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
+end
