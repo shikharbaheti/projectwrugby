@@ -2,8 +2,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating a Person', type: :feature do
-  #I need to address the sign in stuff here
-  
+  # I need to address the sign in stuff here
+
   scenario 'valid inputs' do
     visit new_person_path
     fill_in :person_id, with: 1

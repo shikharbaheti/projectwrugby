@@ -3,7 +3,8 @@ require 'rails_helper'
 
 RSpec.describe Person, type: :model do
   subject do
-    described_class.new(person_id: 1, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number:'1234567890', address: '100 address', person_type: 1)
+    described_class.new(person_id: 1, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
+                        address: '100 address', person_type: 1)
   end
 
   it 'is valid with valid attributes' do
@@ -43,11 +44,10 @@ end
 
 RSpec.describe Admin, type: :model do
   subject do
-    described_class.new(id: 1, email: 'ninarao09@tamu.edu', full_name: 'Nina Rao', uid: '727001489', avatar_url:'---')
+    described_class.new(id: 1, email: 'ninarao09@tamu.edu', full_name: 'Nina Rao', uid: '727001489', avatar_url: '---')
   end
 
   it 'is valid with valid attributes' do
     expect(subject).to be_valid
   end
-
 end
