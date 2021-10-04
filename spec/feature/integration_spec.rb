@@ -2,7 +2,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating a Person', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
   scenario 'valid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
     visit new_person_path
     fill_in :person_person_id, with: 1
     fill_in 'Name', with: 'Nina Rao'
@@ -21,6 +26,8 @@ RSpec.describe 'Creating a Person', type: :feature do
   end
 
   scenario 'invalid person_id' do
+    visit root_path
+    click_on 'Sign in with Google'
     visit new_person_path
     fill_in 'Name', with: 'Nina Rao'
     fill_in 'Email', with: 'ninarao09@tamu.edu'
@@ -33,6 +40,8 @@ RSpec.describe 'Creating a Person', type: :feature do
   end
 
   scenario 'invalid name' do
+    visit root_path
+    click_on 'Sign in with Google'
     visit new_person_path
     fill_in :person_person_id, with: 1
     fill_in 'Email', with: 'ninarao09@tamu.edu'
@@ -45,6 +54,8 @@ RSpec.describe 'Creating a Person', type: :feature do
   end
 
   scenario 'invalid email' do
+    visit root_path
+    click_on 'Sign in with Google'
     visit new_person_path
     fill_in :person_person_id, with: 1
     fill_in 'Name', with: 'Nina Rao'
@@ -57,6 +68,8 @@ RSpec.describe 'Creating a Person', type: :feature do
   end
 
   scenario 'invalid phone number' do
+    visit root_path
+    click_on 'Sign in with Google'
     visit new_person_path
     fill_in :person_person_id, with: 1
     fill_in 'Name', with: 'Nina Rao'
@@ -69,6 +82,8 @@ RSpec.describe 'Creating a Person', type: :feature do
   end
 
   scenario 'invalid address' do
+    visit root_path
+    click_on 'Sign in with Google'
     visit new_person_path
     fill_in :person_person_id, with: 1
     fill_in 'Name', with: 'Nina Rao'
@@ -81,6 +96,8 @@ RSpec.describe 'Creating a Person', type: :feature do
   end
 
   scenario 'invalid person type' do
+    visit root_path
+    click_on 'Sign in with Google'
     visit new_person_path
     fill_in :person_person_id, with: 1
     fill_in 'Name', with: 'Nina Rao'
@@ -91,8 +108,18 @@ RSpec.describe 'Creating a Person', type: :feature do
     visit people_path
     expect(page).not_to have_content(1)
   end
+end
 
-  
-  
-
+RSpec.describe 'Authentication', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+  scenario 'visit path without logging in' do
+    visit people_path   
+    expect(page).to have_content("Please log in!")
+  end
+  scenario 'visit dashboard after logging in' do
+    visit root_path
+    click_on 'Sign in with Google'  
+    expect(page).to have_content("Navbar")
+  end
 end
