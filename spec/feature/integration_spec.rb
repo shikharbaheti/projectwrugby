@@ -2,9 +2,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating a Person', type: :feature do
+  #I need to address the sign in stuff here
+  
   scenario 'valid inputs' do
     visit new_person_path
-    fill_in :person_person_id, with: 1
+    fill_in :person_id, with: 1
     fill_in 'Name', with: 'Nina Rao'
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
@@ -22,7 +24,7 @@ RSpec.describe 'Creating a Person', type: :feature do
 
   scenario 'invalid person_id' do
     visit new_person_path
-    fill_in 'Name', with: 'Nina Rao'
+    fill_in :person_name, with: 'Nina Rao'
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
     fill_in 'Address', with: '100 address'
@@ -91,6 +93,16 @@ RSpec.describe 'Creating a Person', type: :feature do
     visit people_path
     expect(page).not_to have_content(1)
   end
+end
 
+RSpec.describe 'Dealing with session', type: :feature do
+  scenario '- after sign out' do
+    visit new_admin_session_path
+    expect(page).to have_content("Welcome to TAMU Women's Ruby Team Page\nPlease log in!\nSign in with Google")
+  end
 
+  scenario '- after sign in' do
+    visit root_path
+    expect(page).to have_content("TAMU Women's Rugby Team")
+  end
 end
