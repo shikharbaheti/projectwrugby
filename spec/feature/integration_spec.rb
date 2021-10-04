@@ -92,7 +92,5 @@ RSpec.describe 'Creating a Person', type: :feature do
     expect(page).not_to have_content(1)
   end
 
-  
-  
 
 end
