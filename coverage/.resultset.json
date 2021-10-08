@@ -1,22 +1,90 @@
 {
   "RSpec": {
     "coverage": {
-      "/finalProject/app/controllers/dashboards_controller.rb": {
+      "/csce431/spec/unit/unit_spec.rb": {
         "lines": [
+          null,
+          1,
+          null,
+          1,
+          1,
+          7,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
           1,
           1,
           null,
           null
         ]
       },
-      "/finalProject/app/controllers/application_controller.rb": {
+      "/csce431/app/models/person.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/csce431/app/controllers/dashboards_controller.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/finalProject/app/controllers/admins/sessions_controller.rb": {
+      "/csce431/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/csce431/app/controllers/admins/sessions_controller.rb": {
         "lines": [
           1,
           1,
@@ -29,7 +97,7 @@
           null
         ]
       },
-      "/finalProject/app/controllers/admins/omniauth_callbacks_controller.rb": {
+      "/csce431/app/controllers/admins/omniauth_callbacks_controller.rb": {
         "lines": [
           1,
           1,
@@ -41,6 +109,7 @@
           9,
           null,
           0,
+          null,
           0,
           null,
           null,
@@ -72,7 +141,7 @@
           null
         ]
       },
-      "/finalProject/app/controllers/people_controller.rb": {
+      "/csce431/app/controllers/people_controller.rb": {
         "lines": [
           1,
           1,
@@ -86,14 +155,12 @@
           1,
           null,
           null,
-          null,
           1,
           7,
           null,
           null,
           null,
           1,
-          null,
           null,
           1,
           0,
@@ -138,6 +205,7 @@
           null,
           1,
           null,
+          null,
           1,
           0,
           null,
@@ -148,20 +216,8 @@
           null,
           null
         ]
-      },
-      "/finalProject/app/models/person.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null
-        ]
       }
     },
-    "timestamp": 1633389605
+    "timestamp": 1633698275
   }
 }
