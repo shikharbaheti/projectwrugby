@@ -1,6 +1,69 @@
 {
   "RSpec": {
     "coverage": {
+      "/csce431/spec/routing/alumnis_routing_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/csce431/app/controllers/alumnis_controller.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/csce431/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
       "/csce431/spec/unit/unit_spec.rb": {
         "lines": [
           null,
@@ -77,13 +140,6 @@
           null
         ]
       },
-      "/csce431/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
       "/csce431/app/controllers/admins/sessions_controller.rb": {
         "lines": [
           1,
@@ -101,17 +157,17 @@
         "lines": [
           1,
           1,
-          9,
+          10,
           null,
-          9,
-          9,
-          9,
-          9,
-          null,
-          0,
+          10,
+          10,
+          10,
+          10,
           null,
           0,
           null,
+          0,
+          null,
           null,
           null,
           1,
@@ -121,13 +177,13 @@
           null,
           null,
           1,
-          9,
+          10,
           null,
           null,
           1,
           null,
           1,
-          9,
+          10,
           null,
           null,
           null,
@@ -136,7 +192,7 @@
           null,
           null,
           1,
-          36,
+          40,
           null,
           null
         ]
@@ -148,11 +204,12 @@
           null,
           null,
           1,
-          8,
+          4,
           null,
           null,
           null,
           1,
+          null,
           null,
           null,
           1,
@@ -168,26 +225,13 @@
           null,
           null,
           1,
-          7,
+          1,
           null,
-          7,
-          7,
+          1,
+          1,
           2,
           1,
           null,
-          12,
-          6,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          0,
-          null,
           0,
           0,
           null,
@@ -201,6 +245,19 @@
           0,
           0,
           null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
           null,
           null,
           1,
@@ -212,12 +269,12 @@
           null,
           null,
           1,
-          7,
+          1,
           null,
           null
         ]
       }
     },
-    "timestamp": 1633698275
+    "timestamp": 1633997016
   }
 }

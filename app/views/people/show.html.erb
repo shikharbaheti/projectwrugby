@@ -1,6 +1,6 @@
 <p>
-  <strong>Person:</strong>
-  <%= @person.person_id %>
+  <strong>UIN:</strong>
+  <%= @person.uin %>
 </p>
 
 <p>
@@ -24,9 +24,10 @@
 </p>
 
 <p>
-  <strong>Person type:</strong>
+  <strong>Person Type:</strong>
   <%= @person.person_type %>
 </p>
+
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>
