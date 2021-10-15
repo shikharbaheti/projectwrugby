@@ -170,7 +170,7 @@ RSpec.describe 'Editing a Person', type: :feature do
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
   Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
     
-  scenario 'Clicking the button' do
+  scenario 'valid inputs' do
     visit root_path
     click_on 'Sign in with Google'
     visit new_person_path
@@ -197,6 +197,39 @@ RSpec.describe 'Editing a Person', type: :feature do
     expect(page).to have_content('Player')
 
   end
+
+  scenario 'invalid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_person_path
+
+    fill_in :person_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :person_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Player", :from => :person_person_type)
+    click_on 'Create Person'
+    visit people_path
+
+    click_on 'Edit'
+    fill_in :person_uin, with: nil
+    click_on 'Update Person'
+    visit people_path
+
+    expect(page).to have_content(727001489)
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('ninarao09@tamu.edu')
+    expect(page).to have_content('1234567890')
+    expect(page).to have_content('100 address')
+    expect(page).to have_content('Player')
+
+  end
+
+
+
+
+
 end
 
 RSpec.describe 'Authentication', type: :feature do
