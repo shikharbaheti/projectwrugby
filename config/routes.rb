@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :alumnis
   resources :people
 
   resources :people do
@@ -6,7 +7,7 @@ Rails.application.routes.draw do
       get :delete
     end
   end
-  
+
   root to: 'dashboards#show'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
   devise_scope :admin do

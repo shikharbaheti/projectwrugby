@@ -2,6 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating a Person', type: :feature do
+
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
   Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
 
@@ -10,20 +11,20 @@ RSpec.describe 'Creating a Person', type: :feature do
     click_on 'Sign in with Google'
     visit new_person_path
 
-    fill_in :person_person_id, with: 1
+    fill_in :person_uin, with: 727001489
     fill_in 'Name', with: 'Nina Rao'
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
     fill_in 'Address', with: '100 address'
-    fill_in :person_person_type, with: 1
+    fill_in :person_person_type, with: 'Player'
     click_on 'Create Person'
     visit people_path
-    expect(page).to have_content(1)
+    expect(page).to have_content(727001489)
     expect(page).to have_content('Nina Rao')
     expect(page).to have_content('ninarao09@tamu.edu')
     expect(page).to have_content('1234567890')
     expect(page).to have_content('100 address')
-    expect(page).to have_content(1)
+    expect(page).to have_content('Player')
   end
 
   scenario 'invalid person_id' do
@@ -34,21 +35,21 @@ RSpec.describe 'Creating a Person', type: :feature do
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
     fill_in 'Address', with: '100 address'
-    fill_in :person_person_type, with: 1
+    fill_in :person_person_type, with: 'Player'
     click_on 'Create Person'
     visit people_path
-    expect(page).not_to have_content(1)
+    expect(page).not_to have_content(727001489)
   end
 
   scenario 'invalid name' do
     visit root_path
     click_on 'Sign in with Google'
     visit new_person_path
-    fill_in :person_person_id, with: 1
+    fill_in :person_uin, with: 727001489
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
     fill_in 'Address', with: '100 address'
-    fill_in :person_person_type, with: 1
+    fill_in :person_person_type, with: 'Player'
     click_on 'Create Person'
     visit people_path
     expect(page).not_to have_content('Nina Rao')
@@ -58,11 +59,11 @@ RSpec.describe 'Creating a Person', type: :feature do
     visit root_path
     click_on 'Sign in with Google'
     visit new_person_path
-    fill_in :person_person_id, with: 1
+    fill_in :person_uin, with: 1
     fill_in 'Name', with: 'Nina Rao'
     fill_in :person_phone_number, with: '1234567890'
     fill_in 'Address', with: '100 address'
-    fill_in :person_person_type, with: 1
+    fill_in :person_person_type, with: 'Player'
     click_on 'Create Person'
     visit people_path
     expect(page).not_to have_content('ninarao09@tamu.edu')
@@ -72,11 +73,11 @@ RSpec.describe 'Creating a Person', type: :feature do
     visit root_path
     click_on 'Sign in with Google'
     visit new_person_path
-    fill_in :person_person_id, with: 1
+    fill_in :person_uin, with: 727001489
     fill_in 'Name', with: 'Nina Rao'
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in 'Address', with: '100 address'
-    fill_in :person_person_type, with: 1
+    fill_in :person_person_type, with: 'Player'
     click_on 'Create Person'
     visit people_path
     expect(page).not_to have_content('1234567890')
@@ -86,11 +87,11 @@ RSpec.describe 'Creating a Person', type: :feature do
     visit root_path
     click_on 'Sign in with Google'
     visit new_person_path
-    fill_in :person_person_id, with: 1
+    fill_in :person_uin, with: 727001489
     fill_in 'Name', with: 'Nina Rao'
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
-    fill_in :person_person_type, with: 1
+    fill_in :person_type, with: 'Player'
     click_on 'Create Person'
     visit people_path
     expect(page).not_to have_content('100 address')
@@ -100,15 +101,31 @@ RSpec.describe 'Creating a Person', type: :feature do
     visit root_path
     click_on 'Sign in with Google'
     visit new_person_path
-    fill_in :person_person_id, with: 1
+    fill_in :person_uin, with: 727001489
     fill_in 'Name', with: 'Nina Rao'
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
     fill_in 'Address', with: '100 address'
     click_on 'Create Person'
     visit people_path
-    expect(page).not_to have_content(1)
+    expect(page).not_to have_content('Player', count: 1)
   end
+
+
+  scenario 'invalid person type - edit form' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit edit_person_path
+    fill_in :person_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :person_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    click_on 'Create Person'
+    visit people_path
+    expect(page).not_to have_content('Player', count: 1)
+  end
+
 end
 
 RSpec.describe 'Authentication', type: :feature do

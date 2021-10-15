@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<center><h1>Players</h1></center>
+<center><h1>Alumni</h1></center>
 
 <%= link_to "Sign Out", destroy_admin_session_path %>
 <div class="navbar">
@@ -9,13 +9,12 @@
     <div class="navbarLinkClass">
       <ul class="navbarLink">
         <li class="navbarLink" id="link1"><%= link_to('Players', people_path) %></li>
-        <li class="navbarLink" id="link2"><%= link_to('Alumnis', alumnis_path	) %></li>
+        <li class="navbarLink" id="link2"><%= link_to('Alumni', alumnis_path	) %></li>
       </ul>
     </div>
   </div>
 </div>
 
-<center>
 <table>
   <thead>
     <tr>
@@ -31,23 +30,23 @@
   </thead>
 
   <tbody>
-    <% @people.each do |person| %>
-      <tr>
-        <td><%= person.uin %></td>
-        <td><%= person.name %></td>
-        <td><%= person.email %></td>
-        <td><%= person.phone_number %></td>
-        <td><%= person.address %></td>
-        <td><%= person.person_type %></td>
-        <td><%= link_to 'Show', person %></td>
-        <td><%= link_to 'Edit', edit_person_path(person) %></td>
-        <td><%= link_to 'Delete', delete_person_path(person)%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</center>
+  <% @people.each do |person| %>
+    <tr>
+      <td><%= person.uin %></td>
+      <td><%= person.name %></td>
+      <td><%= person.email %></td>
+      <td><%= person.phone_number %></td>
+      <td><%= person.address %></td>
+      <td><%= person.person_type %></td>
+      <td><%= link_to 'Show', person %></td>
+      <td><%= link_to 'Edit', edit_person_path(person) %></td>
+      <td><%= link_to 'Delete', delete_person_path(person)%></td>
+    </tr>
+  <% end %>
+</tbody>
 
+  
+</table>
 
 <br>
 

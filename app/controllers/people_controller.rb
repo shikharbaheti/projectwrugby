@@ -1,13 +1,13 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: %i[ show edit update destroy ]
+  before_action :set_person, only: %i[show edit update destroy]
 
   # GET /people or /people.json
   def index
-    @people = Person.all
+    @people = Person.all.select { |p| p.person_type == 'Player' }
   end
 
   # GET /people/1 or /people/1.json
-  def show
+  def show; 
   end
 
   # GET /people/new
@@ -16,8 +16,7 @@ class PeopleController < ApplicationController
   end
 
   # GET /people/1/edit
-  def edit
-  end
+  def edit; end
 
   def delete
     @person = Person.find(params[:id])
@@ -29,7 +28,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to people_path, notice: "Person was successfully created." }
+        format.html { redirect_to people_path, notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +41,7 @@ class PeopleController < ApplicationController
   def update
     respond_to do |format|
       if @person.update(person_params)
-        format.html { redirect_to people_path, notice: "Person was successfully updated." }
+        format.html { redirect_to people_path, notice: 'Person was successfully updated.' }
         format.json { render :show, status: :ok, location: @person }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,19 +54,20 @@ class PeopleController < ApplicationController
   def destroy
     @person.destroy
     respond_to do |format|
-      format.html { redirect_to people_url, notice: "Person was successfully destroyed." }
+      format.html { redirect_to people_url, notice: 'Person was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_person
-      @person = Person.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def person_params
-      params.require(:person).permit(:person_id, :name, :email, :phone_number, :address, :person_type)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_person
+    @person = Person.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def person_params
+    params.require(:person).permit(:uin, :name, :email, :phone_number, :address, :person_type)
+  end
 end
