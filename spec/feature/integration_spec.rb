@@ -6,7 +6,7 @@ RSpec.describe 'Creating a Person', type: :feature do
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
   Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
 
-  scenario 'valid inputs' do
+  scenario 'valid inputs for new person page - Player' do
     visit root_path
     click_on 'Sign in with Google'
     visit new_person_path
@@ -16,7 +16,7 @@ RSpec.describe 'Creating a Person', type: :feature do
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
     fill_in 'Address', with: '100 address'
-    fill_in :person_person_type, with: 'Player'
+    page.select("Player", :from => :person_person_type)
     click_on 'Create Person'
     visit people_path
     expect(page).to have_content(727001489)
@@ -24,7 +24,28 @@ RSpec.describe 'Creating a Person', type: :feature do
     expect(page).to have_content('ninarao09@tamu.edu')
     expect(page).to have_content('1234567890')
     expect(page).to have_content('100 address')
-    expect(page).to have_content('Player')
+    expect(page).to have_content("Player")
+  end
+
+  scenario 'valid inputs for new person page - Alumni' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_person_path
+
+    fill_in :person_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :person_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Alumni", :from => :person_person_type)
+    click_on 'Create Person'
+    visit alumnis_path
+    expect(page).to have_content(727001489)
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('ninarao09@tamu.edu')
+    expect(page).to have_content('1234567890')
+    expect(page).to have_content('100 address')
+    expect(page).to have_content("Alumni")
   end
 
   scenario 'invalid person_id' do
@@ -35,10 +56,10 @@ RSpec.describe 'Creating a Person', type: :feature do
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
     fill_in 'Address', with: '100 address'
-    fill_in :person_person_type, with: 'Player'
+    page.select("Player", :from => :person_person_type)
     click_on 'Create Person'
     visit people_path
-    expect(page).not_to have_content(727001489)
+    expect(page).not_to have_content(727001489, count: 1)
   end
 
   scenario 'invalid name' do
@@ -49,24 +70,25 @@ RSpec.describe 'Creating a Person', type: :feature do
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
     fill_in 'Address', with: '100 address'
-    fill_in :person_person_type, with: 'Player'
+    page.select("Player", :from => :person_person_type)
     click_on 'Create Person'
     visit people_path
-    expect(page).not_to have_content('Nina Rao')
+    expect(page).not_to have_content('Nina Rao', count: 1)
   end
 
   scenario 'invalid email' do
     visit root_path
     click_on 'Sign in with Google'
     visit new_person_path
+
     fill_in :person_uin, with: 1
     fill_in 'Name', with: 'Nina Rao'
     fill_in :person_phone_number, with: '1234567890'
     fill_in 'Address', with: '100 address'
-    fill_in :person_person_type, with: 'Player'
+    page.select("Player", :from => :person_person_type)
     click_on 'Create Person'
     visit people_path
-    expect(page).not_to have_content('ninarao09@tamu.edu')
+    expect(page).not_to have_content('ninarao09@tamu.edu', count: 1)
   end
 
   scenario 'invalid phone number' do
@@ -77,10 +99,10 @@ RSpec.describe 'Creating a Person', type: :feature do
     fill_in 'Name', with: 'Nina Rao'
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in 'Address', with: '100 address'
-    fill_in :person_person_type, with: 'Player'
+    page.select("Player", :from => :person_person_type)
     click_on 'Create Person'
     visit people_path
-    expect(page).not_to have_content('1234567890')
+    expect(page).not_to have_content('1234567890', count: 1)
   end
 
   scenario 'invalid address' do
@@ -91,10 +113,10 @@ RSpec.describe 'Creating a Person', type: :feature do
     fill_in 'Name', with: 'Nina Rao'
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
-    fill_in :person_type, with: 'Player'
+    page.select("Player", :from => :person_person_type)
     click_on 'Create Person'
     visit people_path
-    expect(page).not_to have_content('100 address')
+    expect(page).not_to have_content('100 address', count: 1)
   end
 
   scenario 'invalid person type' do
@@ -111,21 +133,70 @@ RSpec.describe 'Creating a Person', type: :feature do
     expect(page).not_to have_content('Player', count: 1)
   end
 
+end
 
-  scenario 'invalid person type - edit form' do
+RSpec.describe 'Deleting a Person', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+    
+  scenario 'Clicking the button' do
     visit root_path
     click_on 'Sign in with Google'
-    visit edit_person_path
+    visit new_person_path
+
     fill_in :person_uin, with: 727001489
     fill_in 'Name', with: 'Nina Rao'
     fill_in 'Email', with: 'ninarao09@tamu.edu'
     fill_in :person_phone_number, with: '1234567890'
     fill_in 'Address', with: '100 address'
+    page.select("Player", :from => :person_person_type)
     click_on 'Create Person'
     visit people_path
-    expect(page).not_to have_content('Player', count: 1)
-  end
 
+    click_on 'Delete'
+    click_on 'Delete Person'
+    visit people_path
+
+    expect(page).not_to have_content(727001489)
+    expect(page).not_to have_content('Nina Rao')
+    expect(page).not_to have_content('ninarao09@tamu.edu')
+    expect(page).not_to have_content('1234567890')
+    expect(page).not_to have_content('100 address')
+  end
+end
+
+
+RSpec.describe 'Editing a Person', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+    
+  scenario 'Clicking the button' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_person_path
+
+    fill_in :person_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :person_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Player", :from => :person_person_type)
+    click_on 'Create Person'
+    visit people_path
+
+    click_on 'Edit'
+    fill_in :person_uin, with: 727000000
+    click_on 'Update Person'
+    visit people_path
+
+    expect(page).to have_content(727000000)
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('ninarao09@tamu.edu')
+    expect(page).to have_content('1234567890')
+    expect(page).to have_content('100 address')
+    expect(page).to have_content('Player')
+
+  end
 end
 
 RSpec.describe 'Authentication', type: :feature do
