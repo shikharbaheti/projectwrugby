@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -73,8 +73,7 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-  
-  
+
   ENV['GOOGLE_OAUTH_CLIENT_ID'] = '337002636255-kh0udrlt1as73d9f5cor000m8o7cgfhh.apps.googleusercontent.com'
   ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = 'QYq7jV1n-_L5sjONzfmIK8fw'
 end
