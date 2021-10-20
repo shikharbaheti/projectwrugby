@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       get :delete
     end
   end
-  
+
   root to: 'dashboards#show'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
   devise_scope :admin do
