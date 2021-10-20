@@ -12,8 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :item_name %>
+    <%= form.text_field :item_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :purchase_price %>
+    <%= form.number_field :purchase_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity_on_hand %>
+    <%= form.number_field :quantity_on_hand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sell_price %>
+    <%= form.number_field :sell_price %>
   </div>
 
   <div class="actions">
