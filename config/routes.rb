@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  resources :merchandises
   resources :people
+  resources :merchandise
 
   resources :people do
     member do
