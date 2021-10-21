@@ -231,7 +231,7 @@ RSpec.describe 'Creating an Player', type: :feature do
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
   Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
 
-  scenario 'valid inputs for new person page' do
+  scenario 'valid inputs for new player page' do
     visit root_path
     click_on 'Sign in with Google'
     visit new_player_path
@@ -256,7 +256,70 @@ RSpec.describe 'Creating an Player', type: :feature do
     expect(page).to have_content(120)
     expect(page).to have_content("Active")
   end
+
+  scenario 'invalid inputs for new player page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: nil
+    fill_in 'Name', with: nil
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: nil
+    fill_in 'Address', with: nil
+    page.select("Player", :from => :player_person_type)
+    fill_in 'Dues', with: nil
+    page.select("Active", :from => :player_status)
+
+    click_on 'Create Player'
+    visit players_path
+    expect(page).not_to have_content(727001489)
+    expect(page).not_to have_content('Nina Rao')
+    expect(page).not_to have_content('ninarao09@tamu.edu')
+    expect(page).not_to have_content('1234567890')
+    expect(page).not_to have_content('100 address')
+    expect(page).not_to have_content("Player", count: 2)
+    expect(page).not_to have_content(120)
+    expect(page).not_to have_content("Active")
+  end
+
 end
+
+RSpec.describe 'Deleting an Player', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'Clicking the button' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Player", :from => :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select("Active", :from => :player_status)
+    click_on 'Create Player'
+    visit players_path
+
+    click_on 'Delete'
+    click_on 'Delete Player'
+    visit players_path
+
+    expect(page).not_to have_content(727001489)
+    expect(page).not_to have_content('Nina Rao')
+    expect(page).not_to have_content('ninarao09@tamu.edu')
+    expect(page).not_to have_content('1234567890')
+    expect(page).not_to have_content('100 address')
+    expect(page).not_to have_content('Player', count: 2)
+    expect(page).not_to have_content(120)
+    expect(page).not_to have_content('Active')
+  end
+end
+
 
 RSpec.describe 'Editing an Player', type: :feature do
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
@@ -339,7 +402,7 @@ RSpec.describe 'Authentication', type: :feature do
   scenario 'visit dashboard after logging in' do
     visit root_path
     click_on 'Sign in with Google'  
-    expect(page).to have_content("Navbar")
+    expect(page).to have_content("TAMU Women's Rugby Team")
   end
   scenario 'sign out takes to homepage' do
     visit root_path

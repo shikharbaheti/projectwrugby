@@ -1,21 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Players</h1>
-
-<%= link_to "Sign Out", destroy_admin_session_path %>
-<div class="navbar">
-  <div class="navbar-items">
-    <h2>Navbar</h2>
-    <div class="navbarLinkClass">
-      <ul class="navbarLink">
-        <li class="navbarLink" id="link1"><%= link_to('Players', players_path) %></li>
-        <li class="navbarLink" id="link2"><%= link_to('Alumnis', alumnis_path	) %></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<u1>
+ <li class="navbarLink" id="link1"><%= link_to('Home', root_path) %></li>
+ <li class="navbarLink" id="link1"><%= link_to('Players', players_path) %></li>
+ <li class="navbarLink" id="link2"><%= link_to('Alumnis', alumnis_path	) %></li>  
+ <li class="navbarLink" id="link3" style="float: right"><%= link_to('Sign Out', destroy_admin_session_path	) %></li>   
+ 
+</u1>
 
 <center>
+<h1>Players</h1>
+
 <table>
   <thead>
     <tr>
@@ -49,9 +44,10 @@
     <% end %>
   </tbody>
 </table>
-<center>
+</center>
 
 
 <br>
 
 <%= link_to 'New Player', new_player_path %>
+

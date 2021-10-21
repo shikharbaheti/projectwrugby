@@ -1,14 +1,13 @@
 
-<center><h1>TAMU Women's Rugby Team</h1></center>
-<%= link_to "Sign Out", destroy_admin_session_path %>
-<div class="navbar">
-  <div class="navbar-items">
-    <h2>Navbar</h2>
-    <div class="navbarLinkClass">
-      <ul class="navbarLink">
-        <li class="navbarLink" id="link1"><%= link_to('Players', players_path) %></li>
-        <li class="navbarLink" id="link1"><%= link_to('Alumni', alumnis_path) %></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<u1 id="Navbar">
+ <li class="navbarLink" id="link1"><%= link_to('Home', root_path) %></li>
+ <li class="navbarLink" id="link1"><%= link_to('Players', players_path) %></li>
+ <li class="navbarLink" id="link2"><%= link_to('Alumnis', alumnis_path	) %></li>   
+ <li class="navbarLink" id="link3" style="float: right"><%= link_to('Sign Out', destroy_admin_session_path	) %></li>   
+</u1>
+
+<center>
+  <br>
+  <h1>TAMU Women's Rugby Team</h1>
+  <img src="../../assets/TAMU_WhiteTopLogo.png" alt="Rugby Logo" width="600" height="600">
+</center>

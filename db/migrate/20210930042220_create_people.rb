@@ -9,8 +9,7 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.string :person_type
       t.integer :dues
       t.string :status
-
-
+      
       t.timestamps
     end
   end
