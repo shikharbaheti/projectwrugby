@@ -8,13 +8,15 @@
     <h2>Navbar</h2>
     <div class="navbarLinkClass">
       <ul class="navbarLink">
-        <li class="navbarLink" id="link1"><%= link_to('Players', people_path) %></li>
+        <li class="navbarLink" id="link1"><%= link_to('Players', players_path) %></li>
         <li class="navbarLink" id="link2"><%= link_to('Alumni', alumnis_path	) %></li>
       </ul>
     </div>
   </div>
 </div>
 
+
+<center>
 <table>
   <thead>
     <tr>
@@ -47,10 +49,11 @@
 
   
 </table>
+</center>
+
 
 <br>
 
 <%= link_to 'New Person', new_person_path %>
 <br>
 <%= link_to 'Back', root_path%>
-

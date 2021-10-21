@@ -1,10 +1,10 @@
-<%= form_with(model: person) do |form| %>
-  <% if person.errors.any? %>
+<%= form_with(model: player) do |form| %>
+  <% if player.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
+      <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
 
       <ul>
-        <% person.errors.each do |error| %>
+        <% player.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -38,13 +38,20 @@
 
   <div class="field">
     <%= form.label :person_type %>
-    <%= form.select :person_type, options_for_select(["Alumni", "Player", "Recruit"]), value: nil %>
+    <%= form.select :person_type, options_for_select(["Player", "Alumni", "Recruit"]), value: nil %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dues %>
+    <%= form.number_field :dues %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, options_for_select(["Active", "InActive"]), value: nil %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
-
-
-

@@ -7,6 +7,9 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.string :phone_number
       t.string :address
       t.string :person_type
+      t.integer :dues
+      t.string :status
+
 
       t.timestamps
     end

@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<center><h1>People</h1></center>
+<h1>Players</h1>
 
 <%= link_to "Sign Out", destroy_admin_session_path %>
 <div class="navbar">
@@ -27,34 +27,31 @@
       <th>Person Type</th>
       <th>Dues</th>
       <th>Status</th>
-
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @people.each do |person| %>
+    <% @players.each do |player| %>
       <tr>
-        <td><%= person.uin %></td>
-        <td><%= person.name %></td>
-        <td><%= person.email %></td>
-        <td><%= person.phone_number %></td>
-        <td><%= person.address %></td>
-        <td><%= person.person_type %></td>
-        <td><%= link_to 'Show', person %></td>
-        <td><%= link_to 'Edit', edit_person_path(person) %></td>
-        <td><%= link_to 'Delete', delete_person_path(person)%></td>
+        <td><%= player.uin %></td>
+        <td><%= player.name %></td>
+        <td><%= player.email %></td>
+        <td><%= player.phone_number %></td>
+        <td><%= player.address %></td>
+        <td><%= player.person_type %></td>
+        <td><%= player.dues %></td>
+        <td><%= player.status %></td>
+        <td><%= link_to 'Show', player %></td>
+        <td><%= link_to 'Edit', edit_player_path(player) %></td>
+        <td><%= link_to 'Delete', delete_player_path(player) %></td>
       </tr>
     <% end %>
-  
   </tbody>
 </table>
-</center>
+<center>
 
 
 <br>
 
-<%= link_to 'New Person', new_person_path %>
-<br>
-<%= link_to 'Back', root_path%>
-
+<%= link_to 'New Player', new_player_path %>

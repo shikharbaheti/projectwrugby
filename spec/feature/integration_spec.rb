@@ -1,7 +1,7 @@
 # location: spec/feature/integration_spec.rb
 require 'rails_helper'
 
-RSpec.describe 'Creating a Person', type: :feature do
+RSpec.describe 'Creating an Alumni', type: :feature do
 
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
   Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
@@ -130,7 +130,7 @@ RSpec.describe 'Creating a Person', type: :feature do
     fill_in 'Address', with: '100 address'
     click_on 'Create Person'
     visit people_path
-    expect(page).not_to have_content('Player', count: 1)
+    expect(page).not_to have_content('Player', count: 2)
   end
 
 end
@@ -225,9 +225,106 @@ RSpec.describe 'Editing a Person', type: :feature do
     expect(page).to have_content('Player')
 
   end
+end
 
+RSpec.describe 'Creating an Player', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
 
+  scenario 'valid inputs for new person page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
 
+    fill_in :player_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Player", :from => :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select("Active", :from => :player_status)
+
+    click_on 'Create Player'
+    visit players_path
+    expect(page).to have_content(727001489)
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('ninarao09@tamu.edu')
+    expect(page).to have_content('1234567890')
+    expect(page).to have_content('100 address')
+    expect(page).to have_content("Player")
+    expect(page).to have_content(120)
+    expect(page).to have_content("Active")
+  end
+end
+
+RSpec.describe 'Editing an Player', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs for edit player page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Player", :from => :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select("Active", :from => :player_status)
+
+    click_on 'Create Player'
+    visit players_path
+
+    click_on 'Edit'
+    fill_in :player_uin, with: 727000000
+    click_on 'Update Player'
+    visit players_path
+
+    expect(page).to have_content(727000000)
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('ninarao09@tamu.edu')
+    expect(page).to have_content('1234567890')
+    expect(page).to have_content('100 address')
+    expect(page).to have_content("Player")
+    expect(page).to have_content(120)
+    expect(page).to have_content("Active")
+  end
+
+  scenario 'invalid inputs for edit player page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Player", :from => :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select("Active", :from => :player_status)
+
+    click_on 'Create Player'
+    visit players_path
+
+    click_on 'Edit'
+    fill_in :player_uin, with: nil
+    click_on 'Update Player'
+    visit players_path
+
+    expect(page).to have_content(727001489)
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('ninarao09@tamu.edu')
+    expect(page).to have_content('1234567890')
+    expect(page).to have_content('100 address')
+    expect(page).to have_content("Player")
+    expect(page).to have_content(120)
+    expect(page).to have_content("Active")
+  end
 
 
 end
