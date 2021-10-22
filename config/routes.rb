@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
+  resources :alumnis
+  resources :players
   resources :people
 
   resources :people do
+    member do
+      get :delete
+    end
+  end
+
+  resources :players do
     member do
       get :delete
     end
