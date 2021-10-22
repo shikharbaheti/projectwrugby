@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contact type:</strong>
+  <%= @recruit.contact_type %>
+</p>
+
+<p>
+  <strong>Interest level:</strong>
+  <%= @recruit.interest_level %>
+</p>
+
+<p>
+  <strong>Times contacted:</strong>
+  <%= @recruit.times_contacted %>
+</p>
+
+<p>
+  <strong>Date contacted:</strong>
+  <%= @recruit.date_contacted %>
+</p>
+
+<%= link_to 'Edit', edit_recruit_path(@recruit) %> |
+<%= link_to 'Back', recruits_path %>
