@@ -16,6 +16,7 @@
 
 body{
     background-color: #6b1f1f;
+    color: white;
 }
 
 h1, th, tr {
@@ -58,3 +59,6 @@ li a.navbar{
     background-color: #050505;
 }
 
+.navbarLink{
+    color: white;
+}
