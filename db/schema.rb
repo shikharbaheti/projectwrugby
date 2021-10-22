@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_10_21_143510) do
+=======
+ActiveRecord::Schema.define(version: 2021_10_22_152319) do
+>>>>>>> 0c31391349fdd9ec15219051264b6db79b505c0c
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,11 +45,27 @@ ActiveRecord::Schema.define(version: 2021_10_21_143510) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+<<<<<<< HEAD
+=======
+    t.string "contact_type"
+    t.integer "interest_level"
+    t.integer "times_contacted"
+    t.date "date_contacted"
+>>>>>>> 0c31391349fdd9ec15219051264b6db79b505c0c
   end
 
   create_table "players", force: :cascade do |t|
     t.integer "dues"
     t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "recruits", force: :cascade do |t|
+    t.string "contact_type"
+    t.integer "interest_level"
+    t.integer "times_contacted"
+    t.date "date_contacted"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
