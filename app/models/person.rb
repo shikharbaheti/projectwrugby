@@ -5,5 +5,6 @@ class Person < ApplicationRecord
   validates :phone_number, presence: true
   validates :address, presence: true
   validates :person_type, presence: true
-end
 
+  has_many :attendance_records
+end

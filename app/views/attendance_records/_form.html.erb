@@ -1,0 +1,58 @@
+<%= form_with(model: attendance_record) do |form| %>
+  <% if attendance_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attendance_record.errors.count, "error") %> prohibited this attendance_record from being saved:</h2>
+
+      <ul>
+        <% attendance_record.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="dropdown">
+    <%= form.label :record_type %>
+    <%= form.select :record_type, [[],'Practice','Game'] %>
+  </div></td>
+
+  <div class="field">
+    <%= form.label :record_date %>
+    <%= form.text_field :record_date %>
+  </div></td>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>Attendance</th>
+        <th>Excuse Note</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- % @people.each do |person| % -->
+        <tr>
+          <td><%= person.name %></td>
+          <td>
+
+            <div class="dropdown">
+              <%= form.label :attendance_type, multiple: true %>
+              <%= form.select :attendance_type, [[], 'Present','Late, Excused','Late, Unexcused','Absent, Excused','Absent, Unexcused'], multiple: true%>
+            </div></td>
+            <td>
+            <div class="field">
+              <%= form.label :note, multiple: true %>                <%= form.text_area :note, multiple: true %>
+            </div></td>
+
+        </tr>
+        <!-- % end % --> 
+    </tbody>
+  </table>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
