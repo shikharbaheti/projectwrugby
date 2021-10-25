@@ -128,6 +128,30 @@ RSpec.describe 'Creating a Person', type: :feature do
 
 end
 
+RSpec.describe 'Creating an Event', type: :feature do
+
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs for new event page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in :event_date, with: '2021-03-09'
+    # fill_in :time_time, with: '14:00'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).to have_content('Practice 1')
+    expect(page).to have_content('First practice of the season')
+    # expect(page).to have_content('2021-03-09')
+    # expect(page).to have_content('14:00')
+  end
+
+end
+
 RSpec.describe 'Authentication', type: :feature do
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
   Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
