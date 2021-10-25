@@ -25,22 +25,40 @@ ActiveRecord::Schema.define(version: 2021_10_25_200038) do
     t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
-  create_table "merchandises", force: :cascade do |t|
-    t.string "item_name"
-    t.integer "purchase_price"
-    t.integer "quantity_on_hand"
-    t.integer "sell_price"
+  create_table "alumnis", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "people", force: :cascade do |t|
-    t.integer "person_id"
+    t.integer "uin"
     t.string "name"
     t.string "email"
     t.string "phone_number"
     t.string "address"
-    t.integer "person_type"
+    t.string "person_type"
+    t.integer "dues"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "contact_type"
+    t.integer "interest_level"
+    t.integer "times_contacted"
+    t.date "date_contacted"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.integer "dues"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "recruits", force: :cascade do |t|
+    t.string "contact_type"
+    t.integer "interest_level"
+    t.integer "times_contacted"
+    t.date "date_contacted"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

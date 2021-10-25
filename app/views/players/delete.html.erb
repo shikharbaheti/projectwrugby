@@ -1,0 +1,47 @@
+
+<div class="people delete">
+<h2>Delete Player</h2>
+
+
+<%= form_for(@player, :method => 'delete') do |f| %>
+
+  <p>Are you sure you want to permanently delete this Player?</p>
+  
+<table>
+  <thead>
+    <tr>
+        <th>UIN</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>Person Type</th>
+        <th>Dues</th>
+        <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @player.uin %></td>
+      <td><%= @player.name %></td>
+      <td><%= @player.email %></td>
+      <td><%= @player.phone_number %></td>
+      <td><%= @player.address %></td>
+      <td><%= @player.person_type %></td>
+      <td><%= @player.dues %></td>
+      <td><%= @player.status %></td>
+    </tr>
+  </tbody>
+  </table>
+
+  <div class="form-buttons">
+    <%= f.submit("Delete Player") %>
+  </div>
+
+<% end %>
+<br/>
+</div>
+
+<%= link_to('Back', players_path, :class => 'back-link') %>

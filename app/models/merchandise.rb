@@ -1,2 +1,0 @@
-class Merchandise < ApplicationRecord
-end

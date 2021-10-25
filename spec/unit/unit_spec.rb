@@ -3,16 +3,16 @@ require 'rails_helper'
 
 RSpec.describe Person, type: :model do
   subject do
-    described_class.new(person_id: 1, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
-                        address: '100 address', person_type: 1)
+    described_class.new(uin: 727001489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
+                        address: '100 address', person_type: 'Player')
   end
 
   it 'is valid with valid attributes' do
     expect(subject).to be_valid
   end
 
-  it 'is not valid without a person id' do
-    subject.person_id = nil
+  it 'is not valid without a uin/id' do
+    subject.uin = nil
     expect(subject).not_to be_valid
   end
 

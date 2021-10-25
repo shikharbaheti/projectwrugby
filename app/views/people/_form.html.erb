@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :person_id %>
-    <%= form.number_field :person_id %>
+    <%= form.label :uin %>
+    <%= form.number_field :uin %>
   </div>
 
   <div class="field">
@@ -38,10 +38,13 @@
 
   <div class="field">
     <%= form.label :person_type %>
-    <%= form.number_field :person_type %>
+    <%= form.select :person_type, options_for_select(["Alumni", "Player", "Recruit"]), value: nil %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+
+
