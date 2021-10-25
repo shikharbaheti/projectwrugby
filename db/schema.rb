@@ -29,15 +29,6 @@ ActiveRecord::Schema.define(version: 2021_10_22_152319) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-  
-  create_table "merchandises", force: :cascade do |t|
-    t.string "item_name"
-    t.integer "purchase_price"
-    t.integer "quantity_on_hand"
-    t.integer "sell_price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "people", force: :cascade do |t|
     t.integer "uin"
@@ -68,13 +59,6 @@ ActiveRecord::Schema.define(version: 2021_10_22_152319) do
     t.integer "interest_level"
     t.integer "times_contacted"
     t.date "date_contacted"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.integer "amount"
-    t.datetime "transaction_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   resources :alumnis
   resources :players
   resources :people
-  resources :merchandise
-  resources :transactions
 
   resources :people do
     member do
