@@ -22,7 +22,7 @@
         <td><%= merchandise.sell_price %></td>
         <td><%= link_to 'Show', merchandise %></td>
         <td><%= link_to 'Edit', edit_merchandise_path(merchandise) %></td>
-        <td><%= link_to 'Destroy', merchandise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', delete_merchandise_path(merchandise) %></td>
       </tr>
     <% end %>
   </tbody>

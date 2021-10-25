@@ -9,6 +9,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :merchandises do
+    member do
+      get :delete
+    end
+  end
+
 
   root to: 'dashboards#show'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }

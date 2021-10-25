@@ -18,14 +18,16 @@ class MerchandisesController < ApplicationController
   # GET /merchandises/1/edit
   def edit
   end
-
+  def delete
+    @merchandise = Merchandise.find(params[:id])
+  end
   # POST /merchandises or /merchandises.json
   def create
     @merchandise = Merchandise.new(merchandise_params)
 
     respond_to do |format|
       if @merchandise.save
-        format.html { redirect_to @merchandise, notice: "Merchandise was successfully created." }
+        format.html { redirect_to merchandises_path, notice: "Merchandise was successfully created." }
         format.json { render :show, status: :created, location: @merchandise }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +40,7 @@ class MerchandisesController < ApplicationController
   def update
     respond_to do |format|
       if @merchandise.update(merchandise_params)
-        format.html { redirect_to @merchandise, notice: "Merchandise was successfully updated." }
+        format.html { redirect_to merchandises_path, notice: "Merchandise was successfully updated." }
         format.json { render :show, status: :ok, location: @merchandise }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +53,7 @@ class MerchandisesController < ApplicationController
   def destroy
     @merchandise.destroy
     respond_to do |format|
-      format.html { redirect_to merchandises_url, notice: "Merchandise was successfully destroyed." }
+        format.html { redirect_to merchandises_url, notice: "Merchandise was successfully destroyed." }
       format.json { head :no_content }
     end
   end

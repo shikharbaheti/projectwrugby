@@ -72,7 +72,7 @@ RSpec.configure do |config|
       :uid => "987654321",
       :info => {
         :name => "Shikhar Baheti",
-        :email => "shikhar@tamu.edu"
+        :email => "shashaank2198@tamu.edu"
       },
       :credentials => {
         :token => "token",
