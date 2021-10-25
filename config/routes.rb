@@ -1,10 +1,24 @@
 Rails.application.routes.draw do
-  resources :transactions
-  resources :merchandises
+  resources :recruits
+  resources :alumnis
+  resources :players
   resources :people
   resources :merchandise
+  resources :transactions
 
   resources :people do
+    member do
+      get :delete
+    end
+  end
+
+  resources :players do
+    member do
+      get :delete
+    end
+  end
+
+  resources :recruits do
     member do
       get :delete
     end
