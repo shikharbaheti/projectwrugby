@@ -19,6 +19,10 @@ class TransactionsController < ApplicationController
   def edit
   end
 
+  def delete
+    @transaction = Transaction.find(params[:id])
+  end
+
   # POST /transactions or /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)

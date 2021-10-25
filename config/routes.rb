@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :transactions
-  resources :merchandises
   resources :recruits
   resources :alumnis
   resources :players
@@ -19,6 +18,12 @@ Rails.application.routes.draw do
   end
 
   resources :recruits do
+    member do
+      get :delete
+    end
+  end
+
+  resources :transactions do
     member do
       get :delete
     end
