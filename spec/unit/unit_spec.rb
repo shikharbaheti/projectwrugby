@@ -42,6 +42,26 @@ RSpec.describe Person, type: :model do
   end
 end
 
+RSpec.describe Transaction, type: :model do
+  subject do
+    described_class.new(amount: 45, transaction_date: Date.today)
+  end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it 'is not valid without an amount' do
+    subject.amount = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a transaction_date' do
+    subject.transaction_date = nil
+    expect(subject).not_to be_valid
+  end
+end
+
 RSpec.describe Admin, type: :model do
   subject do
     described_class.new(id: 1, email: 'ninarao09@tamu.edu', full_name: 'Nina Rao', uid: '727001489', avatar_url: '---')

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :transactions
+  resources :merchandises
   resources :recruits
   resources :alumnis
   resources :players
