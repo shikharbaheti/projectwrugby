@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 2021_10_25_200038) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "merchandises", force: :cascade do |t|
+    t.string "item_name"
+    t.integer "purchase_price"
+    t.integer "quantity_on_hand"
+    t.integer "sell_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "people", force: :cascade do |t|
     t.integer "uin"
     t.string "name"
@@ -39,12 +48,12 @@ ActiveRecord::Schema.define(version: 2021_10_25_200038) do
     t.string "person_type"
     t.integer "dues"
     t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "contact_type"
     t.integer "interest_level"
     t.integer "times_contacted"
     t.date "date_contacted"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "players", force: :cascade do |t|
