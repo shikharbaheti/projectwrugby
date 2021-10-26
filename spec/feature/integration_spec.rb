@@ -388,9 +388,198 @@ RSpec.describe 'Editing an Player', type: :feature do
     expect(page).to have_content(120)
     expect(page).to have_content("Active")
   end
+end
+
+#dkfhglkjfhglkdsjfhglkjdsflgd
+RSpec.describe 'Creating an Recruit', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs for new recruit page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    expect(page).to have_content(727001489)
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('ninarao09@tamu.edu')
+    expect(page).to have_content('1234567890')
+    expect(page).to have_content('100 address')
+    expect(page).to have_content("Player")
+    expect(page).to have_content(5)
+    expect(page).to have_content(2)
+    expect(page).to have_content("2014-08-06")
+  end
+
+  scenario 'invalid inputs for new recruit page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: nil
+    fill_in 'Name', with: nil
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: nil
+    fill_in 'Address', with: nil
+    page.select("Player", :from => :recruit_person_type)
+    fill_in :recruit_interest_level, with: nil
+    fill_in :recruit_times_contacted, with: nil
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+    
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    expect(page).not_to have_content(727001489)
+    expect(page).not_to have_content('Nina Rao')
+    expect(page).not_to have_content('ninarao09@tamu.edu')
+    expect(page).not_to have_content('1234567890')
+    expect(page).not_to have_content('100 address')
+    expect(page).not_to have_content("Player", count: 2)
+    expect(page).not_to have_content(5)
+    expect(page).not_to have_content(2)
+    expect(page).not_to have_content('2014-08-06')
+  end
+
+end
+
+RSpec.describe 'Deleting an Recruit', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'Clicking the button' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+    click_on 'Create Recruit'
+    visit recruits_path
+
+
+    click_on 'Delete'
+    click_on 'Delete Recruit'
+    visit recruits_path
+
+    expect(page).not_to have_content(727001489)
+    expect(page).not_to have_content('Nina Rao')
+    expect(page).not_to have_content('ninarao09@tamu.edu')
+    expect(page).not_to have_content('1234567890')
+    expect(page).not_to have_content('100 address')
+    expect(page).not_to have_content('Player', count: 2)
+    expect(page).not_to have_content(5)
+    expect(page).not_to have_content(2)
+    expect(page).not_to have_content('2014-08-06')
+  end
+end
+
+
+RSpec.describe 'Editing an Recruit', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario '- valid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+    click_on 'Create Recruit'
+    visit recruits_path
+
+
+    click_on 'Edit'
+    fill_in :recruit_uin, with: 727000000
+    click_on 'Update Recruit'
+    visit recruits_path
+
+    expect(page).to have_content(727000000)
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('ninarao09@tamu.edu')
+    expect(page).to have_content('1234567890')
+    expect(page).to have_content('100 address')
+    expect(page).to have_content('Recruit', count: 4)
+    expect(page).to have_content(5)
+    expect(page).to have_content(2)
+    expect(page).to have_content('2014-08-06')
+  end
+
+  scenario '- invalid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+    click_on 'Create Recruit'
+    visit recruits_path
+
+
+    click_on 'Edit'
+    fill_in :recruit_uin, with: nil
+    click_on 'Update Recruit'
+    visit recruits_path
+
+    expect(page).not_to have_content(727000000)
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('ninarao09@tamu.edu')
+    expect(page).to have_content('1234567890')
+    expect(page).to have_content('100 address')
+    expect(page).to have_content('Recruit', count: 4)
+    expect(page).to have_content(5)
+    expect(page).to have_content(2)
+    expect(page).to have_content('2014-08-06')
+  end
 
 
 end
+
+
+
+
+
 
 RSpec.describe 'Authentication', type: :feature do
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
