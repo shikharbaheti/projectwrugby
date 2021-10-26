@@ -42,12 +42,23 @@ RSpec.describe Person, type: :model do
   end
 end
 
-RSpec.describe Admin, type: :model do
+RSpec.describe Event, type: :model do
   subject do
-    described_class.new(id: 1, email: 'ninarao09@tamu.edu', full_name: 'Nina Rao', uid: '727001489', avatar_url: '---')
+    described_class.new(name:'Practice 1', info:'First practice of the season', date: Date.today,
+    time: '2000-01-01 16:37:00 UTC')
   end
 
   it 'is valid with valid attributes' do
     expect(subject).to be_valid
   end
+
+  it 'is not valid without an event name' do
+    subject.name = nil
+    expect(subject).to be_valid
+  end
+  it 'is not valid without an event info' do
+    subject.info = nil
+    expect(subject).to be_valid
+  end
+
 end
