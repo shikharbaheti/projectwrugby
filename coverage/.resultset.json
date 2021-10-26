@@ -158,89 +158,21 @@
           null
         ]
       },
-      "/finalProject/config/routes.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/finalProject/app/models/admin.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          27,
-          27,
-          null,
-          null
-        ]
-      },
-      "/finalProject/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
       "/finalProject/app/controllers/admins/omniauth_callbacks_controller.rb": {
         "lines": [
           1,
           1,
-          27,
+          29,
           null,
-          27,
-          27,
-          27,
-          27,
-          null,
-          0,
+          29,
+          29,
+          29,
+          29,
           null,
           0,
           null,
+          0,
+          null,
           null,
           null,
           1,
@@ -250,13 +182,13 @@
           null,
           null,
           1,
-          27,
+          29,
           null,
           null,
           1,
           null,
           1,
-          27,
+          29,
           null,
           null,
           null,
@@ -265,50 +197,8 @@
           null,
           null,
           1,
-          108,
+          116,
           null,
-          null
-        ]
-      },
-      "/finalProject/app/helpers/application_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/finalProject/app/helpers/alumnis_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/finalProject/app/helpers/merchandises_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/finalProject/app/helpers/people_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/finalProject/app/helpers/players_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/finalProject/app/helpers/recruits_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/finalProject/app/helpers/transactions_helper.rb": {
-        "lines": [
-          1,
           null
         ]
       },
@@ -653,8 +543,168 @@
           1,
           null
         ]
+      },
+      "/finalProject/app/controllers/events_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          2,
+          1,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/finalProject/app/models/event.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/finalProject/app/controllers/transactions_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          2,
+          1,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1635205569
+    "timestamp": 1635208171
   }
 }

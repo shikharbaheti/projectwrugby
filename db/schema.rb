@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 2021_10_25_200038) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.string "info"
+    t.date "date"
+    t.time "time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "merchandises", force: :cascade do |t|
     t.string "item_name"
     t.integer "purchase_price"

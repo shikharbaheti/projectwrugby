@@ -658,6 +658,50 @@ RSpec.describe 'Editing an Recruit', type: :feature do
   end
 end
 
+RSpec.describe 'Creating an Event', type: :feature do
+
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs for new event page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    select '2021', :from => 'event_date_1i'
+    select 'September', :from => 'event_date_2i'
+    select '30', :from => 'event_date_3i'
+
+    click_on 'Create Event'
+    visit events_path
+    expect(page).to have_content('Practice 1')
+    expect(page).to have_content('First practice of the season')
+
+  end
+end
+
+RSpec.describe 'Create a transaction', type: :feature do
+
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs for a transaction' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_transaction_path
+    select '2021', :from => 'transaction_transaction_date_1i'
+    select 'September', :from => 'transaction_transaction_date_2i'
+    select '30', :from => 'transaction_transaction_date_3i'
+    fill_in 'Amount', with: 40
+    click_on 'Create Transaction'
+    visit transactions_path
+    expect(page).to have_content(40)
+    expect(page).to have_content('2021-09-30')
+  end
+end
+
 RSpec.describe 'Authentication', type: :feature do
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
   Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
