@@ -65,7 +65,7 @@ The Github link will be provided to the customer. The customer will be guided th
 
 ## CI/CD ##
 
-TBD
+Continious Integration is facilitated by maintaining an updated github repository which will then be deployed automatically and continously by Heroku as it recieves updates, allowing for continous and seamless improvements to the application. 
 
 ## Support ##
 
