@@ -1,16 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Players</h1>
+<center><h1>People</h1></center>
 
+<%= link_to "Sign Out", destroy_admin_session_path %>
+<div class="navbar">
+  <div class="navbar-items">
+    <h2>Navbar</h2>
+    <div class="navbarLinkClass">
+      <ul class="navbarLink">
+        <li class="navbarLink" id="link1"><%= link_to('Players', players_path) %></li>
+        <li class="navbarLink" id="link2"><%= link_to('Alumnis', alumnis_path	) %></li>
+        <li class="navbarLink" id="link1"><%= link_to 'Events', events_path %>Create a new Event</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<center>
 <table>
   <thead>
     <tr>
-      <th>Person ID</th>
+      <th>UIN</th>
       <th>Name</th>
       <th>Email</th>
       <th>Phone Number</th>
       <th>Address</th>
       <th>Person Type</th>
+      <th>Dues</th>
+      <th>Status</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,7 +36,7 @@
   <tbody>
     <% @people.each do |person| %>
       <tr>
-        <td><%= person.person_id %></td>
+        <td><%= person.uin %></td>
         <td><%= person.name %></td>
         <td><%= person.email %></td>
         <td><%= person.phone_number %></td>
@@ -29,8 +47,11 @@
         <td><%= link_to 'Delete', delete_person_path(person)%></td>
       </tr>
     <% end %>
+  
   </tbody>
 </table>
+</center>
+
 
 <br>
 

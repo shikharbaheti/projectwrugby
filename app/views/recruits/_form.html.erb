@@ -1,0 +1,67 @@
+<%= form_with(model: recruit) do |form| %>
+  <% if recruit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recruit.errors.count, "error") %> prohibited this recruit from being saved:</h2>
+
+      <ul>
+        <% recruit.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :uin %>
+    <%= form.number_field :uin %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :person_type %>
+    <%= form.select :person_type, options_for_select(["Recruit", "Alumni", "Player"]), value: nil %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_type %>
+    <%= form.text_field :contact_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :interest_level %>
+    <%= form.number_field :interest_level %>
+  </div>
+
+  <div class="field">
+    <%= form.label :times_contacted %>
+    <%= form.number_field :times_contacted %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_contacted %>
+    <%= form.date_field :date_contacted %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

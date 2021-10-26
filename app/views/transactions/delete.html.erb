@@ -1,0 +1,35 @@
+
+<div class="transaction delete">
+<h2>Transaction Person</h2>
+
+
+<%= form_for(@transaction, :method => 'delete') do |f| %>
+
+  <p>Are you sure you want to permanently delete this Transaction?</p>
+  
+<table>
+  <thead>
+    <tr>
+        <th>Transaction date</th>
+        <th>Amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @transaction.transaction_date %></td>
+      <td><%= @transaction.amount %></td>
+    </tr>
+  </tbody>
+  </table>
+
+  <div class="form-buttons">
+    <%= f.submit("Delete Person") %>
+  </div>
+
+<% end %>
+<br/>
+</div>
+
+<%= link_to('Back', transactions_path, :class => 'back-link') %>

@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<u1>
+ <li class="navbarLink" id="link"><%= link_to('Home', root_path) %></li>
+ <li class="navbarLink" id="link"><%= link_to('Players', players_path) %></li>
+ <li class="navbarLink" id="link"><%= link_to('Alumnis', alumnis_path	) %></li>  
+ <li class="navbarLink" id="link"><%= link_to('Recruits', recruits_path	) %></li>  
+ <li class="navbarLink" id="link" style="float: right"><%= link_to('Sign Out', destroy_admin_session_path	) %></li>   
+</u1>
+
+<center>
+<h1>Players</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>UIN</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Address</th>
+      <th>Person Type</th>
+      <th>Dues</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.uin %></td>
+        <td><%= player.name %></td>
+        <td><%= player.email %></td>
+        <td><%= player.phone_number %></td>
+        <td><%= player.address %></td>
+        <td><%= player.person_type %></td>
+        <td><%= player.dues %></td>
+        <td><%= player.status %></td>
+        <td><%= link_to 'Show', player %></td>
+        <td><%= link_to 'Edit', edit_player_path(player) %></td>
+        <td><%= link_to 'Delete', delete_player_path(player) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</center>
+
+
+<br>
+
+<%= link_to 'New Player', new_player_path %>
+

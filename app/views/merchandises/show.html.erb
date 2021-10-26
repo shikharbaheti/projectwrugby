@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Item name:</strong>
+  <%= @merchandise.item_name %>
+</p>
+
+<p>
+  <strong>Purchase price:</strong>
+  <%= @merchandise.purchase_price %>
+</p>
+
+<p>
+  <strong>Quantity on hand:</strong>
+  <%= @merchandise.quantity_on_hand %>
+</p>
+
+<p>
+  <strong>Sell price:</strong>
+  <%= @merchandise.sell_price %>
+</p>
+
+<%= link_to 'Edit', edit_merchandise_path(@merchandise) %> |
+<%= link_to 'Back', merchandises_path %>
