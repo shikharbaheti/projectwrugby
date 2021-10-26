@@ -390,7 +390,91 @@ RSpec.describe 'Editing an Player', type: :feature do
   end
 end
 
-#dkfhglkjfhglkdsjfhglkjdsflgd
+RSpec.describe 'Creating a Merch', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with:'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+    visit merchandises_path
+    expect(page).to have_content('Sweatshirt')
+    expect(page).to have_content(20)
+    expect(page).to have_content(5)
+    expect(page).to have_content(40)
+  end
+  scenario 'invalid item name' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_merchandise_path
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+    visit merchandises_path
+    expect(page).not_to have_content('Sweatshirt', count: 1)
+  end
+end
+
+RSpec.describe 'Deleting a Merch', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'Clicking the button' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with:'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+    visit merchandises_path
+
+    click_on 'Delete'
+    click_on 'Delete Merchandise'
+    visit merchandises_path
+
+    expect(page).not_to have_content('Sweatshirt')
+    expect(page).not_to have_content(20)
+    expect(page).not_to have_content(5)
+    expect(page).not_to have_content(40)
+
+  end
+end
+
+RSpec.describe 'Editing a Merchandise', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with:'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+    visit merchandises_path
+    click_on 'Edit'
+    fill_in :merchandise_sell_price, with: 75
+    click_on 'Update Merchandise'
+    visit merchandises_path
+
+    expect(page).to have_content('Sweatshirt')
+    expect(page).to have_content(20)
+    expect(page).to have_content(5)
+    expect(page).to have_content(75)
+  end
+end
+
 RSpec.describe 'Creating an Recruit', type: :feature do
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
   Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
@@ -572,14 +656,51 @@ RSpec.describe 'Editing an Recruit', type: :feature do
     expect(page).to have_content(2)
     expect(page).to have_content('2014-08-06')
   end
-
-
 end
 
+RSpec.describe 'Creating an Event', type: :feature do
 
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
 
+  scenario 'valid inputs for new event page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
 
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    select '2021', :from => 'event_date_1i'
+    select 'September', :from => 'event_date_2i'
+    select '30', :from => 'event_date_3i'
 
+    click_on 'Create Event'
+    visit events_path
+    expect(page).to have_content('Practice 1')
+    expect(page).to have_content('First practice of the season')
+
+  end
+end
+
+RSpec.describe 'Create a transaction', type: :feature do
+
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs for a transaction' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_transaction_path
+    select '2021', :from => 'transaction_transaction_date_1i'
+    select 'September', :from => 'transaction_transaction_date_2i'
+    select '30', :from => 'transaction_transaction_date_3i'
+    fill_in 'Amount', with: 40
+    click_on 'Create Transaction'
+    visit transactions_path
+    expect(page).to have_content(40)
+    expect(page).to have_content('2021-09-30')
+  end
+end
 
 RSpec.describe 'Authentication', type: :feature do
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]

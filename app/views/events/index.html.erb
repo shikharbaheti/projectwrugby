@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 
-
 <u1>
  <li class="navbarLink" id="link1"><%= link_to('Home', root_path) %></li>
  <li class="navbarLink" id="link1"><%= link_to('Players', players_path) %></li>
@@ -14,44 +13,36 @@
 
 </u1>
 
-
-<center>
-<h1>Alumni</h1>
+<h1>Events</h1>
 
 <table>
   <thead>
     <tr>
-      <th>UIN</th>
       <th>Name</th>
-      <th>Email</th>
-      <th>Phone Number</th>
-      <th>Address</th>
-      <th>Person Type</th>
-
+      <th>Info</th>
+      <th>Date</th>
+      <th>Time</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-  <% @people.each do |person| %>
-    <tr>
-      <td><%= person.uin %></td>
-      <td><%= person.name %></td>
-      <td><%= person.email %></td>
-      <td><%= person.phone_number %></td>
-      <td><%= person.address %></td>
-      <td><%= person.person_type %></td>
-      <td><%= link_to 'Show', person %></td>
-      <td><%= link_to 'Edit', edit_person_path(person) %></td>
-      <td><%= link_to 'Delete', delete_person_path(person)%></td>
-    </tr>
-  <% end %>
-</tbody>
-
-  
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.info %></td>
+        <td><%= event.date %></td>
+        <td><%= event.time %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Delete', delete_event_path(event)%></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-</center>
 
 <br>
-<%= link_to 'New Person', new_person_path %>
 
+<%= link_to 'New Event', new_event_path %>
+<br>
+<%= link_to 'Back', root_path%>

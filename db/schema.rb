@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_152319) do
+ActiveRecord::Schema.define(version: 2021_10_25_200038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,24 @@ ActiveRecord::Schema.define(version: 2021_10_22_152319) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.string "info"
+    t.date "date"
+    t.time "time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "merchandises", force: :cascade do |t|
+    t.string "item_name"
+    t.integer "purchase_price"
+    t.integer "quantity_on_hand"
+    t.integer "sell_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "people", force: :cascade do |t|
     t.integer "uin"
     t.string "name"
@@ -39,12 +57,12 @@ ActiveRecord::Schema.define(version: 2021_10_22_152319) do
     t.string "person_type"
     t.integer "dues"
     t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "contact_type"
     t.integer "interest_level"
     t.integer "times_contacted"
     t.date "date_contacted"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "players", force: :cascade do |t|
@@ -59,6 +77,13 @@ ActiveRecord::Schema.define(version: 2021_10_22_152319) do
     t.integer "interest_level"
     t.integer "times_contacted"
     t.date "date_contacted"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.date "transaction_date"
+    t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
