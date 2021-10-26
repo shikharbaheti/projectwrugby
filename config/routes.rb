@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :alumnis
   resources :players
   resources :people
+  resources :events
 
   resources :people do
     member do
@@ -31,6 +32,12 @@ Rails.application.routes.draw do
   end
 
   resources :merchandises do
+    member do
+      get :delete
+    end
+  end
+
+  resources :events do
     member do
       get :delete
     end
