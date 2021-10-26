@@ -1,24 +1,74 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction ##
 
-Things you may want to cover:
+This website is for the TAMU Women's Rugby Teams officer. It allows them to keep track of all types of people in the network such as Players, Alumni, and Recruits. As well as keep track of merchendise/transactions and events/attendance for each person.
 
-* Ruby version
+## Requirements ##
 
-* System dependencies
+This code has been run and tested on:
 
-* Configuration
+* Ruby - 3.0.2p107
+* Rails - 6.1.4.1
+* Ruby Gems - Listed in `Gemfile`
+* PostgreSQL - 13.3 
+* Nodejs - v16.9.1
+* Yarn - 1.22.11
 
-* Database creation
 
-* Database initialization
+## External Deps  ##
 
-* How to run the test suite
+* Docker - Download latest version at https://www.docker.com/products/docker-desktop
+* Heroku CLI - Download latest version at https://devcenter.heroku.com/articles/heroku-cli
+* Git - Downloat latest version at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
-* Services (job queues, cache servers, search engines, etc.)
+## Installation ##
 
-* Deployment instructions
+Download this code repository by using git:
 
-* ...
+ `git clone https://github.com/your_github_here.git`
+
+
+## Tests ##
+
+An RSpec test suite is available and can be ran using:
+
+  `rspec spec/`
+
+## Execute Code ##
+
+Run the following code in Powershell if using windows or the terminal using Linux/Mac
+
+  `cd your_github_here`
+
+  `docker run --rm -it --volume "$(pwd):/rails_app" -e DATABASE_USER=test_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest`
+
+  `cd csce431`
+    
+Install the app
+
+  `bundle install && rails webpacker:install && rails db:create && db:migrate`
+
+Run the app
+  `rails server --binding:0.0.0.0`
+
+The application can be seen using a browser and navigating to http://localhost:3000/
+
+## Environmental Variables/Files ##
+
+Organization members will have access to organization email that will act as the primary environmental variable. This email will be used for signing in using Google OAuth. 
+
+## Deployment ##
+
+The Github link will be provided to the customer. The customer will be guided through creating their own Heroku account. The customer will use the github link to deploy the application using their account. The customer can then configure the link to the site according to their wishes. 
+
+
+## CI/CD ##
+
+Continious Integration is facilitated by maintaining an updated github repository which will then be deployed automatically and continously by Heroku as it recieves updates, allowing for continous and seamless improvements to the application. 
+
+## Support ##
+
+Admins looking for support should first look at the application help page.
+Users looking for help seek out assistance from the customer.
+
