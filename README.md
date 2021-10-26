@@ -56,11 +56,11 @@ The application can be seen using a browser and navigating to http://localhost:3
 
 ## Environmental Variables/Files ##
 
-** Add instructions/description if your application requires it.
+Organization members will have access to organization email that will act as the primary environmental variable. This email will be used for signing in using Google OAuth. 
 
 ## Deployment ##
 
-** Add instructions about how to deploy to Heroku
+The Github link will be provided to the customer. The customer will be guided through creating their own Heroku account. The customer will use the github link to deploy the application using their account. The customer can then configure the link to the site according to their wishes. 
 
 
 ## CI/CD ##
