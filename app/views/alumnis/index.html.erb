@@ -18,7 +18,7 @@
 <center>
 <h1>Alumni</h1>
 
-<table>
+<table id="alumni_table">
   <thead>
     <tr>
       <th>UIN</th>
@@ -53,5 +53,26 @@
 </center>
 
 <br>
+<button onClick="sendEmail();">Send Email</button>
+<br>
 <%= link_to 'New Person', new_person_path %>
 
+<script>
+
+  function sendEmail(){
+    
+    var emails = []
+    var table = document.getElementById("alumni_table")
+    var cells = table.childNodes;
+
+    cells[3].childNodes.forEach(cell => {
+      if(cell.nodeType == 1){
+        console.log(cell.childNodes[5].innerText)
+        emails.push(cell.childNodes[5].innerText)
+      }
+    })
+    
+    window.location.assign("mailto:"+ emails + ", ")
+  }
+
+</script>
