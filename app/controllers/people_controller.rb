@@ -7,13 +7,11 @@ class PeopleController < ApplicationController
   end
 
   # GET /people/1 or /people/1.json
-  def show; 
-  end
+  def show; end
 
   # GET /people/new
   def new
     @person = Person.new
-
   end
 
   # GET /people/1/edit
@@ -71,5 +69,4 @@ class PeopleController < ApplicationController
   def person_params
     params.require(:person).permit(:uin, :name, :email, :phone_number, :address, :person_type)
   end
-
 end

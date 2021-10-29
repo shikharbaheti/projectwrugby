@@ -13,7 +13,7 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.integer :interest_level
       t.integer :times_contacted
       t.date :date_contacted
-      
+
       t.timestamps
     end
   end

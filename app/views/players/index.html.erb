@@ -14,7 +14,7 @@
 <center>
 <h1>Players</h1>
 
-<table>
+<table id="player_table">
   <thead>
     <tr>
       <th>UIN</th>
@@ -49,8 +49,28 @@
 </table>
 </center>
 
-
 <br>
-
+<button onClick="sendEmail();">Send Email</button>
+<br>
 <%= link_to 'New Player', new_player_path %>
 
+<script>
+
+  function sendEmail(){
+    var i;
+    var email = []
+
+    var table = document.getElementById("player_table")
+    var cells = table.childNodes;
+
+    cells[3].childNodes.forEach(cell => {
+      if(cell.nodeType == 1){
+        console.log(cell.childNodes[5].innerText)
+        email.push(cell.childNodes[5].innerText)
+      }
+    })
+    
+    window.location.assign("mailto:"+ email + ", ")
+  }
+
+</script>
