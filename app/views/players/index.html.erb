@@ -58,7 +58,7 @@
 
   function sendEmail(){
     var i;
-    var email = []
+    var emails = []
 
     var table = document.getElementById("player_table")
     var cells = table.childNodes;
@@ -66,11 +66,11 @@
     cells[3].childNodes.forEach(cell => {
       if(cell.nodeType == 1){
         console.log(cell.childNodes[5].innerText)
-        email.push(cell.childNodes[5].innerText)
+        emails.push(cell.childNodes[5].innerText)
       }
     })
     
-    window.location.assign("mailto:"+ email + ", ")
+    window.location.assign("mailto:"+ emails + ", ")
   }
 
 </script>
