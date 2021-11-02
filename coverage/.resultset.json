@@ -191,6 +191,32 @@
           null,
           1,
           1,
+          5,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
           1,
           null,
           null,
@@ -209,6 +235,12 @@
           1,
           1,
           1,
+          1,
+          null
+        ]
+      },
+      "/csce431/projectwrugby/app/models/merchandise.rb": {
+        "lines": [
           1,
           null
         ]
@@ -274,12 +306,6 @@
           1,
           24,
           null,
-          null
-        ]
-      },
-      "/csce431/projectwrugby/app/models/merchandise.rb": {
-        "lines": [
-          1,
           null
         ]
       },
@@ -361,6 +387,6 @@
         ]
       }
     },
-    "timestamp": 1635198710
+    "timestamp": 1635203748
   }
 }

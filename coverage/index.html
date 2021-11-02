@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2021-10-25T21:51:50+00:00">2021-10-25T21:51:50+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2021-10-25T23:15:48+00:00">2021-10-25T23:15:48+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="yellow">
-  80.89%
+  82.76%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.48
+         1.45
        </span>
     </span> hits/line
     )
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>157</b> relevant lines,
-    <span class="green"><b>127</b> lines covered</span> and
+    <b>174</b> relevant lines,
+    <span class="green"><b>144</b> lines covered</span> and
     <span class="red"><b>30</b> lines missed. </span>
     (<span class="yellow">
-  80.89%
+  82.76%
 </span>
 )
   </div>
@@ -183,11 +183,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#7dd62e198691642311d986237dee00d9ef564ea4" class="src_link" title="spec/unit/unit_spec.rb">spec/unit/unit_spec.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">53</td>
-            <td class="cell--number">29</td>
-            <td class="cell--number">29</td>
+            <td class="cell--number">79</td>
+            <td class="cell--number">46</td>
+            <td class="cell--number">46</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.21</td>
+            <td class="cell--number">1.22</td>
             
           </tr>
         
@@ -3414,8 +3414,8 @@
     
 
     <div class="t-line-summary">
-      <b>29</b> relevant lines.
-      <span class="green"><b>29</b> lines covered</span> and
+      <b>46</b> relevant lines.
+      <span class="green"><b>46</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -3906,7 +3906,7 @@
 
             
 
-            <code class="ruby">RSpec.describe Admin, type: :model do</code>
+            <code class="ruby">RSpec.describe Merchandise, type: :model do</code>
           </li>
         </div>
       
@@ -3922,13 +3922,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="46">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="5" data-linenumber="46">
+            <span class="hits">5</span>
             
 
             
 
-            <code class="ruby">    described_class.new(id: 1, email: &#39;ninarao09@tamu.edu&#39;, full_name: &#39;Nina Rao&#39;, uid: &#39;727001489&#39;, avatar_url:&#39;---&#39;)</code>
+            <code class="ruby">    described_class.new(item_name:&#39;Sweatshirt&#39;,purchase_price: 10, quantity_on_hand: 10, sell_price: 20)</code>
           </li>
         </div>
       
@@ -3988,7 +3988,194 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="52">
+          <li class="covered" data-hits="1" data-linenumber="52">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  it &#39;is not valid without an item name&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="53">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    subject.item_name = nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="54">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(subject).to be_valid</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="55">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="56">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  it &#39;is not valid without a purchase price&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="57">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    subject.purchase_price = nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="58">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(subject).to be_valid</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="59">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="60">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  it &#39;is not valid without a quantity&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="61">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    subject.quantity_on_hand = nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="62">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(subject).to be_valid</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="63">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="64">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  it &#39;is not valid without a price&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="65">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    subject.sell_price = nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="66">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(subject).to be_valid</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="67">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="68">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="69">
             
             
 
@@ -3999,7 +4186,106 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="53">
+          <li class="covered" data-hits="1" data-linenumber="70">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">RSpec.describe Admin, type: :model do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="71">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  subject do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="72">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    described_class.new(id: 1, email: &#39;ninarao09@tamu.edu&#39;, full_name: &#39;Nina Rao&#39;, uid: &#39;727001489&#39;, avatar_url:&#39;---&#39;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="73">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="74">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="75">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  it &#39;is valid with valid attributes&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="76">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    expect(subject).to be_valid</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="77">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="78">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="79">
             
             
 

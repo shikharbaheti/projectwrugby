@@ -41,6 +41,32 @@ RSpec.describe Person, type: :model do
   end
 end
 
+RSpec.describe Merchandise, type: :model do
+  subject do
+    described_class.new(item_name:'Sweatshirt',purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
+  end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+  it 'is not valid without an item name' do
+    subject.item_name = nil
+    expect(subject).to be_valid
+  end
+  it 'is not valid without a purchase price' do
+    subject.purchase_price = nil
+    expect(subject).to be_valid
+  end
+  it 'is not valid without a quantity' do
+    subject.quantity_on_hand = nil
+    expect(subject).to be_valid
+  end
+  it 'is not valid without a price' do
+    subject.sell_price = nil
+    expect(subject).to be_valid
+  end
+end
+
 RSpec.describe Admin, type: :model do
   subject do
     described_class.new(id: 1, email: 'ninarao09@tamu.edu', full_name: 'Nina Rao', uid: '727001489', avatar_url:'---')
