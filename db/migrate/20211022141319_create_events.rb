@@ -5,6 +5,10 @@ class CreateEvents < ActiveRecord::Migration[6.1]
         t.string :info
         t.date :date
         t.time :time
+        t.string :event_type
+        t.string :address
+        t.string :season
+        t.integer :score
   
         t.timestamps
       end

@@ -23,6 +23,9 @@
       <th>Info</th>
       <th>Date</th>
       <th>Time</th>
+      <th>Type</th>
+      <th>Address</th>
+      <th>Season</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -34,6 +37,9 @@
         <td><%= event.info %></td>
         <td><%= event.date %></td>
         <td><%= event.time %></td>
+        <td><%= event.event_type %></td>
+        <td><%= event.address %></td>
+        <td><%= event.season %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Delete', delete_event_path(event)%></td>
