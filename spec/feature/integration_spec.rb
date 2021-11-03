@@ -873,7 +873,7 @@ RSpec.describe 'Editing an Event', type: :feature do
     visit events_path
     expect(page).to have_content('Practice 1')
     expect(page).to have_content('First practice of the season')
-    expect(page).not_to have_content('2021-03-09')
+    expect(page).to have_content('2021-03-09')
     expect(page).to have_content('2000-01-01 16:37:00 UTC')
     expect(page).to have_content('Game')
     expect(page).to have_content('7s')
