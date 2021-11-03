@@ -43,9 +43,12 @@
 
   <div class="field">
     <%= form.label :season %>
-    <%= form.select :season, options_for_select(["Fall-7 people", "Spring-15 people"]), value: nil %>
+    <%= form.select :season, options_for_select(["7s", "15s"]), value: nil %>
   </div>
-
+  <div class="field">
+    <%= form.label :score %>
+    <%= form.text_field :score %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -8,7 +8,7 @@ class CreateEvents < ActiveRecord::Migration[6.1]
         t.string :event_type
         t.string :address
         t.string :season
-        t.integer :score
+        t.string :score
   
         t.timestamps
       end
