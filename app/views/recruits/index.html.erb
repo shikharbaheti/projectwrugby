@@ -19,6 +19,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>UIN</th>
       <th>Name</th>
       <th>Email</th>
@@ -36,6 +37,7 @@
   <tbody>
     <% @recruits.each do |recruit| %>
       <tr>
+      <td><%= recruit.id %></td>
         <td><%= recruit.uin %></td>
         <td><%= recruit.name %></td>
         <td><%= recruit.email %></td>
@@ -49,6 +51,7 @@
         <td><%= link_to 'Show', recruit %></td>
         <td><%= link_to 'Edit', edit_recruit_path(recruit) %></td>
         <td><%= link_to 'Delete', delete_recruit_path(recruit) %></td>
+        <td><%= link_to 'Encounters', encounters_path(recruit) %></td>
       </tr>
     <% end %>
   </tbody>

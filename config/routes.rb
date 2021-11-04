@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :encounters
   resources :merchandises
   resources :transactions
   resources :recruits
