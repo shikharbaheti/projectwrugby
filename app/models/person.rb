@@ -1,4 +1,5 @@
 class Person < ApplicationRecord
+  has_many :transactions
   validates :uin, presence: true
   validates :name, presence: true
   validates :email, presence: true
