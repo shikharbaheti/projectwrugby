@@ -21,6 +21,11 @@
     <%= form.number_field :amount %>
   </div>
 
+  <div class="field">
+  <%= form.label "Merch" %>
+  <%= form.collection_select(:merchandise_id, Merchandise.all, :id, :item_name) %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
