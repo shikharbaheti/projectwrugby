@@ -18,7 +18,8 @@
 
   <tbody>
     <tr>
-      <td><%= @encounter.recruit_id %></td>
+      <% recruit = Recruit.find_by(id: @encounter.recruit_id) %>
+      <td><%= recruit.name %></td>
       <td><%= @encounter.notes %></td>
     </tr>
   </tbody>

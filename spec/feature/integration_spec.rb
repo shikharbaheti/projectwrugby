@@ -238,7 +238,7 @@ RSpec.describe 'Editing an Encounter', type: :feature do
     visit encounters_path
 
     click_on 'Edit'
-    page.select(nil, :from => :encounter_recruit_id)
+    fill_in 'Notes', with: nil
     click_on 'Update Encounter'
     visit encounters_path
 
