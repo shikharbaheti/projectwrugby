@@ -1,0 +1,35 @@
+
+<div class="encounter delete">
+<h2>Delete Encounter</h2>
+
+
+<%= form_for(@encounter, :method => 'delete') do |f| %>
+
+  <p>Are you sure you want to permanently delete this Encounter?</p>
+  
+<table>
+  <thead>
+    <tr>
+        <th>Recruit</th>
+        <th>Notes</th>
+        <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @encounter.recruit_id %></td>
+      <td><%= @encounter.notes %></td>
+    </tr>
+  </tbody>
+  </table>
+
+  <div class="form-buttons">
+    <%= f.submit("Delete Encounter") %>
+  </div>
+
+<% end %>
+<br/>
+</div>
+
+<%= link_to('Back', encounters_path, :class => 'back-link') %>

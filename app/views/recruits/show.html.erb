@@ -20,5 +20,19 @@
   <%= @recruit.date_contacted %>
 </p>
 
-<%= link_to 'Edit', edit_recruit_path(@recruit) %> |
+<h3>Encounters</h3>
+<table>
+<tr> 
+    <th>Name</th>  
+    <th>Notes</th>   
+</tr>
+
+<% @recruit.encounters.each do |encounter| %>
+<tr>
+    <td><%= encounter.recruit.name %></td>
+    <td><%= encounter.notes %></td>
+</tr>
+<% end %>
+</table>
+
 <%= link_to 'Back', recruits_path %>

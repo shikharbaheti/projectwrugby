@@ -1,6 +1,254 @@
 # location: spec/feature/integration_spec.rb
 require 'rails_helper'
 
+RSpec.describe 'Creating an Encounter', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs for new encounter page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    fill_in 'Notes', with: 'this is a note'
+    page.select("Nina Rao", :from => :encounter_recruit_id)
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    expect(page).to have_content('this is a note')
+    expect(page).to have_content('Nina Rao')
+
+
+  end
+
+  scenario 'invalid recruit id' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    fill_in 'Notes', with: 'this is a note'
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    expect(page).not_to have_content('Nina Rao', count: 1)
+
+
+  end
+
+  scenario 'invalid notes' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    page.select("Nina Rao", :from => :encounter_recruit_id)
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    expect(page).not_to have_content('this is a note', count: 1)
+  end
+
+  scenario 'invalid entries' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    expect(page).not_to have_content('Nina Rao', count: 1)
+    expect(page).not_to have_content('this is a note', count: 1)
+  end
+end
+
+RSpec.describe 'Deleting an Encounter', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'delete encounter' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    fill_in 'Notes', with: 'this is a note'
+    page.select("Nina Rao", :from => :encounter_recruit_id)
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    click_on 'Delete'
+    click_on 'Delete Encounter'
+    visit encounters_path
+
+    expect(page).not_to have_content('this is a note')
+    expect(page).not_to have_content('Nina Rao', count: 1)
+
+  end
+end
+
+RSpec.describe 'Editing an Encounter', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'edit encounter' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    fill_in 'Notes', with: 'this is a note'
+    page.select("Nina Rao", :from => :encounter_recruit_id)
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    click_on 'Edit'
+    fill_in 'Notes', with: 'this is not a note'
+    click_on 'Update Encounter'
+    visit encounters_path
+
+    expect(page).to have_content('this is not a note')
+    expect(page).to have_content('Nina Rao', count: 1)
+
+  end
+
+  scenario 'invalid edit encounter' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    fill_in 'Notes', with: 'this is a note'
+    page.select("Nina Rao", :from => :encounter_recruit_id)
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    click_on 'Edit'
+    page.select(nil, :from => :encounter_recruit_id)
+    click_on 'Update Encounter'
+    visit encounters_path
+
+    expect(page).to have_content('this is a note')
+    expect(page).to have_content('Nina Rao', count: 1)
+
+  end
+end
+
+
 RSpec.describe 'Creating an Alumni', type: :feature do
 
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
