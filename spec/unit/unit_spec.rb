@@ -97,3 +97,31 @@ RSpec.describe Admin, type: :model do
     expect(subject).to be_valid
   end
 end
+
+RSpec.describe Event, type: :model do
+  subject do
+    described_class.new(name:'Practice 1', info:'First practice of the season', date: Date.today,
+    time: '2000-01-01 16:37:00 UTC', event_type: 'Game', address: 'test', season: '7s', score: '24-0')
+  end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it 'is not valid without an event name' do
+    subject.name = nil
+    expect(subject).not_to be_valid
+  end
+  it 'is not valid without an event date' do
+    subject.date = nil
+    expect(subject).not_to be_valid
+  end
+  it 'is not valid without an event time' do
+    subject.time = nil
+    expect(subject).not_to be_valid
+  end
+  it 'is not valid without an event address' do
+    subject.address = nil
+    expect(subject).not_to be_valid
+  end
+end
