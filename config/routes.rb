@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  #resources :attendancerecords
   resources :merchandises
   resources :transactions
   resources :recruits
   resources :alumnis
   resources :players
   resources :people
-  resources :events
+  resources :events do
+    resource :attendancerecords
+  end
 
   resources :people do
     member do
