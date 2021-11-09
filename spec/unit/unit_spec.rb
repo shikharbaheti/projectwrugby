@@ -43,8 +43,12 @@ RSpec.describe Person, type: :model do
 end
 
 RSpec.describe Transaction, type: :model do
+  merchandise = Merchandise.create(item_name:'Sweatshirt',purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
+  person = Person.create(uin: 727001489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
+        address: '100 address', person_type: 'Player')
+
   subject do
-    described_class.new(amount: 45, transaction_date: Date.today)
+    described_class.new(amount: 45, transaction_date: Date.today, person_id: person.id, merchandise_id: merchandise.id)
   end
 
   it 'is valid with valid attributes' do
@@ -58,6 +62,16 @@ RSpec.describe Transaction, type: :model do
 
   it 'is not valid without a transaction_date' do
     subject.transaction_date = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a person associated to it' do
+    subject.person_id = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a merchandise associated to it' do
+    subject.merchandise_id = nil
     expect(subject).not_to be_valid
   end
 end

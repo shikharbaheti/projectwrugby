@@ -34,14 +34,14 @@
         <td><%= transaction.amount %></td>
         <% merchandise = transaction.merchandise %>
         <% if merchandise == nil %>
-        <td>Deleted Merch</td>
+        <td>N/A</td>
         <% else %>
         <td><%= merchandise.item_name %></td>
         <% end %>
         <% person = transaction.person %>
         <% if merchandise == nil %>
-        <td>Deleted person</td>
-        <td>Deleted person</td>
+        <td>N/A</td>
+        <td>N/A</td>
         <% else %>
         <td><%= person.name %></td>
         <td><%= person.uin %></td>

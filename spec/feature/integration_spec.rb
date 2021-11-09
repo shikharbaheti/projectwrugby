@@ -686,6 +686,9 @@ RSpec.describe 'Create a transaction', type: :feature do
 
   Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
   Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+  merchandise = Merchandise.create(item_name:'Sweatshirt1',purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
+  person = Person.create(uin: 727001489, name: 'Nina Rao1', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
+        address: '100 address', person_type: 'Player')
 
   scenario 'valid inputs for a transaction' do
     visit root_path
@@ -694,11 +697,104 @@ RSpec.describe 'Create a transaction', type: :feature do
     select '2021', :from => 'transaction_transaction_date_1i'
     select 'September', :from => 'transaction_transaction_date_2i'
     select '30', :from => 'transaction_transaction_date_3i'
-    fill_in 'Amount', with: 40
+    fill_in 'transaction_amount', with: 40
+    select 'Sweatshirt1', :from => 'transaction_merchandise_id'
+    select 'Nina Rao1', :from => 'transaction_person_id'
     click_on 'Create Transaction'
     visit transactions_path
     expect(page).to have_content(40)
     expect(page).to have_content('2021-09-30')
+  end
+
+  scenario 'invalid inputs for a transaction' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_transaction_path
+    select '2021', :from => 'transaction_transaction_date_1i'
+    select 'September', :from => 'transaction_transaction_date_2i'
+    select '30', :from => 'transaction_transaction_date_3i'
+    select 'Sweatshirt1', :from => 'transaction_merchandise_id'
+    select 'Nina Rao1', :from => 'transaction_person_id'
+    click_on 'Create Transaction'
+    visit transactions_path
+    expect(page).not_to have_content(40)
+    expect(page).not_to have_content('2021-09-30')
+  end
+end
+
+RSpec.describe 'Delete a transaction', type: :feature do
+
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+  merchandise = Merchandise.create(item_name:'Sweatshirt2',purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
+  person = Person.create(uin: 727001489, name: 'Nina Rao2', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
+        address: '100 address', person_type: 'Player')
+
+  scenario 'Delete the transaction' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_transaction_path
+    select '2021', :from => 'transaction_transaction_date_1i'
+    select 'September', :from => 'transaction_transaction_date_2i'
+    select '30', :from => 'transaction_transaction_date_3i'
+    fill_in 'transaction_amount', with: 40
+    select 'Sweatshirt2', :from => 'transaction_merchandise_id'
+    select 'Nina Rao2', :from => 'transaction_person_id'
+    click_on 'Create Transaction'
+    visit transactions_path
+    click_on 'Delete'
+    click_on 'Delete Person'
+    visit transactions_path
+    expect(page).not_to have_content(40)
+    expect(page).not_to have_content('2021-09-30')
+  end
+end
+
+RSpec.describe 'Update a transaction', type: :feature do
+
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+  merchandise = Merchandise.create(item_name:'Sweatshirt3',purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
+  person = Person.create(uin: 727001489, name: 'Nina Rao3', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
+        address: '100 address', person_type: 'Player')
+
+  scenario 'Edit the transaction with valid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_transaction_path
+    select '2021', :from => 'transaction_transaction_date_1i'
+    select 'September', :from => 'transaction_transaction_date_2i'
+    select '30', :from => 'transaction_transaction_date_3i'
+    fill_in 'transaction_amount', with: 40
+    select 'Sweatshirt3', :from => 'transaction_merchandise_id'
+    select 'Nina Rao3', :from => 'transaction_person_id'
+    click_on 'Create Transaction'
+    visit transactions_path
+    click_on 'Edit'
+    fill_in 'transaction_amount', with: 99
+    click_on 'Update Transaction'
+    visit transactions_path
+    expect(page).to have_content(99)
+    expect(page).to have_content('2021-09-30')
+  end
+
+  scenario 'Edit the transaction with invalid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_transaction_path
+    select '2021', :from => 'transaction_transaction_date_1i'
+    select 'September', :from => 'transaction_transaction_date_2i'
+    select '30', :from => 'transaction_transaction_date_3i'
+    fill_in 'transaction_amount', with: 40
+    select 'Sweatshirt3', :from => 'transaction_merchandise_id'
+    select 'Nina Rao3', :from => 'transaction_person_id'
+    click_on 'Create Transaction'
+    visit transactions_path
+    click_on 'Edit'
+    fill_in 'transaction_amount', with: ''
+    click_on 'Update Transaction'
+    visit transactions_path
+    expect(page).not_to have_content(99)
   end
 end
 
