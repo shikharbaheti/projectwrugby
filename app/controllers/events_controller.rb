@@ -15,7 +15,7 @@ class EventsController < ApplicationController
     # GET /events/new
     def new
       @event = Event.new
-  #    @event.attendancerecord.build
+      @event.attendancerecords.build
     end
 
     # GET /events/1/edit
@@ -26,7 +26,7 @@ class EventsController < ApplicationController
 
 
 
-  
+
 
     def delete
       @event = Event.find(params[:id])

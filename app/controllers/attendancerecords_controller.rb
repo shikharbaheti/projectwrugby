@@ -11,7 +11,7 @@ class AttendancerecordsController < ApplicationController
 
   # GET /attendancerecords/1 or /attendancerecords/1.json
   def show
-
+    
   end
 
   # GET /attendancerecords/new

@@ -10,7 +10,7 @@
   </thead>
 
   <tbody>
-    <% @attendancerecords.each do |attendancerecord| %>
+    <% @event.attendancerecords.each do |attendancerecord| %>
       <tr>
         <td><%= attendancerecord.event.name %></td>
         <td><%= attendancerecord.attendancetype %></td>
@@ -25,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Attendance Record', new_attendancerecord_path %>
+<%= link_to 'New Attendance Record', new_event_attendancerecord_path %>
