@@ -516,11 +516,11 @@ RSpec.describe 'Editing a Merchandise', type: :feature do
     click_on 'Create Merchandise'
     visit merchandises_path
     click_on 'Edit'
-    fill_in :merchandise_item_name, with: 'N/A'
+    fill_in :merchandise_item_name, with: nil
     click_on 'Update Merchandise'
     visit merchandises_path
 
-    expect(page).not_to have_content('Sweatshirt')
+    expect(page).to have_content('Sweatshirt')
   end
   scenario 'invalid purchase_price' do
     visit root_path
@@ -533,11 +533,11 @@ RSpec.describe 'Editing a Merchandise', type: :feature do
     click_on 'Create Merchandise'
     visit merchandises_path
     click_on 'Edit'
-    fill_in :merchandise_purchase_price, with: 0
+    fill_in :merchandise_purchase_price, with: nil
     click_on 'Update Merchandise'
     visit merchandises_path
 
-    expect(page).not_to have_content(20)
+    expect(page).to have_content(20)
   end
 end
 RSpec.describe 'Show a Merchandise', type: :feature do
