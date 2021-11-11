@@ -1,4 +1,4 @@
-<%= form_with(model: [@event, attendancerecord], local: true) do |form| %>
+<%= form_with(model: [@event, @attendancerecord], local: true) do |form| %>
   <% if attendancerecord.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(attendancerecord.errors.count, "error") %> prohibited this attendance_record from being saved:</h2>

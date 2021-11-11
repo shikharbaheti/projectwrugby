@@ -11,11 +11,12 @@ class AttendancerecordsController < ApplicationController
 
   # GET /attendancerecords/1 or /attendancerecords/1.json
   def show
-    
+
   end
 
   # GET /attendancerecords/new
   def new
+    @event = Event.find(params[:event_id])
     @attendancerecord = @event.attendancerecords.build
     #@player = 3.times { @attendancerecord.players.build }
     #@player = Player.count.times { @attendancerecord.players.build }
@@ -28,12 +29,12 @@ class AttendancerecordsController < ApplicationController
 
   # POST /attendancerecords or /attendancerecords.json
   def create
-    #@event = Event.find(params[:event_id])
-    @attendancerecord = @event.attendancerecords.build(attendancerecord_params)
+    @event = Event.find(params[:event_id])
+    @attendancerecord = @event.attendancerecords.create(attendancerecord_params)
 
     respond_to do |format|
       if @attendancerecord.save
-        format.html { redirect_to attendancerecord_events_path(@event), notice: "Attendance record was successfully created." }
+        format.html { redirect_to event_attendancerecords_path(@event), notice: "Attendance record was successfully created." }
         format.json { render :show, status: :created, location: @attendancerecord }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -72,7 +73,6 @@ class AttendancerecordsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_attendancerecord
       @attendancerecord = @event.attendancerecords.find(params[:id])
-  #    @attendancerecord = @event.attendancerecords.find(params[:id])
 
     end
 

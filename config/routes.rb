@@ -7,8 +7,11 @@ Rails.application.routes.draw do
   resources :players
   resources :people
   resources :events do
-    resource :attendancerecords
+    resources :attendancerecords
   end
+
+
+
 
   resources :people do
     member do
