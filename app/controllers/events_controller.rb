@@ -15,18 +15,14 @@ class EventsController < ApplicationController
     # GET /events/new
     def new
       @event = Event.new
-      @event.attendancerecords.build
+  #    @event.attendancerecords.build
+      1.times { @event.attendancerecords.new }
     end
 
     # GET /events/1/edit
     def edit
 
     end
-
-
-
-
-
 
     def delete
       @event = Event.find(params[:id])
@@ -78,6 +74,6 @@ class EventsController < ApplicationController
 
       # Only allow a list of trusted parameters through.
       def event_params
-        params.require(:event).permit(:name, :info, :date, :time, attendancerecord_attributes: [:attendancerecord_id])
+        params.require(:event).permit(:name, :info, :date, :time, attendancerecord_attributes: [:id, :attendancetype, :note])
       end
   end
