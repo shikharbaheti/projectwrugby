@@ -1,10 +1,11 @@
 {
   "RSpec": {
     "coverage": {
-      "/csce431/projectwrugby/spec/unit/unit_spec.rb": {
+      "/csce431/spec/unit/unit_spec.rb": {
         "lines": [
           null,
           1,
+          null,
           null,
           1,
           1,
@@ -101,10 +102,31 @@
           1,
           1,
           null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
           null
         ]
       },
-      "/csce431/projectwrugby/app/models/person.rb": {
+      "/csce431/app/models/person.rb": {
         "lines": [
           1,
           1,
@@ -117,7 +139,7 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/models/transaction.rb": {
+      "/csce431/app/models/transaction.rb": {
         "lines": [
           1,
           1,
@@ -125,27 +147,38 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/models/merchandise.rb": {
+      "/csce431/app/models/merchandise.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/csce431/projectwrugby/app/controllers/dashboards_controller.rb": {
+      "/csce431/app/models/encounter.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/csce431/app/controllers/dashboards_controller.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/csce431/projectwrugby/app/controllers/application_controller.rb": {
+      "/csce431/app/controllers/application_controller.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/csce431/projectwrugby/app/controllers/admins/sessions_controller.rb": {
+      "/csce431/app/controllers/admins/sessions_controller.rb": {
         "lines": [
           1,
           1,
@@ -158,7 +191,7 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/controllers/admins/omniauth_callbacks_controller.rb": {
+      "/csce431/app/controllers/admins/omniauth_callbacks_controller.rb": {
         "lines": [
           1,
           1,
@@ -202,7 +235,7 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/controllers/recruits_controller.rb": {
+      "/csce431/app/controllers/recruits_controller.rb": {
         "lines": [
           1,
           1,
@@ -279,7 +312,7 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/models/recruit.rb": {
+      "/csce431/app/models/recruit.rb": {
         "lines": [
           1,
           1,
@@ -291,7 +324,7 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/controllers/encounters_controller.rb": {
+      "/csce431/app/controllers/encounters_controller.rb": {
         "lines": [
           1,
           1,
@@ -377,18 +410,7 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/models/encounter.rb": {
-        "lines": [
-          1,
-          null,
-          null,
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/csce431/projectwrugby/app/controllers/people_controller.rb": {
+      "/csce431/app/controllers/people_controller.rb": {
         "lines": [
           1,
           1,
@@ -467,7 +489,7 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/controllers/alumnis_controller.rb": {
+      "/csce431/app/controllers/alumnis_controller.rb": {
         "lines": [
           1,
           1,
@@ -480,7 +502,7 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/controllers/players_controller.rb": {
+      "/csce431/app/controllers/players_controller.rb": {
         "lines": [
           1,
           1,
@@ -557,7 +579,7 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/models/player.rb": {
+      "/csce431/app/models/player.rb": {
         "lines": [
           1,
           1,
@@ -565,7 +587,7 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/controllers/merchandises_controller.rb": {
+      "/csce431/app/controllers/merchandises_controller.rb": {
         "lines": [
           1,
           1,
@@ -643,7 +665,7 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/controllers/events_controller.rb": {
+      "/csce431/app/controllers/events_controller.rb": {
         "lines": [
           1,
           1,
@@ -720,13 +742,13 @@
           null
         ]
       },
-      "/csce431/projectwrugby/app/models/event.rb": {
+      "/csce431/app/models/event.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/csce431/projectwrugby/app/controllers/transactions_controller.rb": {
+      "/csce431/app/controllers/transactions_controller.rb": {
         "lines": [
           1,
           1,
@@ -804,6 +826,6 @@
         ]
       }
     },
-    "timestamp": 1636413696
+    "timestamp": 1636735500
   }
 }
