@@ -1,11 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "attendance_records/show", type: :view do
+RSpec.describe "attendancerecords/show", type: :view do
   before(:each) do
-    @attendance_record = assign(:attendance_record, AttendanceRecord.create!())
+    @attendancerecord = assign(:attendancerecord, Attendancerecord.create!(
+      note: "MyText",
+      attendancetype: "Attendancetype"
+    ))
   end
 
   it "renders attributes in <p>" do
     render
+    expect(rendered).to match(/MyText/)
+    expect(rendered).to match(/Attendancetype/)
   end
 end

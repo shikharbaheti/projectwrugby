@@ -1,14 +1,21 @@
 require 'rails_helper'
 
-RSpec.describe "attendance_records/edit", type: :view do
+RSpec.describe "attendancerecords/edit", type: :view do
   before(:each) do
-    @attendance_record = assign(:attendance_record, AttendanceRecord.create!())
+    @attendancerecord = assign(:attendancerecord, Attendancerecord.create!(
+      note: "MyText",
+      attendancetype: "MyString"
+    ))
   end
 
-  it "renders the edit attendance_record form" do
+  it "renders the edit attendancerecord form" do
     render
 
-    assert_select "form[action=?][method=?]", attendance_record_path(@attendance_record), "post" do
+    assert_select "form[action=?][method=?]", attendancerecord_path(@attendancerecord), "post" do
+
+      assert_select "textarea[name=?]", "attendancerecord[note]"
+
+      assert_select "input[name=?]", "attendancerecord[attendancetype]"
     end
   end
 end

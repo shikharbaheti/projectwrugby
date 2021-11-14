@@ -42,6 +42,57 @@ RSpec.describe Person, type: :model do
   end
 end
 
+RSpec.describe Player, type: :model do
+  subject do
+    described_class.new(uin: 727001489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
+                        address: '100 address', person_type: 'Player', dues: 120, status: 'Active')
+  end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it 'is not valid without a uin/id' do
+    subject.uin = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a name' do
+    subject.name = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a email' do
+    subject.email = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a phone number' do
+    subject.phone_number = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a address' do
+    subject.address = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a person type' do
+    subject.person_type = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a address' do
+    subject.dues = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a person type' do
+    subject.status = nil
+    expect(subject).not_to be_valid
+  end
+end
+
 RSpec.describe Transaction, type: :model do
   subject do
     described_class.new(amount: 45, transaction_date: Date.today)

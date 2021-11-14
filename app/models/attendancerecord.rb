@@ -1,6 +1,7 @@
 class Attendancerecord < ApplicationRecord
-  has_and_belongs_to_many :players
-  belongs_to :event
-  validates :attendancetype, presence: true
-  validates :note, presence: true
+    belongs_to :event
+    has_many :players
+    validates :event_id, presence: true
+    validates :note, presence: true
+    validates :attendancetype, presence: true
 end

@@ -12,9 +12,9 @@
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/attendance_records", type: :request do
+RSpec.describe "/attendancerecords", type: :request do
   
-  # AttendanceRecord. As you add validations to AttendanceRecord, be sure to
+  # Attendancerecord. As you add validations to Attendancerecord, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -26,58 +26,58 @@ RSpec.describe "/attendance_records", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      AttendanceRecord.create! valid_attributes
-      get attendance_records_url
+      Attendancerecord.create! valid_attributes
+      get attendancerecords_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      attendance_record = AttendanceRecord.create! valid_attributes
-      get attendance_record_url(attendance_record)
+      attendancerecord = Attendancerecord.create! valid_attributes
+      get attendancerecord_url(attendancerecord)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_attendance_record_url
+      get new_attendancerecord_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "render a successful response" do
-      attendance_record = AttendanceRecord.create! valid_attributes
-      get edit_attendance_record_url(attendance_record)
+      attendancerecord = Attendancerecord.create! valid_attributes
+      get edit_attendancerecord_url(attendancerecord)
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new AttendanceRecord" do
+      it "creates a new Attendancerecord" do
         expect {
-          post attendance_records_url, params: { attendance_record: valid_attributes }
-        }.to change(AttendanceRecord, :count).by(1)
+          post attendancerecords_url, params: { attendancerecord: valid_attributes }
+        }.to change(Attendancerecord, :count).by(1)
       end
 
-      it "redirects to the created attendance_record" do
-        post attendance_records_url, params: { attendance_record: valid_attributes }
-        expect(response).to redirect_to(attendance_record_url(AttendanceRecord.last))
+      it "redirects to the created attendancerecord" do
+        post attendancerecords_url, params: { attendancerecord: valid_attributes }
+        expect(response).to redirect_to(attendancerecord_url(Attendancerecord.last))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new AttendanceRecord" do
+      it "does not create a new Attendancerecord" do
         expect {
-          post attendance_records_url, params: { attendance_record: invalid_attributes }
-        }.to change(AttendanceRecord, :count).by(0)
+          post attendancerecords_url, params: { attendancerecord: invalid_attributes }
+        }.to change(Attendancerecord, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post attendance_records_url, params: { attendance_record: invalid_attributes }
+        post attendancerecords_url, params: { attendancerecord: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -89,42 +89,42 @@ RSpec.describe "/attendance_records", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested attendance_record" do
-        attendance_record = AttendanceRecord.create! valid_attributes
-        patch attendance_record_url(attendance_record), params: { attendance_record: new_attributes }
-        attendance_record.reload
+      it "updates the requested attendancerecord" do
+        attendancerecord = Attendancerecord.create! valid_attributes
+        patch attendancerecord_url(attendancerecord), params: { attendancerecord: new_attributes }
+        attendancerecord.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the attendance_record" do
-        attendance_record = AttendanceRecord.create! valid_attributes
-        patch attendance_record_url(attendance_record), params: { attendance_record: new_attributes }
-        attendance_record.reload
-        expect(response).to redirect_to(attendance_record_url(attendance_record))
+      it "redirects to the attendancerecord" do
+        attendancerecord = Attendancerecord.create! valid_attributes
+        patch attendancerecord_url(attendancerecord), params: { attendancerecord: new_attributes }
+        attendancerecord.reload
+        expect(response).to redirect_to(attendancerecord_url(attendancerecord))
       end
     end
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        attendance_record = AttendanceRecord.create! valid_attributes
-        patch attendance_record_url(attendance_record), params: { attendance_record: invalid_attributes }
+        attendancerecord = Attendancerecord.create! valid_attributes
+        patch attendancerecord_url(attendancerecord), params: { attendancerecord: invalid_attributes }
         expect(response).to be_successful
       end
     end
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested attendance_record" do
-      attendance_record = AttendanceRecord.create! valid_attributes
+    it "destroys the requested attendancerecord" do
+      attendancerecord = Attendancerecord.create! valid_attributes
       expect {
-        delete attendance_record_url(attendance_record)
-      }.to change(AttendanceRecord, :count).by(-1)
+        delete attendancerecord_url(attendancerecord)
+      }.to change(Attendancerecord, :count).by(-1)
     end
 
-    it "redirects to the attendance_records list" do
-      attendance_record = AttendanceRecord.create! valid_attributes
-      delete attendance_record_url(attendance_record)
-      expect(response).to redirect_to(attendance_records_url)
+    it "redirects to the attendancerecords list" do
+      attendancerecord = Attendancerecord.create! valid_attributes
+      delete attendancerecord_url(attendancerecord)
+      expect(response).to redirect_to(attendancerecords_url)
     end
   end
 end

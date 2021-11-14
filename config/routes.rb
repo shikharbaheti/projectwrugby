@@ -1,14 +1,28 @@
 Rails.application.routes.draw do
-  #resources :attendancerecords
+  resources :attendancerecords
+  resources :events
   resources :merchandises
   resources :transactions
   resources :recruits
   resources :alumnis
   resources :players
   resources :people
-  resources :events do
-    resource :attendancerecords
+
+  
+  resources :attendancerecords do
+    member do
+      get :delete
+    end
   end
+ 
+
+  #devise_scope :events do
+  #    get '/events/:event_id/attendancerecords/:id', to: 'attendancerecords#index', as: :event_attendancerecords_path
+  #    get '/events/:event_id/attendancerecords/:id/edit', to: 'attendancerecords#edit', as: :edit_event_attendancerecord_path
+  #    get '/events/:event_id/attendancerecords/new', to: 'attendancerecords#new', as: :new_event_attendancerecord_path
+  #end
+
+  
 
   resources :people do
     member do

@@ -1,6 +1,6 @@
-<h1>Editing Attendance Record</h1>
+<h1>Editing Attendancerecord</h1>
 
 <%= render 'form', attendancerecord: @attendancerecord %>
 
-<%= link_to 'Show', [@event,@attendancerecord] %> |
-<%= link_to 'Back', event_attendancerecords__path(@event) %>
+<%= link_to 'Show', @attendancerecord %> |
+<%= link_to 'Back', attendancerecords_path %>

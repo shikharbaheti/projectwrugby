@@ -1,23 +1,30 @@
-<%= form_with(model: [@event, attendance_record], local: true) do |form| %>
-  <% if attendance_record.errors.any? %>
+<%= form_with(model: attendancerecord) do |form| %>
+
+  <% if attendancerecord.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(attendance_record.errors.count, "error") %> prohibited this attendance_record from being saved:</h2>
+      <h2><%= pluralize(attendancerecord.errors.count, "error") %> prohibited this attendancerecord from being saved:</h2>
 
       <ul>
-        <% attendance_record.errors.each do |error| %>
+        <% attendancerecord.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="dropdown">
-    <%= f.label :attendancetype, "Attendance Type" %>
-    <%= f.select :attendancetype, [[],'Present','Late, Excused','Late, Unexcused','Absent, Excused','Absent, Unexcused'] %>
-  </div>
   <div class="field">
-    <%= f.label :note, "Excuse Note" %>
-    <%= f.text_area :note %>
+    <%= form.label :event_id %>
+    <%= form.collection_select :event_id, Event.order(:name),:id,:name, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_area :note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :attendancetype %>
+    <%= form.text_field :attendancetype %>
   </div>
 
   <div class="actions">
