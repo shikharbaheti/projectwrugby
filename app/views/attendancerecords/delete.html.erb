@@ -1,0 +1,36 @@
+<div class="attendancerecord delete">
+<h2>Delete Attendance Record</h2>
+
+
+<%= form_for(model: [@event,@attendancerecord], :method => 'delete') do |f| %>
+
+  <p>Are you sure you want to permanently delete this attendance record?</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Attendance</th>
+      <th>Excuse Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @attendancerecords.each do |attendancerecord| %>
+      <tr>
+        <td><%= attendancerecord.player.name %></td>
+        <td><%= attendancerecord.attendancetype %></td>
+        <td><%= attendancerecord.note %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="form-buttons">
+  <%= f.submit("Delete Attendance Record") %>
+</div>
+
+<% end %>
+<br/>
+</div>
+
+<%= link_to('Back', events_attendancerecord_path, :class => 'back-link') %>

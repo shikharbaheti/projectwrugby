@@ -1,8 +1,10 @@
 class Event < ApplicationRecord
   has_many :attendancerecords, inverse_of: :event, dependent: :destroy
-  accepts_nested_attributes_for :attendancerecords
+  has_many :players, through: :attendancerecords
+  
   validates_associated :attendancerecords
-  def attendancerecords
-    super || build_attendancerecords([])
-  end
+  validates_associated :players
+#  def attendancerecords
+#    super || build_attendancerecords([])
+#  end
 end

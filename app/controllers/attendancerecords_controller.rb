@@ -7,6 +7,7 @@ class AttendancerecordsController < ApplicationController
   # GET /attendancerecords or /attendancerecords.json
   def index
     @attendancerecords = @event.attendancerecords
+    @players = Player.all
   end
 
   # GET /attendancerecords/1 or /attendancerecords/1.json
@@ -18,8 +19,15 @@ class AttendancerecordsController < ApplicationController
   def new
     @event = Event.find(params[:event_id])
     @attendancerecord = @event.attendancerecords.build
+
+    #@player = Player.find_by(params[:player_id])
+    #@attendancerecord.players << @player
     #@player = 3.times { @attendancerecord.players.build }
-    #@player = Player.count.times { @attendancerecord.players.build }
+  #  @players = Player.all
+
+  #  @players.each do |player|
+  #    @event.attendancerecords.players.build
+  #  end
   end
 
   # GET /attendancerecords/1/edit
@@ -34,6 +42,8 @@ class AttendancerecordsController < ApplicationController
 
     respond_to do |format|
       if @attendancerecord.save
+        #@player = Player.find(params[:player_id])
+        #@attendancerecord.players << @player
         format.html { redirect_to event_attendancerecords_path(@event), notice: "Attendance record was successfully created." }
         format.json { render :show, status: :created, location: @attendancerecord }
       else
@@ -78,6 +88,6 @@ class AttendancerecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def attendancerecord_params
-      params.require(:attendancerecord).permit(:attendancetype, :note, {players_attributes: [:name, :uin, :player_id]}, :event_id)
+      params.require(:attendancerecord).permit(:attendancetype, :note, :event_id, :player_id)
     end
 end

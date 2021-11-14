@@ -1,30 +1,41 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= @event.name %></h1>
 <h1>Attendance Records</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Event</th>
+      <th>Player</th>
       <th>Attendance</th>
       <th>Excuse Note</th>
     </tr>
   </thead>
 
   <tbody>
+
     <% @attendancerecords.each do |attendancerecord| %>
+      <% player = attendancerecord.player %>
       <tr>
-        <td><%= attendancerecord.event.name %></td>
+
+        <td><%= player.name %></td>
         <td><%= attendancerecord.attendancetype %></td>
         <td><%= attendancerecord.note %></td>
+
         <td><%= link_to 'Show Event', [@event]%></td>
         <td><%= link_to 'Edit', edit_event_attendancerecord_path(@event, attendancerecord) %></td>
         <td><%= link_to 'Destroy', events_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+
   </tbody>
+
 </table>
 
-<br>
 
+
+<br>
+<br>
 <%= link_to 'New Attendance Record', new_event_attendancerecord_path %>
+<br>
+<%= link_to 'Back', events_path %>
