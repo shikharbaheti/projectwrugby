@@ -707,12 +707,12 @@ RSpec.describe 'Authentication', type: :feature do
   Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
   scenario 'visit path without logging in' do
     visit people_path   
-    expect(page).to have_content("Please log in!")
+    expect(page).to have_content("You need to sign in or sign up")
   end
   scenario 'visit dashboard after logging in' do
     visit root_path
     click_on 'Sign in with Google'  
-    expect(page).to have_content("TAMU Women's Rugby Team")
+    expect(page).to have_content("Dashboard")
   end
   scenario 'sign out takes to homepage' do
     visit root_path
