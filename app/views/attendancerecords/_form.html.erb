@@ -26,7 +26,7 @@
           <td>
             <div class="field">
               <!--%= form.label :player_id %-->
-              <%= form.collection_select :player_id, Player.order(:name),:id,:name, include_blank: true %>
+              <%= form.collection_select :player_id, Player.all.select { |p| p.person_type == 'Player' },:id,:name, include_blank: true %>
             </div></td>
           <td>
             <div class="dropdown">
