@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class EncountersController < ApplicationController
-  before_action :set_encounter, only: %i[ show edit update destroy ]
+  before_action :set_encounter, only: %i[show edit update destroy]
 
   # GET /encounters or /encounters.json
   def index
@@ -9,15 +11,10 @@ class EncountersController < ApplicationController
     # @encounters = Encounter.includes(:recruit_id).where(recruit_id: { pending: true })
     # @encounters = Encounter.all.select { |p| p.recruit_id == @recruit }
     # @encounters = Encounter.includes(:recruits).where( recruit_id == 3)
-
-    
-
   end
 
   # GET /encounters/1 or /encounters/1.json
-  def show
-  end
-
+  def show; end
 
   # GET /encounters/new
   def new
@@ -25,8 +22,7 @@ class EncountersController < ApplicationController
   end
 
   # GET /encounters/1/edit
-  def edit
-  end
+  def edit; end
 
   def delete
     @encounter = Encounter.find(params[:id])
@@ -38,7 +34,7 @@ class EncountersController < ApplicationController
 
     respond_to do |format|
       if @encounter.save
-        format.html { redirect_to encounters_url, notice: "Encounter was successfully created." }
+        format.html { redirect_to encounters_url, notice: 'Encounter was successfully created.' }
         format.json { render :show, status: :created, location: @encounter }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +47,7 @@ class EncountersController < ApplicationController
   def update
     respond_to do |format|
       if @encounter.update(encounter_params)
-        format.html { redirect_to encounters_url, notice: "Encounter was successfully updated." }
+        format.html { redirect_to encounters_url, notice: 'Encounter was successfully updated.' }
         format.json { render :show, status: :ok, location: @encounter }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,19 +60,20 @@ class EncountersController < ApplicationController
   def destroy
     @encounter.destroy
     respond_to do |format|
-      format.html { redirect_to encounters_url, notice: "Encounter was successfully destroyed." }
+      format.html { redirect_to encounters_url, notice: 'Encounter was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_encounter
-      @encounter = Encounter.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def encounter_params
-      params.require(:encounter).permit(:notes, :recruit_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_encounter
+    @encounter = Encounter.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def encounter_params
+    params.require(:encounter).permit(:notes, :recruit_id)
+  end
 end
