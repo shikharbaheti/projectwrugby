@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AlumnisController < ApplicationController
   before_action :set_alumni, only: %i[show edit update destroy]
 

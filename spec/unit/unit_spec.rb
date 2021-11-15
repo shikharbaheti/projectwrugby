@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # location: spec/unit/unit_spec.rb
 require 'rails_helper'
 
@@ -73,19 +75,19 @@ RSpec.describe Merchandise, type: :model do
   end
   it 'is not valid without an item name' do
     subject.item_name = nil
-    expect(subject).to be_valid
+    expect(subject).not_to be_valid
   end
   it 'is not valid without a purchase price' do
     subject.purchase_price = nil
-    expect(subject).to be_valid
+    expect(subject).not_to be_valid
   end
   it 'is not valid without a quantity' do
     subject.quantity_on_hand = nil
-    expect(subject).to be_valid
+    expect(subject).not_to be_valid
   end
   it 'is not valid without a price' do
     subject.sell_price = nil
-    expect(subject).to be_valid
+    expect(subject).not_to be_valid
   end
 end
 

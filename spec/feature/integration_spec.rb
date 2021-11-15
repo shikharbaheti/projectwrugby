@@ -661,6 +661,43 @@ RSpec.describe 'Creating a Merch', type: :feature do
     visit merchandises_path
     expect(page).not_to have_content('Sweatshirt', count: 1)
   end
+
+  scenario 'invalid item price' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with: 'Sweatshirt'
+    # fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+    visit merchandises_path
+    expect(page).not_to have_content('20', count: 1)
+  end
+  scenario 'invalid items on hand' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with: 'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    # fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+    visit merchandises_path
+    expect(page).not_to have_content('5', count: 1)
+  end
+  scenario 'invalid item sell price' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with: 'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    # fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+    visit merchandises_path
+    expect(page).not_to have_content('40', count: 1)
+  end
 end
 
 RSpec.describe 'Deleting a Merch', type: :feature do
@@ -712,6 +749,62 @@ RSpec.describe 'Editing a Merchandise', type: :feature do
     expect(page).to have_content(20)
     expect(page).to have_content(5)
     expect(page).to have_content(75)
+  end
+
+  scenario 'invalid item name' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with: 'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+    visit merchandises_path
+    click_on 'Edit'
+    fill_in :merchandise_item_name, with: nil
+    click_on 'Update Merchandise'
+    visit merchandises_path
+
+    expect(page).to have_content('Sweatshirt')
+  end
+  scenario 'invalid purchase_price' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with: 'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+    visit merchandises_path
+    click_on 'Edit'
+    fill_in :merchandise_purchase_price, with: nil
+    click_on 'Update Merchandise'
+    visit merchandises_path
+
+    expect(page).to have_content(20)
+  end
+end
+RSpec.describe 'Show a Merchandise', type: :feature do
+  Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
+  Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with: 'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+    visit merchandises_path
+    click_on 'Show'
+    expect(page).to have_content('Sweatshirt')
+    expect(page).to have_content(20)
+    expect(page).to have_content(5)
+    expect(page).to have_content(40)
   end
 end
 

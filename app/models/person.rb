@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Person < ApplicationRecord
   validates :uin, presence: true
   validates_length_of :uin, is: 9,  message: "UIN must be 9 digit long"

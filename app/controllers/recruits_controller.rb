@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RecruitsController < ApplicationController
   before_action :set_recruit, only: %i[show edit update destroy]
 

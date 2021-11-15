@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MerchandisesController < ApplicationController
   before_action :set_merchandise, only: %i[show edit update destroy]
 
@@ -67,7 +69,6 @@ class MerchandisesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def merchandise_params
-    params.require(:merchandise).permit(:name)
     params.require(:merchandise).permit(:item_name, :purchase_price, :quantity_on_hand, :sell_price)
   end
 end
