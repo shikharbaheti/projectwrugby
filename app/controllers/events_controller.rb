@@ -16,7 +16,7 @@ class EventsController < ApplicationController
     def new
       @event = Event.new
   #    @event.attendancerecords.build
-      1.times { @event.attendancerecords.new }
+  #    1.times { @event.attendancerecords.new }
     end
 
     # GET /events/1/edit

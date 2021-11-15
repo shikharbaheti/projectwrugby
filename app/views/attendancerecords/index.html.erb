@@ -1,5 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+
+<u1>
+ <li class="navbarLink" id="link1"><%= link_to('Home', root_path) %></li>
+ <li class="navbarLink" id="link1"><%= link_to('Players', players_path) %></li>
+ <li class="navbarLink" id="link2"><%= link_to('Alumnis', alumnis_path	) %></li>
+ <li class="navbarLink" id="link2"><%= link_to('Recruits', recruits_path	) %></li>
+ <li class="navbarLink" id="link1"><%= link_to('Mechandise',merchandises_path)%></li>
+<li class="navbarLink" id="link1"><%= link_to('Transactions',transactions_path)%></li>
+<li class="navbarLink" id="link1"><%= link_to 'Events',events_path %></li>
+ <li class="navbarLink" id="link" style="float: right"><%= link_to('Sign Out', destroy_admin_session_path	) %></li>
+</u1>
+
 <h1><%= @event.name %></h1>
 <h1>Attendance Records</h1>
 
@@ -24,7 +36,7 @@
 
         <td><%= link_to 'Show Event', [@event]%></td>
         <td><%= link_to 'Edit', edit_event_attendancerecord_path(@event, attendancerecord) %></td>
-        <td><%= link_to 'Destroy', events_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', delete_event_attendancerecord_path(@event, attendancerecord) %></td>
       </tr>
     <% end %>
 

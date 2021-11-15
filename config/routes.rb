@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   resources :people
   resources :events do
     resources :attendancerecords
+
+    resources :attendancerecords do
+      member do
+        get :delete
+      end
+    end
   end
 
 
@@ -49,11 +55,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :attendancerecords do
-    member do
-      get :delete
-    end
-  end
+
 
   root to: 'dashboards#show'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }

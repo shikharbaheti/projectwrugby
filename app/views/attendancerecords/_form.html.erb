@@ -25,25 +25,25 @@
         <tr>
           <td>
             <div class="field">
-              <%= form.label :player_id %>
+              <!--%= form.label :player_id %-->
               <%= form.collection_select :player_id, Player.order(:name),:id,:name, include_blank: true %>
             </div></td>
           <td>
             <div class="dropdown">
-              <%= form.label :attendancetype, "Attendance Type" %>
+              <!--%= form.label :attendancetype, "Attendance Type" %-->
               <%= form.select :attendancetype, [[],'Present','Late, Excused','Late, Unexcused','Absent, Excused','Absent, Unexcused'] %>
             </div></td>
           <td>
             <div class="field">
-              <%= form.label :note, "Excuse Note" %>
+              <!--%= form.label :note, "Excuse Note" %-->
               <%= form.text_area :note %>
-            </div></tr>
+            </div></td>
         </tr>
 
       </tbody>
     </table>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Set Attendance Record"%>
   </div>
 <% end %>

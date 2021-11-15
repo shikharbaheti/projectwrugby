@@ -35,6 +35,10 @@ class AttendancerecordsController < ApplicationController
 
   end
 
+  def delete
+    @event = Event.find(params[:event_id])
+    @attendancerecord = @event.attendancerecords.find(params[:id])
+  end
   # POST /attendancerecords or /attendancerecords.json
   def create
     @event = Event.find(params[:event_id])
@@ -59,9 +63,7 @@ class AttendancerecordsController < ApplicationController
       if @attendancerecord.update(attendancerecord_params)
         format.html { redirect_to event_attendancerecords_path(@event), notice: "Attendance record was successfully updated." }
         format.json { render :show, status: :ok, location: @attendancerecord }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @attendancerecord.errors, status: :unprocessable_entity }
+      
       end
     end
   end

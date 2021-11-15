@@ -97,3 +97,21 @@ RSpec.describe Admin, type: :model do
     expect(subject).to be_valid
   end
 end
+
+
+RSpec.describe Attendancerecord, type: :model do
+  let(:player) { Player.new(id: 1, uin: 727_001_489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890', address: '100 address', person_type: 'Player')}
+  let(:event) { Event.new(id: 1, name:'Practice 1', info:'First practice of the season', date: Date.today, time: '2000-01-01 16:37:00 UTC')}
+  subject do
+    described_class.new(event: event, player: player, id: 1, attendancetype: 'Present', note: 'n/a')
+  end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it 'is not valid without an attendance type' do
+    subject.attendancetype = nil
+    expect(subject).not_to be_valid
+  end
+end
