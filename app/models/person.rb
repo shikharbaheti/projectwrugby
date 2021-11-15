@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Person < ApplicationRecord
+  has_many :transactions
   validates :uin, presence: true
   validates_length_of :uin, is: 9,  message: "UIN must be 9 digit long"
   validates :name, presence: true
