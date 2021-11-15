@@ -11,11 +11,9 @@
     </div>
   <% end %>
 
-
   <div class="field">
     <%= form.label :recruit_id %>
-    <%= form.collection_select :recruit_id, Recruit.order(:name),:id,:name, include_blank: true %>
-  </div>
+    <%= form.collection_select :recruit_id, Recruit.all.select { |p| p.person_type == 'Recruit' },:id,:name, include_blank: true %>  </div>
 
   <div class="field">
     <%= form.label :notes %>

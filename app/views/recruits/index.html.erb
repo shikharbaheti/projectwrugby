@@ -36,7 +36,7 @@
 
 <center>
 <h3 class="display-3">Recruits</h3>
-<div class="container"><table class="table table-bordered table-hover table-stripped">
+<div class="container"><table id="recruits_table" class="table table-bordered table-hover table-stripped">
   <thead>
     <tr>
       <th>UIN</th>
@@ -75,8 +75,7 @@
 </table></div>
 </center>
 <br>
-<button onClick="sendEmail();">Send Email</button>
-<br>
+<button onClick="sendEmail();" class="btn btn-primary">Send Email</button>
 <script>
 
   function sendEmail(){

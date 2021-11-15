@@ -62,12 +62,6 @@ class PlayersController < ApplicationController
 
   private
 
-<<<<<<< HEAD
-    # Only allow a list of trusted parameters through.
-    def player_params
-      params.require(:player).permit(:uin, :name, :email, :phone_number, :address, :person_type, :dues, :status, :note, :type, :attendancerecord_id)
-    end
-=======
   # Use callbacks to share common setup or constraints between actions.
   def set_player
     @player = Player.find(params[:id])
@@ -77,5 +71,4 @@ class PlayersController < ApplicationController
   def player_params
     params.require(:player).permit(:uin, :name, :email, :phone_number, :address, :person_type, :dues, :status)
   end
->>>>>>> c037be34ba6fe8ba0e7eb6edd5684b28a3fc8203
 end
