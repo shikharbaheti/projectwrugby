@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <script src='./assets/0.12.3/application.js' type='text/javascript'></script>
     <link href='./assets/0.12.3/application.css' media='screen, projection, print' rel='stylesheet' type='text/css' />
-    <link rel="shortcut icon" type="image/png" href="./assets/0.12.3/favicon_yellow.png" />
+    <link rel="shortcut icon" type="image/png" href="./assets/0.12.3/favicon_green.png" />
     <link rel="icon" type="image/png" href="./assets/0.12.3/favicon.png" />
   </head>
 
@@ -939,7 +939,7 @@
       
         <div class="source_table" id="51a68cb0d7e108045c2a8b5fdf591bef8cfbcda0">
   <div class="header">
-    <h3>app/controllers/events_controller.rb</h3>
+    <h3>app/controllers/encounters_controller.rb</h3>
     <h4>
       <span class="green">
   100.0%
@@ -970,7 +970,7 @@
 
             
 
-            <code class="ruby">class EventsController &lt; ApplicationController</code>
+            <code class="ruby">class EncountersController &lt; ApplicationController</code>
           </li>
         </div>
       
@@ -981,7 +981,7 @@
 
             
 
-            <code class="ruby">    before_action :set_event, only: %i[ show edit update destroy ]</code>
+            <code class="ruby">  before_action :set_encounter, only: %i[ show edit update destroy ]</code>
           </li>
         </div>
       
@@ -992,7 +992,7 @@
 
             
 
-            <code class="ruby">  </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1003,7 +1003,7 @@
 
             
 
-            <code class="ruby">    # GET /events or /events.json</code>
+            <code class="ruby">  # GET /encounters or /encounters.json</code>
           </li>
         </div>
       
@@ -1014,7 +1014,7 @@
 
             
 
-            <code class="ruby">    def index</code>
+            <code class="ruby">  def index</code>
           </li>
         </div>
       
@@ -1025,7 +1025,7 @@
 
             
 
-            <code class="ruby">      @events = Event.all</code>
+            <code class="ruby">    # @recruits = Recruit.find(params[:id])</code>
           </li>
         </div>
       
@@ -1036,18 +1036,18 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">    # @encounters = Encounter.find(encounter_params[:notes, :recruit_id])</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="8">
-            
-            
-
+          <li class="covered" data-hits="23" data-linenumber="8">
+            <span class="hits">23</span>
             
 
-            <code class="ruby">  </code>
+            
+
+            <code class="ruby">    @encounters = Encounter.all</code>
           </li>
         </div>
       
@@ -1058,18 +1058,18 @@
 
             
 
-            <code class="ruby">    # GET /events/1 or /events/1.json</code>
+            <code class="ruby">    # @encounters = Encounter.includes(:recruit_id).where(recruit_id: { pending: true })</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="10">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="10">
+            
             
 
             
 
-            <code class="ruby">    def show</code>
+            <code class="ruby">    # @encounters = Encounter.all.select { |p| p.recruit_id == @recruit }</code>
           </li>
         </div>
       
@@ -1080,7 +1080,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">    # @encounters = Encounter.includes(:recruits).where( recruit_id == 3)</code>
           </li>
         </div>
       
@@ -1091,7 +1091,7 @@
 
             
 
-            <code class="ruby">  </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1102,18 +1102,18 @@
 
             
 
-            <code class="ruby">    # GET /events/new</code>
+            <code class="ruby">    </code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="14">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="14">
+            
             
 
             
 
-            <code class="ruby">    def new</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1124,7 +1124,7 @@
 
             
 
-            <code class="ruby">      @event = Event.new</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -1135,7 +1135,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1146,29 +1146,29 @@
 
             
 
-            <code class="ruby">  </code>
+            <code class="ruby">  # GET /encounters/1 or /encounters/1.json</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="18">
-            
-            
-
-            
-
-            <code class="ruby">    # GET /events/1/edit</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="19">
+          <li class="covered" data-hits="1" data-linenumber="18">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    def edit</code>
+            <code class="ruby">  def show</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="19">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -1179,7 +1179,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1195,13 +1195,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="22">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="22">
+            
             
 
             
 
-            <code class="ruby">    def delete</code>
+            <code class="ruby">  # GET /encounters/new</code>
           </li>
         </div>
       
@@ -1212,18 +1212,18 @@
 
             
 
-            <code class="ruby">      @event = Event.find(params[:id])</code>
+            <code class="ruby">  def new</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="24">
-            
-            
-
+          <li class="covered" data-hits="7" data-linenumber="24">
+            <span class="hits">7</span>
             
 
-            <code class="ruby">    end</code>
+            
+
+            <code class="ruby">    @encounter = Encounter.new</code>
           </li>
         </div>
       
@@ -1234,7 +1234,7 @@
 
             
 
-            <code class="ruby">  </code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -1245,18 +1245,18 @@
 
             
 
-            <code class="ruby">    # POST /events or /events.json</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="27">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="27">
+            
             
 
             
 
-            <code class="ruby">    def create</code>
+            <code class="ruby">  # GET /encounters/1/edit</code>
           </li>
         </div>
       
@@ -1267,7 +1267,7 @@
 
             
 
-            <code class="ruby">      @event = Event.new(event_params)</code>
+            <code class="ruby">  def edit</code>
           </li>
         </div>
       
@@ -1278,7 +1278,7 @@
 
             
 
-            <code class="ruby">  </code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -1289,7 +1289,7 @@
 
             
 
-            <code class="ruby">      respond_to do |format|</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1300,7 +1300,7 @@
 
             
 
-            <code class="ruby">        if @event.save</code>
+            <code class="ruby">  def delete</code>
           </li>
         </div>
       
@@ -1311,7 +1311,7 @@
 
             
 
-            <code class="ruby">          format.html { redirect_to events_path, notice: &quot;Event was successfully created.&quot; }</code>
+            <code class="ruby">    @encounter = Encounter.find(params[:id])</code>
           </li>
         </div>
       
@@ -1322,7 +1322,7 @@
 
             
 
-            <code class="ruby">          format.json { render :show, status: :created, location: @event }</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -1333,7 +1333,7 @@
 
             
 
-            <code class="ruby">        else</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1344,7 +1344,7 @@
 
             
 
-            <code class="ruby">          format.html { render :new, status: :unprocessable_entity }</code>
+            <code class="ruby">  # POST /encounters or /encounters.json</code>
           </li>
         </div>
       
@@ -1355,18 +1355,18 @@
 
             
 
-            <code class="ruby">          format.json { render json: @event.errors, status: :unprocessable_entity }</code>
+            <code class="ruby">  def create</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="37">
-            
-            
-
+          <li class="covered" data-hits="7" data-linenumber="37">
+            <span class="hits">7</span>
             
 
-            <code class="ruby">        end</code>
+            
+
+            <code class="ruby">    @encounter = Encounter.new(encounter_params)</code>
           </li>
         </div>
       
@@ -1377,51 +1377,51 @@
 
             
 
-            <code class="ruby">      end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="39">
-            
-            
-
+          <li class="covered" data-hits="7" data-linenumber="39">
+            <span class="hits">7</span>
             
 
-            <code class="ruby">    end</code>
+            
+
+            <code class="ruby">    respond_to do |format|</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="40">
-            
-            
-
+          <li class="covered" data-hits="7" data-linenumber="40">
+            <span class="hits">7</span>
             
 
-            <code class="ruby">  </code>
+            
+
+            <code class="ruby">      if @encounter.save</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="41">
-            
-            
-
+          <li class="covered" data-hits="8" data-linenumber="41">
+            <span class="hits">8</span>
             
 
-            <code class="ruby">    # PATCH/PUT /events/1 or /events/1.json</code>
+            
+
+            <code class="ruby">        format.html { redirect_to encounters_url, notice: &quot;Encounter was successfully created.&quot; }</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="42">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="4" data-linenumber="42">
+            <span class="hits">4</span>
             
 
             
 
-            <code class="ruby">    def update</code>
+            <code class="ruby">        format.json { render :show, status: :created, location: @encounter }</code>
           </li>
         </div>
       
@@ -1432,7 +1432,7 @@
 
             
 
-            <code class="ruby">      respond_to do |format|</code>
+            <code class="ruby">      else</code>
           </li>
         </div>
       
@@ -1443,7 +1443,7 @@
 
             
 
-            <code class="ruby">        if @event.update(event_params)</code>
+            <code class="ruby">        format.html { render :new, status: :unprocessable_entity }</code>
           </li>
         </div>
       
@@ -1454,7 +1454,7 @@
 
             
 
-            <code class="ruby">          format.html { redirect_to events_path, notice: &quot;Event was successfully updated.&quot; }</code>
+            <code class="ruby">        format.json { render json: @encounter.errors, status: :unprocessable_entity }</code>
           </li>
         </div>
       
@@ -1465,7 +1465,7 @@
 
             
 
-            <code class="ruby">          format.json { render :show, status: :ok, location: @event }</code>
+            <code class="ruby">      end</code>
           </li>
         </div>
       
@@ -1476,7 +1476,7 @@
 
             
 
-            <code class="ruby">        else</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -1487,7 +1487,7 @@
 
             
 
-            <code class="ruby">          format.html { render :edit, status: :unprocessable_entity }</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -1498,7 +1498,7 @@
 
             
 
-            <code class="ruby">          format.json { render json: @event.errors, status: :unprocessable_entity }</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1509,51 +1509,51 @@
 
             
 
-            <code class="ruby">        end</code>
+            <code class="ruby">  # PATCH/PUT /encounters/1 or /encounters/1.json</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="51">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="51">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">      end</code>
+            
+
+            <code class="ruby">  def update</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="52">
-            
-            
-
+          <li class="covered" data-hits="2" data-linenumber="52">
+            <span class="hits">2</span>
             
 
-            <code class="ruby">    end</code>
+            
+
+            <code class="ruby">    respond_to do |format|</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="53">
-            
-            
-
+          <li class="covered" data-hits="2" data-linenumber="53">
+            <span class="hits">2</span>
             
 
-            <code class="ruby">  </code>
+            
+
+            <code class="ruby">      if @encounter.update(encounter_params)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="54">
-            
-            
-
+          <li class="covered" data-hits="2" data-linenumber="54">
+            <span class="hits">2</span>
             
 
-            <code class="ruby">    # DELETE /events/1 or /events/1.json</code>
+            
+
+            <code class="ruby">        format.html { redirect_to encounters_url, notice: &quot;Encounter was successfully updated.&quot; }</code>
           </li>
         </div>
       
@@ -1564,7 +1564,7 @@
 
             
 
-            <code class="ruby">    def destroy</code>
+            <code class="ruby">        format.json { render :show, status: :ok, location: @encounter }</code>
           </li>
         </div>
       
@@ -1575,7 +1575,7 @@
 
             
 
-            <code class="ruby">      @event.destroy</code>
+            <code class="ruby">      else</code>
           </li>
         </div>
       
@@ -1586,7 +1586,7 @@
 
             
 
-            <code class="ruby">      respond_to do |format|</code>
+            <code class="ruby">        format.html { render :edit, status: :unprocessable_entity }</code>
           </li>
         </div>
       
@@ -1597,7 +1597,7 @@
 
             
 
-            <code class="ruby">        format.html { redirect_to events_path, notice: &quot;Event was successfully destroyed.&quot; }</code>
+            <code class="ruby">        format.json { render json: @encounter.errors, status: :unprocessable_entity }</code>
           </li>
         </div>
       
@@ -1608,7 +1608,7 @@
 
             
 
-            <code class="ruby">        format.json { head :no_content }</code>
+            <code class="ruby">      end</code>
           </li>
         </div>
       
@@ -1619,7 +1619,7 @@
 
             
 
-            <code class="ruby">      end</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -1630,7 +1630,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -1641,29 +1641,29 @@
 
             
 
-            <code class="ruby">  </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="63">
+          <li class="never" data-hits="" data-linenumber="63">
+            
+            
+
+            
+
+            <code class="ruby">  # DELETE /encounters/1 or /encounters/1.json</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="64">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    private</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="64">
-            
-            
-
-            
-
-            <code class="ruby">      # Use callbacks to share common setup or constraints between actions.</code>
+            <code class="ruby">  def destroy</code>
           </li>
         </div>
       
@@ -1674,7 +1674,7 @@
 
             
 
-            <code class="ruby">      def set_event</code>
+            <code class="ruby">    @encounter.destroy</code>
           </li>
         </div>
       
@@ -1685,29 +1685,29 @@
 
             
 
-            <code class="ruby">        @event = Event.find(params[:id])</code>
+            <code class="ruby">    respond_to do |format|</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="67">
-            
-            
-
+          <li class="covered" data-hits="2" data-linenumber="67">
+            <span class="hits">2</span>
             
 
-            <code class="ruby">      end</code>
+            
+
+            <code class="ruby">      format.html { redirect_to encounters_url, notice: &quot;Encounter was successfully destroyed.&quot; }</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="68">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="68">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">  </code>
+            
+
+            <code class="ruby">      format.json { head :no_content }</code>
           </li>
         </div>
       
@@ -1718,18 +1718,18 @@
 
             
 
-            <code class="ruby">      # Only allow a list of trusted parameters through.</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="70">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="70">
+            
             
 
             
 
-            <code class="ruby">      def event_params</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -1745,13 +1745,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="72">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="72">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">      end</code>
+            
+
+            <code class="ruby">  private</code>
           </li>
         </div>
       
@@ -1762,7 +1762,106 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">    # Use callbacks to share common setup or constraints between actions.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="74">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    def set_encounter</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="5" data-linenumber="75">
+            <span class="hits">5</span>
+            
+
+            
+
+            <code class="ruby">      @encounter = Encounter.find(params[:id])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="76">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="77">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="78">
+            
+            
+
+            
+
+            <code class="ruby">    # Only allow a list of trusted parameters through.</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="79">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    def encounter_params</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="9" data-linenumber="80">
+            <span class="hits">9</span>
+            
+
+            
+
+            <code class="ruby">      params.require(:encounter).permit(:notes, :recruit_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="81">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="82">
+            
+            
+
+            
+
+            <code class="ruby">end</code>
           </li>
         </div>
       
@@ -2590,7 +2689,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="73">
+          <li class="never" data-hits="" data-linenumber="72">
             
             
 
@@ -2601,7 +2700,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="74">
+          <li class="never" data-hits="" data-linenumber="73">
             
             
 
@@ -2631,8 +2730,8 @@
   <div class="header">
     <h3>app/models/event.rb</h3>
     <h4>
-      <span class="green">
-  100.0%
+      <span class="yellow">
+  88.89%
 </span>
 
       lines covered
@@ -2911,8 +3010,8 @@
   <div class="header">
     <h3>app/models/transaction.rb</h3>
     <h4>
-      <span class="green">
-  100.0%
+      <span class="red">
+  62.86%
 </span>
 
       lines covered
@@ -2973,7 +3072,7 @@
 
             
 
-            <code class="ruby">end</code>
+            <code class="ruby">  # GET /transactions or /transactions.json</code>
           </li>
         </div>
       
@@ -3020,7 +3119,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="2">
+          <li class="covered" data-hits="1" data-linenumber="6">
             <span class="hits">1</span>
             
 
@@ -3042,8 +3141,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="4">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="8">
+            
             
 
             
@@ -3053,8 +3152,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="5">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="9">
+            
             
 
             
@@ -3086,7 +3185,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="8">
+          <li class="never" data-hits="" data-linenumber="12">
             
             
 
@@ -3097,13 +3196,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="9">
+          <li class="never" data-hits="" data-linenumber="13">
             
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  # GET /transactions/new</code>
           </li>
         </div>
       
@@ -3312,7 +3411,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">    subject.uin = nil</code>
           </li>
         </div>
       
@@ -3352,8 +3451,16 @@
         <div>
           <li class="never" data-hits="" data-linenumber="32">
             
+
             
 
+            <code class="ruby">    subject.name = nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="22">
+            <span class="hits">1</span>
             
 
             <code class="ruby">  end</code>
@@ -3620,7 +3727,7 @@
 
             
 
-            <code class="ruby">    expect(subject).not_to be_valid</code>
+            <code class="ruby">  it &#39;is valid with valid attributes&#39; do</code>
           </li>
         </div>
       
@@ -3983,7 +4090,7 @@
 
             
 
-            <code class="ruby">end</code>
+            <code class="ruby">  it &#39;is not valid without a price&#39; do</code>
           </li>
         </div>
       
@@ -3994,7 +4101,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">    subject.sell_price = nil</code>
           </li>
         </div>
       
@@ -4016,7 +4123,7 @@
 
             
 
-            <code class="ruby">  subject do</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -4038,7 +4145,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -4049,7 +4156,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">RSpec.describe Admin, type: :model do</code>
           </li>
         </div>
       
@@ -4060,7 +4167,7 @@
 
             
 
-            <code class="ruby">  it &#39;is valid with valid attributes&#39; do</code>
+            <code class="ruby">  subject do</code>
           </li>
         </div>
       
@@ -4071,7 +4178,7 @@
 
             
 
-            <code class="ruby">    expect(subject).to be_valid</code>
+            <code class="ruby">    described_class.new(id: 1, email: &#39;ninarao09@tamu.edu&#39;, full_name: &#39;Nina Rao&#39;, uid: &#39;727001489&#39;, avatar_url: &#39;---&#39;)</code>
           </li>
         </div>
       
@@ -4258,7 +4365,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">    expect(subject).not_to be_valid</code>
           </li>
         </div>
       
@@ -4390,7 +4497,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -4401,7 +4508,7 @@
 
             
 
-            <code class="ruby">end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       

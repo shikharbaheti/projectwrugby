@@ -6,4 +6,3 @@ class Person < ApplicationRecord
   validates :address, presence: true
   validates :person_type, presence: true
 end
-
