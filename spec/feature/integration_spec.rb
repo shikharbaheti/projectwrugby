@@ -892,24 +892,258 @@ RSpec.describe 'Editing an Recruit', type: :feature do
 end
 
 RSpec.describe 'Creating an Event', type: :feature do
-  Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
-  Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
 
   scenario 'valid inputs for new event page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+    fill_in 'event_name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).to have_content('Practice 1')
+    expect(page).to have_content('First practice of the season')
+    expect(page).to have_content('2021-03-09')
+    expect(page).to have_content('2000-01-01 16:37:00 UTC')
+    expect(page).to have_content('Game')
+    expect(page).to have_content('7s')
+    expect(page).to have_content('24-0')
+  end
+
+  scenario 'invalid name' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('Practice 1', count: 1)
+
+  end
+  scenario 'invalid info' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('First practice of the season', count: 1)
+  end
+  scenario 'invalid date' do
     visit root_path
     click_on 'Sign in with Google'
     visit new_event_path
 
     fill_in 'Name', with: 'Practice 1'
     fill_in 'event_info', with: 'First practice of the season'
-    select '2021', from: 'event_date_1i'
-    select 'September', from: 'event_date_2i'
-    select '30', from: 'event_date_3i'
-
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
     click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('2021-03-09', count: 1)
+  end
+  scenario 'invalid time' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('2000-01-01 16:37:00 UTC', count: 1)
+  end
+  scenario 'invalid event_type' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('Tournament', count: 1)
+  end
+  scenario 'invalid address' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('test', count: 1)
+  end
+  scenario 'invalid event_season' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('15s', count: 1)
+  end
+  scenario 'invalid score' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('24-0', count: 1)
+  end
+end
+
+RSpec.describe 'Editing an Event', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+    
+  scenario 'valid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+
+    click_on 'Edit'
+    fill_in 'event_info', with: 'Introduction and team formation practice.'
+    click_on 'Update Event'
+    visit events_path
+    expect(page).to have_content('Practice 1')
+    expect(page).to have_content('Introduction and team formation practice.')
+    expect(page).to have_content('2021-03-09')
+    expect(page).to have_content('2000-01-01 16:37:00 UTC')
+    expect(page).to have_content('Game')
+    expect(page).to have_content('7s')
+    expect(page).to have_content('24-0')
+  end
+
+  scenario 'invalid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'Date', with: '2021-03-09'
+    fill_in 'Time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+
+    click_on 'Edit'
+    fill_in 'Date', with: nil
+    click_on 'Update Event'
     visit events_path
     expect(page).to have_content('Practice 1')
     expect(page).to have_content('First practice of the season')
+    expect(page).to have_content('2021-03-09')
+    expect(page).to have_content('2000-01-01 16:37:00 UTC')
+    expect(page).to have_content('Game')
+    expect(page).to have_content('7s')
+    expect(page).to have_content('24-0')
+  end
+end
+
+RSpec.describe 'Deleting an event', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+    
+  scenario 'Clicking the button' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+
+    click_on 'Delete'
+    click_on 'Delete Event'
+    visit events_path
+
+    expect(page).not_to have_content('Practice 1')
+    expect(page).not_to have_content('First practice of the season')
+    expect(page).not_to have_content('2021-03-09')
+    expect(page).not_to have_content('2000-01-01 16:37:00 UTC')
+    expect(page).not_to have_content('Game')
+    expect(page).not_to have_content('test')
+    expect(page).not_to have_content('24-0')
   end
 end
 

@@ -42,6 +42,10 @@ ActiveRecord::Schema.define(version: 2021_11_01_215614) do
     t.string "info"
     t.date "date"
     t.time "time"
+    t.string "event_type"
+    t.string "address"
+    t.string "season"
+    t.string "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
