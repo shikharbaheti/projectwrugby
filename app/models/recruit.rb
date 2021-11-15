@@ -1,6 +1,5 @@
 class Recruit < Person
     has_many :encounters, dependent: :destroy
-
     validates :contact_type, presence: true
     validates :interest_level, presence: true
     validates :times_contacted, presence: true

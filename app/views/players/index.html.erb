@@ -36,7 +36,6 @@
 
 <center>
 <h3 class="display-3">Players</h3>
-<div class="container">
 <div class="container"><table class="table table-bordered table-hover table-stripped">
   <thead>
     <tr>
@@ -72,5 +71,26 @@
 </table></div>
 </div>
 </center>
+<button onClick="sendEmail();">Send Email</button>
+<br>
 <%= link_to 'New Player', new_player_path, :class => "btn btn-primary" %>
 
+<script>
+
+  function sendEmail(){
+    
+    var emails = []
+    var table = document.getElementById("player_table")
+    var cells = table.childNodes;
+
+    cells[3].childNodes.forEach(cell => {
+      if(cell.nodeType == 1){
+        console.log(cell.childNodes[5].innerText)
+        emails.push(cell.childNodes[5].innerText)
+      }
+    })
+    
+    window.location.assign("mailto:"+ emails + ", ")
+  }
+
+</script>

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Person, type: :model do
   subject do
-    described_class.new(uin: 727001489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
+    described_class.new(uin: 727_001_489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
                         address: '100 address', person_type: 'Player')
   end
 
@@ -65,7 +65,7 @@ end
 
 RSpec.describe Merchandise, type: :model do
   subject do
-    described_class.new(item_name:'Sweatshirt',purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
+    described_class.new(item_name: 'Sweatshirt', purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
   end
 
   it 'is valid with valid attributes' do
