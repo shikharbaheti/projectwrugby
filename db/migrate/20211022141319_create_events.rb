@@ -11,7 +11,6 @@ class CreateEvents < ActiveRecord::Migration[6.1]
         t.string :score
   
         t.timestamps
-      end
     end
   end
 end
