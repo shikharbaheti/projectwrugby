@@ -1,5 +1,9 @@
 <center>
-<h1>Welcome to TAMU Women's Ruby Team Page</h1>
-<h2>Please log in!</h2>
-<%= link_to "Sign in with Google", admin_google_oauth2_omniauth_authorize_path, method: :post %>
+  <div class="container">
+    <b><h1 class="display-1">TAMU Women's Ruby Team Page</h1></b>
+    <div class="p-1">
+        <%= link_to "Sign in with Google", admin_google_oauth2_omniauth_authorize_path, method: :post, :class => "btn btn-primary" %>
+    </div>
+    <img src="../../assets/TAMU_WhiteTopLogo.png" class="img-fluid" alt="TAMUWRugby Logo" width="600" height="auto">
+  </div>
 </center>

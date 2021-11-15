@@ -7,7 +7,7 @@
 
   <p>Are you sure you want to permanently delete this person?</p>
   
-<table>
+<div class="container"><table class="table table-bordered table-hover table-stripped">
   <thead>
     <tr>
         <th>UIN</th>
@@ -30,7 +30,7 @@
       <td><%= @person.person_type %></td>
     </tr>
   </tbody>
-  </table>
+  </table></div>
 
   <div class="form-buttons">
     <%= f.submit("Delete Person") %>

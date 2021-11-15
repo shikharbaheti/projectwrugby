@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<center><h1>People</h1></center>
+<center>
+<h1>People</h1>
+</center>
 
 <%= link_to "Sign Out", destroy_admin_session_path %>
 <div class="navbar">
@@ -17,7 +19,7 @@
 </div>
 
 <center>
-<table>
+<div class="container"><table class="table table-bordered table-hover table-stripped">
   <thead>
     <tr>
       <th>UIN</th>
@@ -49,13 +51,6 @@
     <% end %>
   
   </tbody>
-</table>
+</table></div>
 </center>
-
-
-<br>
-
-<%= link_to 'New Person', new_person_path %>
-<br>
-<%= link_to 'Back', root_path%>
-
+<%= link_to 'New Person', new_person_path, :class => "btn btn-primary" %>
