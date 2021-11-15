@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Recruit < Person
     has_many :encounters, dependent: :destroy
     validates :contact_type, presence: true
