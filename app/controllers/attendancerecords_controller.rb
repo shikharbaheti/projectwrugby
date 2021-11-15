@@ -6,7 +6,8 @@ class AttendancerecordsController < ApplicationController
   def index
     @attendancerecords = Attendancerecord.all
     #@attendancerecords = Attendancerecord.find_by_id(@event.id)
-    #@attendancerecords = Attendancerecord.all.select { |a| a.event_id == '' }
+    #@events = Event.all
+    #@attendancerecords = Attendancerecord.all.select { |a| a.event_id == @event.id }
   end
 
   # GET /attendancerecords/1 or /attendancerecords/1.json
@@ -76,6 +77,6 @@ class AttendancerecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def attendancerecord_params
-      params.require(:attendancerecord).permit(:note, :attendancetype, :event_id)
+      params.require(:attendancerecord).permit(:note, :attendancetype, :event_id, :player_id)
     end
 end

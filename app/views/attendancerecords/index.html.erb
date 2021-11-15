@@ -5,8 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Event Id<th>
-      <th>Player<th>
+      <th>Player</th>
+      <th>Event Id</th>
       <th>Attendance Type</th>
       <th>Reason</th>
       <th>ID</th>
@@ -16,22 +16,20 @@
 
   <tbody>
     <% @attendancerecords.each do |attendancerecord| %>
-      <tr>
-        <% event = attendancerecord.event %>
-        <% if attendancerecord.event_id == 1 %>
-          <td><%= event.id%></td>
-          <td><%= attendancerecord.event_id%></td>
-          <td><%= attendancerecord.attendancetype %></td>
-          <td><%= attendancerecord.note %></td>
-          <td><%= attendancerecord.id %></td>
-          <td><%= link_to 'Show', @attendancerecord %></td>
-          <td><%= link_to 'Edit', edit_attendancerecord_path(attendancerecord) %></td>
-          <td><%= link_to 'Delete', delete_attendancerecord_path(attendancerecord)%></td>
+        <tr>
+            <% event = attendancerecord.event %>
+            <% player = attendancerecord.player %>
+            <td><%= player.name%></td>
+            <td><%= event.name %></td>
+            <td><%= attendancerecord.attendancetype %></td>
+            <td><%= attendancerecord.note %></td>
+            <td><%= attendancerecord.id %></td>
+            <td><%= link_to 'Show', @attendancerecord %></td>
+            <td><%= link_to 'Edit', edit_attendancerecord_path(attendancerecord) %></td>
+            <td><%= link_to 'Delete', delete_attendancerecord_path(attendancerecord)%></td>
+        </tr>
 
-        <% else%>
-        <% end %>
 
-      </tr>
     <% end %>
   </tbody>
 </table>
@@ -58,4 +56,4 @@
 
   window.onload = getCurrentEventId
 
-  </script>
+</script>
