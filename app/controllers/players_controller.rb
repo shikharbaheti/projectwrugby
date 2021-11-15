@@ -23,6 +23,12 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
   end
 
+
+  #possibly delete
+  def send_email
+    Player.all(:select => :email)
+  end
+
   # POST /players or /players.json
   def create
     @player = Player.new(player_params)

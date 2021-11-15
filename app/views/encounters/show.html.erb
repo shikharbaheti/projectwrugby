@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Recruit:</strong>
+  <% recruit = Recruit.find_by(id: @encounter.recruit_id) %>
+  <td><%= recruit.name %></td>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @encounter.notes %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_encounter_path(@encounter) %> |
+<%= link_to 'Back', recruits_path %>

@@ -1,7 +1,253 @@
-# frozen_string_literal: true
-
 # location: spec/feature/integration_spec.rb
 require 'rails_helper'
+
+RSpec.describe 'Creating an Encounter', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs for new encounter page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    fill_in 'Notes', with: 'this is a note'
+    page.select("Nina Rao", :from => :encounter_recruit_id)
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    expect(page).to have_content('this is a note')
+    expect(page).to have_content('Nina Rao')
+
+
+  end
+
+  scenario 'invalid recruit id' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    fill_in 'Notes', with: 'this is a note'
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    expect(page).not_to have_content('Nina Rao', count: 1)
+
+
+  end
+
+  scenario 'invalid notes' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    page.select("Nina Rao", :from => :encounter_recruit_id)
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    expect(page).not_to have_content('this is a note', count: 1)
+  end
+
+  scenario 'invalid entries' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    expect(page).not_to have_content('Nina Rao', count: 1)
+    expect(page).not_to have_content('this is a note', count: 1)
+  end
+end
+
+RSpec.describe 'Deleting an Encounter', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'delete encounter' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    fill_in 'Notes', with: 'this is a note'
+    page.select("Nina Rao", :from => :encounter_recruit_id)
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    click_on 'Delete'
+    click_on 'Delete Encounter'
+    visit encounters_path
+
+    expect(page).not_to have_content('this is a note')
+    expect(page).not_to have_content('Nina Rao', count: 1)
+
+  end
+end
+
+RSpec.describe 'Editing an Encounter', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'edit encounter' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    fill_in 'Notes', with: 'this is a note'
+    page.select("Nina Rao", :from => :encounter_recruit_id)
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    click_on 'Edit'
+    fill_in 'Notes', with: 'this is not a note'
+    click_on 'Update Encounter'
+    visit encounters_path
+
+    expect(page).to have_content('this is not a note')
+    expect(page).to have_content('Nina Rao', count: 1)
+
+  end
+
+  scenario 'invalid edit encounter' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_recruit_path
+
+    fill_in :recruit_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :recruit_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select("Recruit", :from => :recruit_person_type)
+    fill_in :recruit_contact_type, with: 'Twitter'
+    fill_in :recruit_interest_level, with: 5
+    fill_in :recruit_times_contacted, with: 2
+    fill_in :recruit_date_contacted, with: '2014-08-06'
+
+
+    click_on 'Create Recruit'
+    visit recruits_path
+    click_on 'Encounters'
+
+    visit new_encounter_path
+    fill_in 'Notes', with: 'this is a note'
+    page.select("Nina Rao", :from => :encounter_recruit_id)
+    click_on 'Create Encounter'
+    visit encounters_path
+
+    click_on 'Edit'
+    fill_in 'Notes', with: nil
+    click_on 'Update Encounter'
+    visit encounters_path
+
+    expect(page).to have_content('this is a note')
+    expect(page).to have_content('Nina Rao', count: 1)
+
+  end
+end
+
 
 RSpec.describe 'Creating an Alumni', type: :feature do
   Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
@@ -415,43 +661,6 @@ RSpec.describe 'Creating a Merch', type: :feature do
     visit merchandises_path
     expect(page).not_to have_content('Sweatshirt', count: 1)
   end
-
-  scenario 'invalid item price' do
-    visit root_path
-    click_on 'Sign in with Google'
-    visit new_merchandise_path
-    fill_in :merchandise_item_name, with: 'Sweatshirt'
-    # fill_in :merchandise_purchase_price, with: 20
-    fill_in :merchandise_quantity_on_hand, with: 5
-    fill_in :merchandise_sell_price, with: 40
-    click_on 'Create Merchandise'
-    visit merchandises_path
-    expect(page).not_to have_content('20', count: 1)
-  end
-  scenario 'invalid items on hand' do
-    visit root_path
-    click_on 'Sign in with Google'
-    visit new_merchandise_path
-    fill_in :merchandise_item_name, with: 'Sweatshirt'
-    fill_in :merchandise_purchase_price, with: 20
-    # fill_in :merchandise_quantity_on_hand, with: 5
-    fill_in :merchandise_sell_price, with: 40
-    click_on 'Create Merchandise'
-    visit merchandises_path
-    expect(page).not_to have_content('5', count: 1)
-  end
-  scenario 'invalid item sell price' do
-    visit root_path
-    click_on 'Sign in with Google'
-    visit new_merchandise_path
-    fill_in :merchandise_item_name, with: 'Sweatshirt'
-    fill_in :merchandise_purchase_price, with: 20
-    fill_in :merchandise_quantity_on_hand, with: 5
-    # fill_in :merchandise_sell_price, with: 40
-    click_on 'Create Merchandise'
-    visit merchandises_path
-    expect(page).not_to have_content('40', count: 1)
-  end
 end
 
 RSpec.describe 'Deleting a Merch', type: :feature do
@@ -503,62 +712,6 @@ RSpec.describe 'Editing a Merchandise', type: :feature do
     expect(page).to have_content(20)
     expect(page).to have_content(5)
     expect(page).to have_content(75)
-  end
-
-  scenario 'invalid item name' do
-    visit root_path
-    click_on 'Sign in with Google'
-    visit new_merchandise_path
-    fill_in :merchandise_item_name, with: 'Sweatshirt'
-    fill_in :merchandise_purchase_price, with: 20
-    fill_in :merchandise_quantity_on_hand, with: 5
-    fill_in :merchandise_sell_price, with: 40
-    click_on 'Create Merchandise'
-    visit merchandises_path
-    click_on 'Edit'
-    fill_in :merchandise_item_name, with: nil
-    click_on 'Update Merchandise'
-    visit merchandises_path
-
-    expect(page).to have_content('Sweatshirt')
-  end
-  scenario 'invalid purchase_price' do
-    visit root_path
-    click_on 'Sign in with Google'
-    visit new_merchandise_path
-    fill_in :merchandise_item_name, with: 'Sweatshirt'
-    fill_in :merchandise_purchase_price, with: 20
-    fill_in :merchandise_quantity_on_hand, with: 5
-    fill_in :merchandise_sell_price, with: 40
-    click_on 'Create Merchandise'
-    visit merchandises_path
-    click_on 'Edit'
-    fill_in :merchandise_purchase_price, with: nil
-    click_on 'Update Merchandise'
-    visit merchandises_path
-
-    expect(page).to have_content(20)
-  end
-end
-RSpec.describe 'Show a Merchandise', type: :feature do
-  Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
-  Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
-
-  scenario 'valid inputs' do
-    visit root_path
-    click_on 'Sign in with Google'
-    visit new_merchandise_path
-    fill_in :merchandise_item_name, with: 'Sweatshirt'
-    fill_in :merchandise_purchase_price, with: 20
-    fill_in :merchandise_quantity_on_hand, with: 5
-    fill_in :merchandise_sell_price, with: 40
-    click_on 'Create Merchandise'
-    visit merchandises_path
-    click_on 'Show'
-    expect(page).to have_content('Sweatshirt')
-    expect(page).to have_content(20)
-    expect(page).to have_content(5)
-    expect(page).to have_content(40)
   end
 end
 
@@ -739,24 +892,258 @@ RSpec.describe 'Editing an Recruit', type: :feature do
 end
 
 RSpec.describe 'Creating an Event', type: :feature do
-  Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
-  Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
 
   scenario 'valid inputs for new event page' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+    fill_in 'event_name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).to have_content('Practice 1')
+    expect(page).to have_content('First practice of the season')
+    expect(page).to have_content('2021-03-09')
+    expect(page).to have_content('2000-01-01 16:37:00 UTC')
+    expect(page).to have_content('Game')
+    expect(page).to have_content('7s')
+    expect(page).to have_content('24-0')
+  end
+
+  scenario 'invalid name' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('Practice 1', count: 1)
+
+  end
+  scenario 'invalid info' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('First practice of the season', count: 1)
+  end
+  scenario 'invalid date' do
     visit root_path
     click_on 'Sign in with Google'
     visit new_event_path
 
     fill_in 'Name', with: 'Practice 1'
     fill_in 'event_info', with: 'First practice of the season'
-    select '2021', from: 'event_date_1i'
-    select 'September', from: 'event_date_2i'
-    select '30', from: 'event_date_3i'
-
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
     click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('2021-03-09', count: 1)
+  end
+  scenario 'invalid time' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('2000-01-01 16:37:00 UTC', count: 1)
+  end
+  scenario 'invalid event_type' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('Tournament', count: 1)
+  end
+  scenario 'invalid address' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('test', count: 1)
+  end
+  scenario 'invalid event_season' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('15s', count: 1)
+  end
+  scenario 'invalid score' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    click_on 'Create Event'
+    visit events_path
+    expect(page).not_to have_content('24-0', count: 1)
+  end
+end
+
+RSpec.describe 'Editing an Event', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+    
+  scenario 'valid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+
+    click_on 'Edit'
+    fill_in 'event_info', with: 'Introduction and team formation practice.'
+    click_on 'Update Event'
+    visit events_path
+    expect(page).to have_content('Practice 1')
+    expect(page).to have_content('Introduction and team formation practice.')
+    expect(page).to have_content('2021-03-09')
+    expect(page).to have_content('2000-01-01 16:37:00 UTC')
+    expect(page).to have_content('Game')
+    expect(page).to have_content('7s')
+    expect(page).to have_content('24-0')
+  end
+
+  scenario 'invalid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'Date', with: '2021-03-09'
+    fill_in 'Time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+
+    click_on 'Edit'
+    fill_in 'Date', with: nil
+    click_on 'Update Event'
     visit events_path
     expect(page).to have_content('Practice 1')
     expect(page).to have_content('First practice of the season')
+    expect(page).to have_content('2021-03-09')
+    expect(page).to have_content('2000-01-01 16:37:00 UTC')
+    expect(page).to have_content('Game')
+    expect(page).to have_content('7s')
+    expect(page).to have_content('24-0')
+  end
+end
+
+RSpec.describe 'Deleting an event', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+    
+  scenario 'Clicking the button' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_event_path
+
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+
+    click_on 'Delete'
+    click_on 'Delete Event'
+    visit events_path
+
+    expect(page).not_to have_content('Practice 1')
+    expect(page).not_to have_content('First practice of the season')
+    expect(page).not_to have_content('2021-03-09')
+    expect(page).not_to have_content('2000-01-01 16:37:00 UTC')
+    expect(page).not_to have_content('Game')
+    expect(page).not_to have_content('test')
+    expect(page).not_to have_content('24-0')
   end
 end
 
@@ -783,13 +1170,13 @@ RSpec.describe 'Authentication', type: :feature do
   Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
   Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
   scenario 'visit path without logging in' do
-    visit people_path
-    expect(page).to have_content('Please log in!')
+    visit people_path   
+    expect(page).to have_content("You need to sign in or sign up")
   end
   scenario 'visit dashboard after logging in' do
     visit root_path
-    click_on 'Sign in with Google'
-    expect(page).to have_content("TAMU Women's Rugby Team")
+    click_on 'Sign in with Google'  
+    expect(page).to have_content("Dashboard")
   end
   scenario 'sign out takes to homepage' do
     visit root_path
