@@ -10,6 +10,5 @@
   <%= @attendancerecord.attendancetype %>
 </p>
 
-
-<%= link_to 'Edit', edit_attendancerecords_path(@attendancerecord) %> |
-<%= link_to 'Back', attendancerecords_path %>
+<%= link_to 'Edit', edit_event_attendancerecords_path(@event, @attendancerecord) %> |
+<%= link_to 'Back', event_attendancerecords_path(@event) %>

@@ -1,32 +1,34 @@
-<div class="event delete">
-<h2>Delete Attendancerecord</h2>
+<div class="attendancerecord delete">
+<h2>Delete Attendance Record</h2>
 
 
-<%= form_for(@attendancerecord, :method => 'delete') do |f| %>
+<%= form_for [@event, @attendancerecord], :method => 'delete' do |f| %>
 
-  <p>Are you sure you want to permanently delete this Attendancerecord?</p>
+  <p>Are you sure you want to permanently delete this attendance record?</p>
 
 <table>
   <thead>
     <tr>
-        <th>Type</th>
-        <th>Note</th>
-      <th colspan="3"></th>
+      <th>Player</th>
+      <th>Attendance</th>
+      <th>Excuse Note</th>
     </tr>
   </thead>
-
   <tbody>
-    <tr>
-      <td><%= @attendancerecord.attendancetype %></td>
-      <td><%= @attendancerecord.note%></td>
 
-    </tr>
+    <% player = @attendancerecord.player %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= @attendancerecord.attendancetype %></td>
+        <td><%= @attendancerecord.note %></td>
+      </tr>
+
   </tbody>
-  </table>
+</table>
 
-  <div class="form-buttons">
-    <%= f.submit("Delete Event") %>
-  </div>
+<div class="form-buttons">
+  <%= f.submit("Delete Attendance Record") %>
+</div>
 
 <% end %>
 <br/>

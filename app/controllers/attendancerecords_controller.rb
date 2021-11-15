@@ -4,10 +4,8 @@ class AttendancerecordsController < ApplicationController
 
   # GET /attendancerecords or /attendancerecords.json
   def index
-    @attendancerecords = Attendancerecord.all
-    #@attendancerecords = Attendancerecord.find_by_id(@event.id)
-    #@events = Event.all
-    #@attendancerecords = Attendancerecord.all.select { |a| a.event_id == @event.id }
+    @attendancerecords = @event.attendancerecords
+    @players = Player.all
   end
 
   # GET /attendancerecords/1 or /attendancerecords/1.json
@@ -16,8 +14,17 @@ class AttendancerecordsController < ApplicationController
 
   # GET /attendancerecords/new
   def new
-    @attendancerecord = Attendancerecord.new
-    #@attendancerecord = Attendancerecord.build.event(:event_id)
+    @event = Event.find(params[:event_id])
+    @attendancerecord = @event.attendancerecords.build
+
+    #@player = Player.find_by(params[:player_id])
+    #@attendancerecord.players << @player
+    #@player = 3.times { @attendancerecord.players.build }
+  #  @players = Player.all
+
+  #  @players.each do |player|
+  #    @event.attendancerecords.players.build
+  #  end
   end
 
   # GET /attendancerecords/1/edit
@@ -28,13 +35,20 @@ class AttendancerecordsController < ApplicationController
     @attendancerecord = Attendancerecord.find(params[:id])
   end
 
+  def delete
+    @event = Event.find(params[:event_id])
+    @attendancerecord = @event.attendancerecords.find(params[:id])
+  end
   # POST /attendancerecords or /attendancerecords.json
   def create
-    @attendancerecord = Attendancerecord.new(attendancerecord_params)
+    @event = Event.find(params[:event_id])
+    @attendancerecord = @event.attendancerecords.create(attendancerecord_params)
 
     respond_to do |format|
       if @attendancerecord.save
-        format.html { redirect_to events_path, notice: "Attendancerecord was successfully created." }
+        #@player = Player.find(params[:player_id])
+        #@attendancerecord.players << @player
+        format.html { redirect_to event_attendancerecords_path(@event), notice: "Attendance record was successfully created." }
         format.json { render :show, status: :created, location: @attendancerecord }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -49,9 +63,7 @@ class AttendancerecordsController < ApplicationController
       if @attendancerecord.update(attendancerecord_params)
         format.html { redirect_to events_path, notice: "Attendancerecord was successfully updated." }
         format.json { render :show, status: :ok, location: @attendancerecord }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @attendancerecord.errors, status: :unprocessable_entity }
+      
       end
     end
   end
@@ -68,8 +80,7 @@ class AttendancerecordsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_attendancerecord
-      @attendancerecord = Attendancerecord.find(params[:id])
-    end
+      @attendancerecord = @event.attendancerecords.find(params[:id])
 
     def set_event
       @event = Event.find(params[:event_id])
@@ -77,6 +88,6 @@ class AttendancerecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def attendancerecord_params
-      params.require(:attendancerecord).permit(:note, :attendancetype, :event_id, :player_id)
+      params.require(:attendancerecord).permit(:attendancetype, :note, :event_id, :player_id)
     end
 end

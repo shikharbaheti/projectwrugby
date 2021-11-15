@@ -167,28 +167,39 @@ end
 
 RSpec.describe Event, type: :model do
   subject do
-    described_class.new(name: 'Practice 1', info: 'First practice of the season', date: Date.today,
-                        time: '2000-01-01 16:37:00 UTC', event_type: 'Game', address: 'test', season: '7s', score: '24-0')
+    described_class.new(name: 'Practice 1', info: 'First practice of the season', date: Date.today, time: '2000-01-01 16:37:00 UTC', event_type: 'Game', address: 'test', season: '7s', score: '24-0')
+    
+    it 'is not valid without an event name' do
+      subject.name = nil
+      expect(subject).not_to be_valid
+    end
+    it 'is not valid without an event date' do
+      subject.date = nil
+      expect(subject).not_to be_valid
+    end
+    it 'is not valid without an event time' do
+      subject.time = nil
+      expect(subject).not_to be_valid
+    end
+    it 'is not valid without an event address' do
+      subject.address = nil
+      expect(subject).not_to be_valid
+    end
+  end
+
+RSpec.describe Attendancerecord, type: :model do
+  let(:player) { Player.new(id: 1, uin: 727_001_489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890', address: '100 address', person_type: 'Player')}
+  let(:event) { Event.new(id: 1, name:'Practice 1', info:'First practice of the season', date: Date.today, time: '2000-01-01 16:37:00 UTC')}
+  subject do
+    described_class.new(event: event, player: player, id: 1, attendancetype: 'Present', note: 'n/a')
   end
 
   it 'is valid with valid attributes' do
     expect(subject).to be_valid
   end
 
-  it 'is not valid without an event name' do
-    subject.name = nil
-    expect(subject).not_to be_valid
-  end
-  it 'is not valid without an event date' do
-    subject.date = nil
-    expect(subject).not_to be_valid
-  end
-  it 'is not valid without an event time' do
-    subject.time = nil
-    expect(subject).not_to be_valid
-  end
-  it 'is not valid without an event address' do
-    subject.address = nil
+  it 'is not valid without an attendance type' do
+    subject.attendancetype = nil
     expect(subject).not_to be_valid
   end
 end
@@ -205,6 +216,5 @@ RSpec.describe Encounter, type: :model do
 
   it 'is not valid without notes' do
     subject.notes = nil
-    expect(subject).not_to be_valid
-  end
+
 end

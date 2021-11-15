@@ -41,5 +41,5 @@
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Add Attendance Record', event_attendancerecords_path(@event) %> |
+<%= link_to 'Add Attendance Record', new_event_attendancerecord_path(@event, @attendancerecord) %> |
 <%= link_to 'Back', events_path %>

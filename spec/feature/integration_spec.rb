@@ -369,8 +369,8 @@ RSpec.describe 'Creating an Alumni', type: :feature do
 end
 
 RSpec.describe 'Deleting a Person', type: :feature do
-  Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
-  Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
 
   scenario 'Clicking the button' do
     visit root_path
@@ -399,8 +399,8 @@ RSpec.describe 'Deleting a Person', type: :feature do
 end
 
 RSpec.describe 'Editing a Person', type: :feature do
-  Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
-  Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
 
   scenario 'valid inputs' do
     visit root_path
@@ -1256,14 +1256,15 @@ end
 RSpec.describe 'Authentication', type: :feature do
   Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
   Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+
   scenario 'visit path without logging in' do
     visit people_path
-    expect(page).to have_content('You need to sign in or sign up')
+    expect(page).to have_content("Please log in!")
   end
   scenario 'visit dashboard after logging in' do
     visit root_path
     click_on 'Sign in with Google'
-    expect(page).to have_content('Dashboard')
+    expect(page).to have_content("TAMU Women's Rugby Team")
   end
   scenario 'sign out takes to homepage' do
     visit root_path
@@ -1271,4 +1272,184 @@ RSpec.describe 'Authentication', type: :feature do
     click_on 'Sign Out'
     expect(page).to have_content('Sign in with Google')
   end
+end
+
+RSpec.describe 'Creating an Attendance Record', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs for new attendance record' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727_001_489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit root_path
+    visit new_event_path
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    select '2021', from: 'event_date_1i'
+    select 'September', from: 'event_date_2i'
+    select '30', from: 'event_date_3i'
+
+    click_on 'Create Event'
+    visit events_path
+    click_on 'Attendance Record'
+    click_on 'New Attendance Record'
+
+    page.select('Nina Rao', from: :attendancerecord_player_id)
+    page.select('Present', from: :attendancerecord_attendancetype)
+    fill_in :attendancerecord_note, with: 'n/a'
+
+    click_on 'Set Attendance Record'
+    #visit event_attendancerecords_path
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('Present')
+    expect(page).to have_content('n/a')
+  end
+
+  scenario 'invalid inputs for new attendance record' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727_001_489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit root_path
+    visit new_event_path
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    select '2021', from: 'event_date_1i'
+    select 'September', from: 'event_date_2i'
+    select '30', from: 'event_date_3i'
+
+    click_on 'Create Event'
+    visit events_path
+    click_on 'Attendance Record'
+    click_on 'New Attendance Record'
+
+    fill_in :attendancerecord_note, with: 'n/a'
+
+    click_on 'Set Attendance Record'
+    click_on 'Back'
+    expect(page).not_to have_content('Nina Rao')
+    expect(page).not_to have_content('Present')
+    expect(page).not_to have_content('n/a')
+  end
+end
+
+RSpec.describe 'Deleting an Attendance Record', type: :feature do
+  Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
+  Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'Clicking the button' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727_001_489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit root_path
+    visit new_event_path
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    select '2021', from: 'event_date_1i'
+    select 'September', from: 'event_date_2i'
+    select '30', from: 'event_date_3i'
+
+    click_on 'Create Event'
+    visit events_path
+    click_on 'Attendance Record'
+    click_on 'New Attendance Record'
+
+    page.select('Nina Rao', from: :attendancerecord_player_id)
+    page.select('Present', from: :attendancerecord_attendancetype)
+    fill_in :attendancerecord_note, with: 'n/a'
+
+    click_on 'Set Attendance Record'
+
+    click_on 'Delete'
+    click_on 'Delete Attendance Record'
+    expect(page).not_to have_content('Nina Rao')
+    expect(page).not_to have_content('Present')
+    expect(page).not_to have_content('n/a')
+  end
+end
+
+RSpec.describe 'Editing an Attendance Record', type: :feature do
+  Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
+  Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario '- valid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727_001_489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit root_path
+    visit new_event_path
+    fill_in 'Name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    select '2021', from: 'event_date_1i'
+    select 'September', from: 'event_date_2i'
+    select '30', from: 'event_date_3i'
+
+    click_on 'Create Event'
+    visit events_path
+    click_on 'Attendance Record'
+    click_on 'New Attendance Record'
+
+    page.select('Nina Rao', from: :attendancerecord_player_id)
+    page.select('Present', from: :attendancerecord_attendancetype)
+    fill_in :attendancerecord_note, with: 'n/a'
+
+    click_on 'Set Attendance Record'
+
+    click_on 'Edit'
+    fill_in :attendancerecord_note, with: 'edited note'
+    click_on 'Set Attendance Record'
+
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('Present')
+    expect(page).to have_content('edited note')
+  end
+
 end
