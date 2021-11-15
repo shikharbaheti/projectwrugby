@@ -1,20 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <li class="navbarLink" id="link1"><%= link_to('Home', root_path, :class => "nav-link") %></li>
+      </li>
+      <li class="nav-item">
+        <b><li class="navbarLink" id="link1"><%= link_to('Players', players_path, :class => "nav-link")%></li></b>
+      </li>
+      <li class="nav-item">
+        <li class="navbarLink" id="link2"><%= link_to('Alumnis', alumnis_path, :class => "nav-link") %></li>
+      </li>
+      <li class="nav-item">
+        <li class="navbarLink" id="link2"><%= link_to('Recruits', recruits_path, :class => "nav-link") %></li>
+      </li>
+      <li class="nav-item">
+         <li class="navbarLink" id="link1"><%= link_to('Merchandise', merchandises_path, :class => "nav-link")%></li> 
+      </li>
+      <li class="nav-item">
+         <li class="navbarLink" id="link1"><%= link_to('Transactions', transactions_path, :class => "nav-link")%></li>
+      </li>
+      <li class="nav-item">
+         <li class="navbarLink" id="link1"><%= link_to('Events', events_path, :class => "nav-link")%></li>
+      </li>
+    </ul>
+    <div class="my-2 my-lg-0">
+      <%= link_to('Sign Out', destroy_admin_session_path	) %>
+    </div>
+  </div>
+</nav>
 <p id="notice"><%= notice %></p>
 
-<u1>
- <li class="navbarLink" id="link1"><%= link_to('Home', root_path) %></li>
- <li class="navbarLink" id="link1"><%= link_to('Players', players_path) %></li>
- <li class="navbarLink" id="link2"><%= link_to('Alumnis', alumnis_path	) %></li>   
- <li class="navbarLink" id="link2"><%= link_to('Recruits', recruits_path	) %></li>
- <li class="navbarLink" id="link1"><%= link_to('Mechandise',merchandises_path)%></li>  
-<li class="navbarLink" id="link1"><%= link_to('Transactions',transactions_path)%></li>
-<li class="navbarLink" id="link1"><%= link_to 'Events',events_path %></li>
- <li class="navbarLink" id="link" style="float: right"><%= link_to('Sign Out', destroy_admin_session_path	) %></li>   
-</u1>
-
 <center>
-<h1>Players</h1>
-
-<table id="player_table">
+<h3 class="display-3">Players</h3>
+<div class="container"><table class="table table-bordered table-hover table-stripped">
   <thead>
     <tr>
       <th>UIN</th>
@@ -46,13 +68,12 @@
       </tr>
     <% end %>
   </tbody>
-</table>
+</table></div>
+</div>
 </center>
-
-<br>
 <button onClick="sendEmail();">Send Email</button>
 <br>
-<%= link_to 'New Player', new_player_path %>
+<%= link_to 'New Player', new_player_path, :class => "btn btn-primary" %>
 
 <script>
 

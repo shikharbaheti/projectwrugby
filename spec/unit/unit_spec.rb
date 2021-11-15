@@ -1,6 +1,7 @@
 # location: spec/unit/unit_spec.rb
 require 'rails_helper'
 
+
 RSpec.describe Person, type: :model do
   subject do
     described_class.new(uin: 727_001_489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
@@ -97,3 +98,24 @@ RSpec.describe Admin, type: :model do
     expect(subject).to be_valid
   end
 end
+
+RSpec.describe Encounter, type: :model do
+  
+  subject do
+    described_class.new(recruit_id: 1, notes: 'this is a note')
+  end
+
+
+  it 'is not valid without a recruit_id' do
+    subject.recruit_id = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without notes' do
+    subject.notes = nil
+    expect(subject).not_to be_valid
+  end
+
+end
+
+
