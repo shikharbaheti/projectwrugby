@@ -1,9 +1,10 @@
 # location: spec/unit/unit_spec.rb
 require 'rails_helper'
 
+
 RSpec.describe Person, type: :model do
   subject do
-    described_class.new(uin: 727001489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
+    described_class.new(uin: 727_001_489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
                         address: '100 address', person_type: 'Player')
   end
 
@@ -78,7 +79,7 @@ end
 
 RSpec.describe Merchandise, type: :model do
   subject do
-    described_class.new(item_name:'Sweatshirt',purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
+    described_class.new(item_name: 'Sweatshirt', purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
   end
 
   it 'is valid with valid attributes' do
@@ -111,3 +112,52 @@ RSpec.describe Admin, type: :model do
     expect(subject).to be_valid
   end
 end
+
+RSpec.describe Event, type: :model do
+  subject do
+    described_class.new(name:'Practice 1', info:'First practice of the season', date: Date.today,
+    time: '2000-01-01 16:37:00 UTC', event_type: 'Game', address: 'test', season: '7s', score: '24-0')
+  end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it 'is not valid without an event name' do
+    subject.name = nil
+    expect(subject).not_to be_valid
+  end
+  it 'is not valid without an event date' do
+    subject.date = nil
+    expect(subject).not_to be_valid
+  end
+  it 'is not valid without an event time' do
+    subject.time = nil
+    expect(subject).not_to be_valid
+  end
+  it 'is not valid without an event address' do
+    subject.address = nil
+    expect(subject).not_to be_valid
+  end
+end
+
+RSpec.describe Encounter, type: :model do
+  
+  subject do
+    described_class.new(recruit_id: 1, notes: 'this is a note')
+  end
+
+
+  it 'is not valid without a recruit_id' do
+    subject.recruit_id = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without notes' do
+    subject.notes = nil
+    expect(subject).not_to be_valid
+  end
+
+end
+
+

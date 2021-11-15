@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :set_player, only: %i[ show edit update destroy ]
+  before_action :set_player, only: %i[show edit update destroy]
 
   # GET /players or /players.json
   def index
@@ -7,8 +7,7 @@ class PlayersController < ApplicationController
   end
 
   # GET /players/1 or /players/1.json
-  def show
-  end
+  def show; end
 
   # GET /players/new
   def new
@@ -16,11 +15,16 @@ class PlayersController < ApplicationController
   end
 
   # GET /players/1/edit
-  def edit
-  end
+  def edit; end
 
   def delete
     @player = Player.find(params[:id])
+  end
+
+
+  #possibly delete
+  def send_email
+    Player.all(:select => :email)
   end
 
   # POST /players or /players.json
@@ -29,7 +33,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to players_path, notice: "Player was successfully created." }
+        format.html { redirect_to players_path, notice: 'Player was successfully created.' }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +46,7 @@ class PlayersController < ApplicationController
   def update
     respond_to do |format|
       if @player.update(player_params)
-        format.html { redirect_to players_path, notice: "Player was successfully updated." }
+        format.html { redirect_to players_path, notice: 'Player was successfully updated.' }
         format.json { render :show, status: :ok, location: @player }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,19 +59,20 @@ class PlayersController < ApplicationController
   def destroy
     @player.destroy
     respond_to do |format|
-      format.html { redirect_to players_url, notice: "Player was successfully destroyed." }
+      format.html { redirect_to players_url, notice: 'Player was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_player
-      @player = Player.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def player_params
-      params.require(:player).permit(:uin, :name, :email, :phone_number, :address, :person_type, :dues, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_player
+    @player = Player.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def player_params
+    params.require(:player).permit(:uin, :name, :email, :phone_number, :address, :person_type, :dues, :status)
+  end
 end
