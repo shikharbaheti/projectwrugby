@@ -7,11 +7,14 @@
 
   <p>Are you sure you want to permanently delete this Transaction?</p>
   
-<table>
+<div class="container"><table class="table table-bordered table-hover table-stripped">
   <thead>
     <tr>
         <th>Transaction date</th>
         <th>Amount</th>
+        <th>Merch</th>
+        <th>Person</th>
+        <th>Person UIN</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,9 +23,23 @@
     <tr>
       <td><%= @transaction.transaction_date %></td>
       <td><%= @transaction.amount %></td>
+      <% merchandise = @transaction.merchandise %>
+        <% if merchandise == nil %>
+        <td>N/A</td>
+        <% else %>
+        <td><%= merchandise.item_name %></td>
+        <% end %>
+        <% person = @transaction.person %>
+        <% if merchandise == nil %>
+        <td>N/A</td>
+        <td>N/A</td>
+        <% else %>
+        <td><%= person.name %></td>
+        <td><%= person.uin %></td>
+        <% end %>
     </tr>
   </tbody>
-  </table>
+  </table></div>
 
   <div class="form-buttons">
     <%= f.submit("Delete Person") %>

@@ -13,53 +13,61 @@
 
  */
 
- @import "bootstrap";
+@import "bootstrap";
 
-body{
-    background-color: #6b1f1f;
-    color: white;
-}
-
-h1, th, tr {
-    color: #ebebeb;
+body {
+  background-color: #fdf0d5;
 }
 
-tr, td {
-    border: 1px solid white;
-    text-align: center;
+h1 {
+  color: maroon;
 }
 
-
-u1 {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: table;
-    overflow: hidden;
-    background-color: #050505;
-    color: #ebebeb;
-    width: 100%;
-
-}
-li { 
-    float: left;
-}
-        
-li a{
-    display: block;
-    color: #ebebeb;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-li a:hover:not(.active) {
-    background-color: #800000;
+h3 {
+  color: #003049;
 }
 
-li a.navbar{
-    background-color: #050505;
-}
+// h1,
+// th,
+// tr {
+//   color: #ebebeb;
+// }
 
-.navbarLink{
-    color: white;
-}
+// tr, td {
+//     border: 1px solid white;
+//     text-align: center;
+// }
+
+// u1 {
+//     list-style-type: none;
+//     margin: 0;
+//     padding: 0;
+//     display: table;
+//     overflow: hidden;
+//     background-color: #050505;
+//     color: #ebebeb;
+//     width: 100%;
+
+// }
+// li {
+//     float: left;
+// }
+
+// li a{
+//     display: block;
+//     color: #ebebeb;
+//     text-align: center;
+//     padding: 14px 16px;
+//     text-decoration: none;
+// }
+// li a:hover:not(.active) {
+//     background-color: #800000;
+// }
+
+// li a.navbar{
+//     background-color: #050505;
+// }
+
+// .navbarLink{
+//     color: white;
+// }

@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :attendancerecords
   resources :events
+  resources :encounters
   resources :merchandises
   resources :transactions
   resources :recruits
@@ -15,14 +18,6 @@ Rails.application.routes.draw do
     end
   end
  
-
-  #devise_scope :events do
-  #    get '/events/:event_id/attendancerecords/:id', to: 'attendancerecords#index', as: :event_attendancerecords_path
-  #    get '/events/:event_id/attendancerecords/:id/edit', to: 'attendancerecords#edit', as: :edit_event_attendancerecord_path
-  #    get '/events/:event_id/attendancerecords/new', to: 'attendancerecords#new', as: :new_event_attendancerecord_path
-  #end
-
-  
 
   resources :people do
     member do
@@ -55,6 +50,12 @@ Rails.application.routes.draw do
   end
 
   resources :events do
+    member do
+      get :delete
+    end
+  end
+
+  resources :encounters do
     member do
       get :delete
     end

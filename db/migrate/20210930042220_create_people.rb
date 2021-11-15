@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePeople < ActiveRecord::Migration[6.1]
   def change
     create_table :people do |t|
@@ -13,7 +15,7 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.integer :interest_level
       t.integer :times_contacted
       t.date :date_contacted
-      
+
       t.timestamps
     end
   end
