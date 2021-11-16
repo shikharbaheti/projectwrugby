@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
+  resources :rugbyhelps
   resources :encounters
   resources :merchandises
   resources :transactions
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
 
   resources :people do
     member do
@@ -59,6 +62,8 @@ Rails.application.routes.draw do
       get :delete
     end
   end
+
+
 
   root to: 'dashboards#show'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }

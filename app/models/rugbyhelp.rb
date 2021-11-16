@@ -1,0 +1,2 @@
+class Rugbyhelp < ApplicationRecord
+end
