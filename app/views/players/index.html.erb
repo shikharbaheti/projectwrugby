@@ -36,7 +36,7 @@
 
 <center>
 <h3 class="display-3">Players</h3>
-<div class="container"><table class="table table-bordered table-hover table-stripped">
+<div class="container"><table id="player_table" class="table table-bordered table-hover table-stripped">
   <thead>
     <tr>
       <th>UIN</th>
@@ -71,8 +71,7 @@
 </table></div>
 </div>
 </center>
-<button onClick="sendEmail();">Send Email</button>
-<br>
+<button onClick="sendEmail();" class="btn btn-primary">Send Email</button>
 <%= link_to 'New Player', new_player_path, :class => "btn btn-primary" %>
 
 <script>

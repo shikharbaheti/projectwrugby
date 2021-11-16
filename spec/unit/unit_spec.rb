@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # location: spec/unit/unit_spec.rb
 require 'rails_helper'
 
@@ -44,13 +42,64 @@ RSpec.describe Person, type: :model do
   end
 end
 
+RSpec.describe Player, type: :model do
+  subject do
+    described_class.new(uin: 727001489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
+                        address: '100 address', person_type: 'Player', dues: 120, status: 'Active')
+  end
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it 'is not valid without a uin/id' do
+    subject.uin = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a name' do
+    subject.name = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a email' do
+    subject.email = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a phone number' do
+    subject.phone_number = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a address' do
+    subject.address = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a person type' do
+    subject.person_type = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a address' do
+    subject.dues = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a person type' do
+    subject.status = nil
+    expect(subject).not_to be_valid
+  end
+end
+
 RSpec.describe Transaction, type: :model do
-  merchandise = Merchandise.create(item_name: 'Sweatshirt', purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
-  person = Person.create(uin: 727_001_489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
-                         address: '100 address', person_type: 'Player')
+
+  let(:person) { Person.new(id: 1, uin: 727001489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890', address: '100 address', person_type: 'Player')}
+  let(:merchandise) { Merchandise.new(id: 1, item_name:'Sweatshirt', purchase_price: 10, quantity_on_hand: 10, sell_price: 20)}
 
   subject do
-    described_class.new(amount: 45, transaction_date: Date.today, person_id: person.id, merchandise_id: merchandise.id)
+    described_class.new(person: person, merchandise: merchandise, amount: 45, transaction_date: Date.today)
   end
 
   it 'is valid with valid attributes' do
@@ -116,28 +165,41 @@ end
 
 RSpec.describe Event, type: :model do
   subject do
-    described_class.new(name: 'Practice 1', info: 'First practice of the season', date: Date.today,
-                        time: '2000-01-01 16:37:00 UTC', event_type: 'Game', address: 'test', season: '7s', score: '24-0')
+    described_class.new(name: 'Practice 1', info: 'First practice of the season', date: Date.today, time: '2000-01-01 16:37:00 UTC', event_type: 'Game', address: 'test', season: '7s', score: '24-0')
+  end
+    
+    it 'is not valid without an event name' do
+      subject.name = nil
+      expect(subject).not_to be_valid
+    end
+    it 'is not valid without an event date' do
+      subject.date = nil
+      expect(subject).not_to be_valid
+    end
+    it 'is not valid without an event time' do
+      subject.time = nil
+      expect(subject).not_to be_valid
+    end
+    it 'is not valid without an event address' do
+      subject.address = nil
+      expect(subject).not_to be_valid
+    end
+  end
+
+RSpec.describe Attendancerecord, type: :model do
+  let(:player) { Player.new(id: 1, uin: 727_001_489, name: 'Nina Rao', email: 'ninarao09@tamu.edu', phone_number: '1234567890', address: '100 address', person_type: 'Player')}
+  let(:event) { Event.new(id: 1, name: 'Practice 1', info: 'First practice of the season', date: Date.today, time: '2000-01-01 16:37:00 UTC', event_type: 'Game', address: 'test', season: '7s', score: '24-0')}
+  
+  subject do
+    described_class.new(event: event, player: player, id: 1, attendancetype: 'Present', note: 'n/a')
   end
 
   it 'is valid with valid attributes' do
     expect(subject).to be_valid
   end
 
-  it 'is not valid without an event name' do
-    subject.name = nil
-    expect(subject).not_to be_valid
-  end
-  it 'is not valid without an event date' do
-    subject.date = nil
-    expect(subject).not_to be_valid
-  end
-  it 'is not valid without an event time' do
-    subject.time = nil
-    expect(subject).not_to be_valid
-  end
-  it 'is not valid without an event address' do
-    subject.address = nil
+  it 'is not valid without an attendance type' do
+    subject.attendancetype = nil
     expect(subject).not_to be_valid
   end
 end
@@ -156,4 +218,5 @@ RSpec.describe Encounter, type: :model do
     subject.notes = nil
     expect(subject).not_to be_valid
   end
+
 end

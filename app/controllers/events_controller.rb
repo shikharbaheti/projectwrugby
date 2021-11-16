@@ -48,6 +48,7 @@ class EventsController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
+
     end
   end
 
@@ -61,14 +62,13 @@ class EventsController < ApplicationController
   end
 
   private
+      def set_event
+        @event = Event.find(params[:id])
+      end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_event
-    @event = Event.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
-  def event_params
-    params.require(:event).permit(:name, :info, :date, :time, :address, :event_type, :score, :season)
-  end
+      # Only allow a list of trusted parameters through.
+      def event_params
+        params.require(:event).permit(:name, :info, :date, :time, :address, :event_type, :score, :season, :attendancerecord_id, :attendancetype, :note, :uin, :player_id)
+      end
+  
 end

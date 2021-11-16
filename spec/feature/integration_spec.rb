@@ -369,8 +369,8 @@ RSpec.describe 'Creating an Alumni', type: :feature do
 end
 
 RSpec.describe 'Deleting a Person', type: :feature do
-  Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
-  Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
 
   scenario 'Clicking the button' do
     visit root_path
@@ -399,8 +399,8 @@ RSpec.describe 'Deleting a Person', type: :feature do
 end
 
 RSpec.describe 'Editing a Person', type: :feature do
-  Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
-  Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
 
   scenario 'valid inputs' do
     visit root_path
@@ -1133,25 +1133,43 @@ RSpec.describe 'Deleting an event', type: :feature do
 end
 
 RSpec.describe 'Create a transaction', type: :feature do
-  before(:all) do
-    merchandise = Merchandise.create(item_name: 'Sweatshirt1', purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
-    person = Person.create(uin: 727_001_489, name: 'Nina Rao1', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
-                           address: '100 address', person_type: 'Player')
-  end
+
 
   Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
   Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
 
   scenario 'valid inputs for a transaction' do
+
     visit root_path
     click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with: 'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+
+
     visit new_transaction_path
     select '2021', from: 'transaction_transaction_date_1i'
     select 'September', from: 'transaction_transaction_date_2i'
     select '30', from: 'transaction_transaction_date_3i'
     fill_in 'transaction_amount', with: 40
-    select 'Sweatshirt1', from: 'transaction_merchandise_id'
-    select 'Nina Rao1', from: 'transaction_person_id'
+    select 'Sweatshirt', from: 'transaction_merchandise_id'
+    select 'Nina Rao', from: 'transaction_person_id'
     click_on 'Create Transaction'
     visit transactions_path
     expect(page).to have_content(40)
@@ -1159,14 +1177,36 @@ RSpec.describe 'Create a transaction', type: :feature do
   end
 
   scenario 'invalid inputs for a transaction' do
+
     visit root_path
     click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with: 'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+
+
     visit new_transaction_path
     select '2021', from: 'transaction_transaction_date_1i'
     select 'September', from: 'transaction_transaction_date_2i'
     select '30', from: 'transaction_transaction_date_3i'
-    select 'Sweatshirt1', from: 'transaction_merchandise_id'
-    select 'Nina Rao1', from: 'transaction_person_id'
+    select 'Sweatshirt', from: 'transaction_merchandise_id'
+    select 'Nina Rao', from: 'transaction_person_id'
     click_on 'Create Transaction'
     visit transactions_path
     expect(page).not_to have_content(40)
@@ -1175,24 +1215,42 @@ RSpec.describe 'Create a transaction', type: :feature do
 end
 
 RSpec.describe 'Delete a transaction', type: :feature do
-  before(:all) do
-    merchandise = Merchandise.create(item_name: 'Sweatshirt2', purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
-    person = Person.create(uin: 727_001_489, name: 'Nina Rao2', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
-                           address: '100 address', person_type: 'Player')
-  end
+
   Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
   Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
 
   scenario 'Delete the transaction' do
+
     visit root_path
     click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with: 'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+
+
     visit new_transaction_path
     select '2021', from: 'transaction_transaction_date_1i'
     select 'September', from: 'transaction_transaction_date_2i'
     select '30', from: 'transaction_transaction_date_3i'
     fill_in 'transaction_amount', with: 40
-    select 'Sweatshirt2', from: 'transaction_merchandise_id'
-    select 'Nina Rao2', from: 'transaction_person_id'
+    select 'Sweatshirt', from: 'transaction_merchandise_id'
+    select 'Nina Rao', from: 'transaction_person_id'
     click_on 'Create Transaction'
     visit transactions_path
     click_on 'Delete'
@@ -1204,25 +1262,43 @@ RSpec.describe 'Delete a transaction', type: :feature do
 end
 
 RSpec.describe 'Update a transaction', type: :feature do
-  before(:all) do
-    merchandise = Merchandise.create(item_name: 'Sweatshirt3', purchase_price: 10, quantity_on_hand: 10, sell_price: 20)
-    person = Person.create(uin: 727_001_489, name: 'Nina Rao3', email: 'ninarao09@tamu.edu', phone_number: '1234567890',
-                           address: '100 address', person_type: 'Player')
-  end
 
   Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
   Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
 
   scenario 'Edit the transaction with valid inputs' do
+
     visit root_path
     click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with: 'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+
+
+
     visit new_transaction_path
     select '2021', from: 'transaction_transaction_date_1i'
     select 'September', from: 'transaction_transaction_date_2i'
     select '30', from: 'transaction_transaction_date_3i'
     fill_in 'transaction_amount', with: 40
-    select 'Sweatshirt3', from: 'transaction_merchandise_id'
-    select 'Nina Rao3', from: 'transaction_person_id'
+    select 'Sweatshirt', from: 'transaction_merchandise_id'
+    select 'Nina Rao', from: 'transaction_person_id'
     click_on 'Create Transaction'
     visit transactions_path
     click_on 'Edit'
@@ -1236,13 +1312,33 @@ RSpec.describe 'Update a transaction', type: :feature do
   scenario 'Edit the transaction with invalid inputs' do
     visit root_path
     click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit new_merchandise_path
+    fill_in :merchandise_item_name, with: 'Sweatshirt'
+    fill_in :merchandise_purchase_price, with: 20
+    fill_in :merchandise_quantity_on_hand, with: 5
+    fill_in :merchandise_sell_price, with: 40
+    click_on 'Create Merchandise'
+
     visit new_transaction_path
     select '2021', from: 'transaction_transaction_date_1i'
     select 'September', from: 'transaction_transaction_date_2i'
     select '30', from: 'transaction_transaction_date_3i'
     fill_in 'transaction_amount', with: 40
-    select 'Sweatshirt3', from: 'transaction_merchandise_id'
-    select 'Nina Rao3', from: 'transaction_person_id'
+    select 'Sweatshirt', from: 'transaction_merchandise_id'
+    select 'Nina Rao', from: 'transaction_person_id'
     click_on 'Create Transaction'
     visit transactions_path
     click_on 'Edit'
@@ -1256,19 +1352,211 @@ end
 RSpec.describe 'Authentication', type: :feature do
   Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
   Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+
   scenario 'visit path without logging in' do
     visit people_path
-    expect(page).to have_content('You need to sign in or sign up')
+    expect(page).to have_content("Please log in!")
   end
   scenario 'visit dashboard after logging in' do
     visit root_path
     click_on 'Sign in with Google'
-    expect(page).to have_content('Dashboard')
+    expect(page).to have_content("TAMU Women's Rugby Team")
   end
   scenario 'sign out takes to homepage' do
     visit root_path
     click_on 'Sign in with Google'
     click_on 'Sign Out'
     expect(page).to have_content('Sign in with Google')
+  end
+end
+
+RSpec.describe 'Creating an Attendance Record', type: :feature do
+  Rails.application.env_config["devise.mapping"] = Devise.mappings[:user]
+  Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'valid inputs for new attendance record' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727_001_489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit root_path
+    visit new_event_path
+    fill_in 'event_name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+
+    click_on 'Create Event'
+    visit events_path
+    click_on 'Attendance Record'
+    click_on 'New Attendance Record'
+
+    page.select('Nina Rao', from: :attendancerecord_player_id)
+    page.select('Present', from: :attendancerecord_attendancetype)
+    fill_in :attendancerecord_note, with: 'n/a'
+
+    click_on 'Set Attendance Record'
+    #visit event_attendancerecords_path
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('Present')
+    expect(page).to have_content('n/a')
+  end
+
+  scenario 'invalid inputs for new attendance record' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727_001_489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit root_path
+    visit new_event_path
+    fill_in 'event_name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+
+    click_on 'Create Event'
+    visit events_path
+    click_on 'Attendance Record'
+    click_on 'New Attendance Record'
+
+    fill_in :attendancerecord_note, with: 'n/a'
+
+    click_on 'Set Attendance Record'
+    click_on 'Back'
+    expect(page).not_to have_content('Nina Rao')
+    expect(page).not_to have_content('Present')
+    expect(page).not_to have_content('n/a')
+  end
+end
+
+RSpec.describe 'Deleting an Attendance Record', type: :feature do
+  Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
+  Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario 'Clicking the button' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727_001_489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit root_path
+    visit new_event_path
+    fill_in 'event_name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+
+    click_on 'Create Event'
+    visit events_path
+    click_on 'Attendance Record'
+    click_on 'New Attendance Record'
+
+    page.select('Nina Rao', from: :attendancerecord_player_id)
+    page.select('Present', from: :attendancerecord_attendancetype)
+    fill_in :attendancerecord_note, with: 'n/a'
+
+    click_on 'Set Attendance Record'
+
+    click_on 'Delete'
+    click_on 'Delete Attendance Record'
+    expect(page).not_to have_content('Nina Rao')
+    expect(page).not_to have_content('Present')
+    expect(page).not_to have_content('n/a')
+  end
+end
+
+RSpec.describe 'Editing an Attendance Record', type: :feature do
+  Rails.application.env_config['devise.mapping'] = Devise.mappings[:user]
+  Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_oauth2]
+
+  scenario '- valid inputs' do
+    visit root_path
+    click_on 'Sign in with Google'
+    visit new_player_path
+
+    fill_in :player_uin, with: 727001489
+    fill_in 'Name', with: 'Nina Rao'
+    fill_in 'Email', with: 'ninarao09@tamu.edu'
+    fill_in :player_phone_number, with: '1234567890'
+    fill_in 'Address', with: '100 address'
+    page.select('Player', from: :player_person_type)
+    fill_in 'Dues', with: 120
+    page.select('Active', from: :player_status)
+
+    click_on 'Create Player'
+
+    visit root_path
+    visit new_event_path
+    fill_in 'event_name', with: 'Practice 1'
+    fill_in 'event_info', with: 'First practice of the season'
+    fill_in 'event_date', with: '2021-03-09'
+    fill_in 'event_time', with: '2000-01-01 16:37:00 UTC'
+    page.select('Game', from: :event_event_type)
+    fill_in 'event_address', with: 'test'
+    page.select('7s', from: :event_season)
+    fill_in 'event_score', with: '24-0'
+    click_on 'Create Event'
+    visit events_path
+    click_on 'Attendance Record'
+    click_on 'New Attendance Record'
+
+    page.select('Nina Rao', from: :attendancerecord_player_id)
+    page.select('Present', from: :attendancerecord_attendancetype)
+    fill_in :attendancerecord_note, with: 'n/a'
+
+    click_on 'Set Attendance Record'
+
+    click_on 'Edit'
+    fill_in :attendancerecord_note, with: 'edited note'
+    click_on 'Set Attendance Record'
+    click_on 'Attendance Record'
+
+    expect(page).to have_content('Nina Rao')
+    expect(page).to have_content('Present')
+    expect(page).to have_content('edited note')
   end
 end

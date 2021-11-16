@@ -8,7 +8,19 @@ Rails.application.routes.draw do
   resources :alumnis
   resources :players
   resources :people
-  resources :events
+  resources :events do
+    resources :attendancerecords
+
+    resources :attendancerecords do
+      member do
+        get :delete
+      end
+    end
+  end
+ 
+
+
+
 
   resources :people do
     member do

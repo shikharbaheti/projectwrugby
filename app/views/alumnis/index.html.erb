@@ -37,7 +37,7 @@
 <center>
 <h3 class="display-3">Alumni</h3>
 
-<div class="container"><table class="table table-bordered table-hover table-stripped">
+<div class="container"><table id="alumni_table" class="table table-bordered table-hover table-stripped">
   <thead>
     <tr>
       <th>UIN</th>
@@ -70,9 +70,8 @@
   
 </table></div>
 </center>
-<button onClick="sendEmail();">Send Email</button>
-<br>
-<%= link_to 'New Person', new_person_path, :class => "btn btn-primary" %>
+<button onClick="sendEmail();" class="btn btn-primary">Send Email</button>
+<%= link_to 'New Alumni', new_person_path, :class => "btn btn-primary" %>
 
 <script>
 
