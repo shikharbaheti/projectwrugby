@@ -62,6 +62,10 @@ class PlayersController < ApplicationController
 
   private
 
+    def set_player
+      @player = Player.find(params[:id])
+    end
+
     # Only allow a list of trusted parameters through.
     def player_params
       params.require(:player).permit(:uin, :name, :email, :phone_number, :address, :person_type, :dues, :status, :note, :attendancetype, :attendancerecord_id)

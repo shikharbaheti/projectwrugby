@@ -1,5 +1,6 @@
 class AttendancerecordsController < ApplicationController
-  #before_action :set_event
+  skip_before_action :verify_authenticity_token
+  before_action :get_event
   before_action :set_attendancerecord, only: %i[ show edit update destroy ]
 
   # GET /attendancerecords or /attendancerecords.json
@@ -16,23 +17,10 @@ class AttendancerecordsController < ApplicationController
   def new
     @event = Event.find(params[:event_id])
     @attendancerecord = @event.attendancerecords.build
-
-    #@player = Player.find_by(params[:player_id])
-    #@attendancerecord.players << @player
-    #@player = 3.times { @attendancerecord.players.build }
-  #  @players = Player.all
-
-  #  @players.each do |player|
-  #    @event.attendancerecords.players.build
-  #  end
   end
 
   # GET /attendancerecords/1/edit
   def edit
-  end
-
-  def delete
-    @attendancerecord = Attendancerecord.find(params[:id])
   end
 
   def delete
@@ -78,13 +66,16 @@ class AttendancerecordsController < ApplicationController
   end
 
   private
+
+    def get_event
+      @event = Event.find(params[:event_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_attendancerecord
       @attendancerecord = @event.attendancerecords.find(params[:id])
-
-    def set_event
-      @event = Event.find(params[:event_id])
     end
+
+    
 
     # Only allow a list of trusted parameters through.
     def attendancerecord_params
