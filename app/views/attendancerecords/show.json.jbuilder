@@ -1,1 +1,3 @@
-json.partial! "attendancerecords/attendancerecord", attendancerecord: @attendancerecord
+# frozen_string_literal: true
+
+json.partial! 'attendancerecords/attendancerecord', attendancerecord: @attendancerecord
