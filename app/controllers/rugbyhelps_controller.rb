@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RugbyhelpsController < ApplicationController
-  before_action :set_rugbyhelp, only: %i[ show edit update destroy ]
+  before_action :set_rugbyhelp, only: %i[show edit update destroy]
 
   # GET /rugbyhelps or /rugbyhelps.json
   def index
@@ -7,8 +9,7 @@ class RugbyhelpsController < ApplicationController
   end
 
   # GET /rugbyhelps/1 or /rugbyhelps/1.json
-  def show
-  end
+  def show; end
 
   # GET /rugbyhelps/new
   def new
@@ -16,8 +17,7 @@ class RugbyhelpsController < ApplicationController
   end
 
   # GET /rugbyhelps/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /rugbyhelps or /rugbyhelps.json
   def create
@@ -25,7 +25,7 @@ class RugbyhelpsController < ApplicationController
 
     respond_to do |format|
       if @rugbyhelp.save
-        format.html { redirect_to @rugbyhelp, notice: "Rugbyhelp was successfully created." }
+        format.html { redirect_to @rugbyhelp, notice: 'Rugbyhelp was successfully created.' }
         format.json { render :show, status: :created, location: @rugbyhelp }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class RugbyhelpsController < ApplicationController
   def update
     respond_to do |format|
       if @rugbyhelp.update(rugbyhelp_params)
-        format.html { redirect_to @rugbyhelp, notice: "Rugbyhelp was successfully updated." }
+        format.html { redirect_to @rugbyhelp, notice: 'Rugbyhelp was successfully updated.' }
         format.json { render :show, status: :ok, location: @rugbyhelp }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,19 +51,20 @@ class RugbyhelpsController < ApplicationController
   def destroy
     @rugbyhelp.destroy
     respond_to do |format|
-      format.html { redirect_to rugbyhelps_url, notice: "Rugbyhelp was successfully destroyed." }
+      format.html { redirect_to rugbyhelps_url, notice: 'Rugbyhelp was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_rugbyhelp
-      @rugbyhelp = Rugbyhelp.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def rugbyhelp_params
-      params.fetch(:rugbyhelp, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_rugbyhelp
+    @rugbyhelp = Rugbyhelp.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def rugbyhelp_params
+    params.fetch(:rugbyhelp, {})
+  end
 end
