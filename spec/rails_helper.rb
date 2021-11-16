@@ -74,7 +74,7 @@ RSpec.configure do |config|
                                                                        uid: '727001489',
                                                                        info: {
                                                                          name: 'Nina Rao',
-                                                                         email: 'ninarao09@tamu.edu'
+                                                                         email: 'tamwrc@gmail.com'
                                                                        },
                                                                        credentials: {
                                                                          token: 'token',
