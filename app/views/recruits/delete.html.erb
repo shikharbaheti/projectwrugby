@@ -7,7 +7,7 @@
 
   <p>Are you sure you want to permanently delete this Recruit?</p>
   
-<table>
+<div class="container"><table class="table table-bordered table-hover table-stripped">
   <thead>
     <tr>
         <th>UIN</th>
@@ -38,7 +38,7 @@
       <td><%= @recruit.date_contacted %></td>
     </tr>
   </tbody>
-  </table>
+  </table></div>
 
   <div class="form-buttons">
     <%= f.submit("Delete Recruit") %>

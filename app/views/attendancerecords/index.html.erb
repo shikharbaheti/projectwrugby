@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+
+<nav class="navbar navCustom navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <li class="navbarLink" id="link1"><%= link_to('Home', root_path, :class => "nav-link") %></li>
+      </li>
+      <li class="nav-item">
+        <b><li class="navbarLink" id="link1"><%= link_to('Players', players_path, :class => "nav-link")%></li></b>
+      </li>
+      <li class="nav-item">
+        <li class="navbarLink" id="link2"><%= link_to('Alumnis', alumnis_path, :class => "nav-link") %></li>
+      </li>
+      <li class="nav-item">
+        <li class="navbarLink" id="link2"><%= link_to('Recruits', recruits_path, :class => "nav-link") %></li>
+      </li>
+      <li class="nav-item">
+         <li class="navbarLink" id="link1"><%= link_to('Merchandise', merchandises_path, :class => "nav-link")%></li> 
+      </li>
+      <li class="nav-item">
+         <li class="navbarLink" id="link1"><%= link_to('Transactions', transactions_path, :class => "nav-link")%></li>
+      </li>
+      <li class="nav-item">
+         <li class="navbarLink" id="link1"><%= link_to('Events', events_path, :class => "nav-link")%></li>
+      </li>
+    </ul>
+    <div class="my-2 my-lg-0">
+      <%= link_to('Sign Out', destroy_admin_session_path	) %>
+    </div>
+  </div>
+</nav>
+
+<h1><%= @event.name %></h1>
+<h1>Attendance Records</h1>
+
+<div class="container"><table class="table table-bordered table-hover table-stripped">
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Attendance</th>
+      <th>Excuse Note</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @attendancerecords.each do |attendancerecord| %>
+      <% player = attendancerecord.player %>
+      <tr>
+
+        <td><%= player.name %></td>
+        <td><%= attendancerecord.attendancetype %></td>
+        <td><%= attendancerecord.note %></td>
+
+        <td><%= link_to 'Show Event', [@event]%></td>
+        <td><%= link_to 'Edit', edit_event_attendancerecord_path(@event, attendancerecord) %></td>
+        <td><%= link_to 'Delete', delete_event_attendancerecord_path(@event, attendancerecord) %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+
+</table>
+</div>
+
+
+
+<br>
+<br>
+<%= link_to 'New Attendance Record', new_event_attendancerecord_path, :class => "btn btn-primary"  %>
+
+<br>
+<%= link_to 'Back', events_path %>

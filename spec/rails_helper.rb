@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -28,12 +30,12 @@ SimpleCov.start
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
-begin
-  ActiveRecord::Migration.maintain_test_schema!
-rescue ActiveRecord::PendingMigrationError => e
-  puts e.to_s.strip
-  exit 1
-end
+# begin
+#   ActiveRecord::Migration.maintain_test_schema!
+# rescue ActiveRecord::PendingMigrationError => e
+#   puts e.to_s.strip
+#   exit 1
+# end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -68,16 +70,15 @@ RSpec.configure do |config|
 
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-      :provider => "google_oauth2",
-      :uid => "727001489",
-      :info => {
-        :name => "Nina Rao",
-        :email => "shikhar@tamu.edu"
-      },
-      :credentials => {
-        :token => "token",
-        :refresh_token => "refresh token"
-      }
-    }
-  )
+                                                                       provider: 'google_oauth2',
+                                                                       uid: '727001489',
+                                                                       info: {
+                                                                         name: 'Nina Rao',
+                                                                         email: 'ninarao09@tamu.edu'
+                                                                       },
+                                                                       credentials: {
+                                                                         token: 'token',
+                                                                         refresh_token: 'refresh token'
+                                                                       }
+                                                                     })
 end

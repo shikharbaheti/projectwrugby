@@ -20,5 +20,26 @@
   <%= @event.time %>
 </p>
 
+<p>
+  <strong>Type:</strong>
+  <%= @event.event_type %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @event.address %>
+</p>
+
+<p>
+  <strong>Season:</strong>
+  <%= @event.season %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @event.score %>
+</p>
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Add Attendance Record', new_event_attendancerecord_path(@event, @attendancerecord) %> |
 <%= link_to 'Back', events_path %>

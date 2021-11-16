@@ -1,0 +1,26 @@
+<%= form_with(model: encounter) do |form| %>
+  <% if encounter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(encounter.errors.count, "error") %> prohibited this encounter from being saved:</h2>
+
+      <ul>
+        <% encounter.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :recruit_id %>
+    <%= form.collection_select :recruit_id, Recruit.all.select { |p| p.person_type == 'Recruit' },:id,:name, include_blank: true %>  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

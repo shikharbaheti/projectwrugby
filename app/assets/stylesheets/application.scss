@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+ */
+
+@import "bootstrap";
+
+body {
+  background-color: #ffffff;
+}
+
+h1 {
+  color: maroon;
+}
+
+h3 {
+  color: #000000;
+}
+
+.navCustom {
+  background-color: maroon;
+}
+
+// h1,
+// th,
+// tr {
+//   color: #ebebeb;
+// }
+
+// tr, td {
+//     border: 1px solid white;
+//     text-align: center;
+// }
+
+// u1 {
+//     list-style-type: none;
+//     margin: 0;
+//     padding: 0;
+//     display: table;
+//     overflow: hidden;
+//     background-color: #050505;
+//     color: #ebebeb;
+//     width: 100%;
+
+// }
+// li {
+//     float: left;
+// }
+
+// li a{
+//     display: block;
+//     color: #ebebeb;
+//     text-align: center;
+//     padding: 14px 16px;
+//     text-decoration: none;
+// }
+// li a:hover:not(.active) {
+//     background-color: #800000;
+// }
+
+// li a.navbar{
+//     background-color: #050505;
+// }
+
+// .navbarLink{
+//     color: white;
+// }

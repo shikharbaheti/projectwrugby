@@ -1,0 +1,50 @@
+<%= form_for [@event, @attendancerecord] do |form| %>
+  <% if attendancerecord.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attendancerecord.errors.count, "error") %> prohibited this attendance_record from being saved:</h2>
+
+      <ul>
+        <% attendancerecord.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Attendance</th>
+          <th>Excuse Note</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+        <tr>
+          <td>
+            <div class="field">
+              <!--%= form.label :player_id %-->
+              <%= form.collection_select :player_id, Player.all.select { |p| p.person_type == 'Player' },:id,:name, include_blank: true %>
+            </div></td>
+          <td>
+            <div class="dropdown">
+              <!--%= form.label :attendancetype, "Attendance Type" %-->
+              <%= form.select :attendancetype, [[],'Present','Late, Excused','Late, Unexcused','Absent, Excused','Absent, Unexcused'] %>
+            </div></td>
+          <td>
+            <div class="field">
+              <!--%= form.label :note, "Excuse Note" %-->
+              <%= form.text_area :note %>
+            </div></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  <div class="actions">
+    <%= form.submit "Set Attendance Record"%>
+  </div>
+<% end %>
+

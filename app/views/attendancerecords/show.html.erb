@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @attendancerecord.note %>
+</p>
+
+<p>
+  <strong>Attendancetype:</strong>
+  <%= @attendancerecord.attendancetype %>
+</p>
+
+<%= link_to 'Edit', edit_event_attendancerecords_path(@event, @attendancerecord) %> |
+<%= link_to 'Back', event_attendancerecords_path(@event) %>

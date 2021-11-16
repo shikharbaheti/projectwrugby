@@ -1,11 +1,22 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
+  resources :encounters
   resources :merchandises
   resources :transactions
   resources :recruits
   resources :alumnis
   resources :players
   resources :people
-  resources :events
+  resources :events do
+    resources :attendancerecords
+
+    resources :attendancerecords do
+      member do
+        get :delete
+      end
+    end
+  end
 
   resources :people do
     member do
@@ -38,6 +49,12 @@ Rails.application.routes.draw do
   end
 
   resources :events do
+    member do
+      get :delete
+    end
+  end
+
+  resources :encounters do
     member do
       get :delete
     end
