@@ -1,3 +1,4 @@
+
 env:
   RUBY_VERSION: 3.0.2
   POSTGRES_USER: postgres
@@ -20,6 +21,7 @@ jobs:
           POSTGRES_USER: ${{ env.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
     steps:
+        
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
@@ -42,6 +44,7 @@ jobs:
       - name: Run brakeman
         run: brakeman -o brakeman.txt
       - name: Run rubocop
+        continue-on-error: true
         run: rubocop --out rubocop.txt
       - name: Upload coverage results
         uses: actions/upload-artifact@master
