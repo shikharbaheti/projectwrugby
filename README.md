@@ -62,6 +62,17 @@ Organization members will have access to organization email that will act as the
 
 The Github link will be provided to the customer. The customer will be guided through creating their own Heroku account. The customer will use the github link to deploy the application using their account. The customer can then configure the link to the site according to their wishes. 
 
+## Environmental Variables/Files ##
+
+Google OAuth2 support requires two keys to function as intended: Client ID and Client Secret
+
+In both 'config/environments/test.rb' as well as 'config/environments/development.rb', change following lines based on your Google OAuth2 Client ID and Client Secret:
+
+  `GOOGLE_OAUTH_CLIENT_ID: 'YOUR_GOOGLE_OAUTH_CLIENT_ID_HERE'`
+
+  `GOOGLE_OAUTH_CLIENT_SECRET: 'YOUR_GOOGLE_OAUTH_CLIENT_SECRET_HERE'`
+  
+Furthermore to change the 'ADMIN' email to log into the application, you can choose to do so at 'app/models/admin.rb' at 'return nil unless email =~ /email_here\z/'
 
 ## CI/CD ##
 
@@ -71,4 +82,3 @@ Continious Integration is facilitated by maintaining an updated github repositor
 
 Admins looking for support should first look at the application help page.
 Users looking for help seek out assistance from the customer.
-
