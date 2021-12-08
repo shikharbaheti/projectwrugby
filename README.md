@@ -66,13 +66,13 @@ The Github link will be provided to the customer. The customer will be guided th
 
 Google OAuth2 support requires two keys to function as intended: Client ID and Client Secret
 
-In both 'config/environments/test.rb' as well as 'config/environments/development.rb', change following lines based on your Google OAuth2 Client ID and Client Secret:
+In both `config/environments/test.rb` as well as `config/environments/development.rb`, change following lines based on your Google OAuth2 Client ID and Client Secret:
 
   `GOOGLE_OAUTH_CLIENT_ID: 'YOUR_GOOGLE_OAUTH_CLIENT_ID_HERE'`
 
   `GOOGLE_OAUTH_CLIENT_SECRET: 'YOUR_GOOGLE_OAUTH_CLIENT_SECRET_HERE'`
   
-Furthermore to change the 'ADMIN' email to log into the application, you can choose to do so at 'app/models/admin.rb' at 'return nil unless email =~ /email_here\z/'
+Furthermore to change the 'ADMIN' email to log into the application, you can choose to do so at `app/models/admin.rb` at `return nil unless email =~ /email_here\z/`
 
 ## CI/CD ##
 
